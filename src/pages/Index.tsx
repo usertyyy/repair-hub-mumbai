@@ -14,6 +14,7 @@ import BookingSection from "@/components/BookingSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
+import ScrollPopup from "@/components/ScrollPopup";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -100,6 +101,7 @@ const Index = () => {
       </main>
       <Footer />
       <FloatingButtons />
+      <ScrollPopup />
     </div>
   );
 };

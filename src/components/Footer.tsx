@@ -58,11 +58,16 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="mt-10 border-t border-primary-foreground/10 pt-6 flex flex-wrap justify-between gap-4 text-xs text-primary-foreground/40">
-        <span>© 2024 Customer Service Center. All rights reserved.</span>
-        <div className="flex gap-4">
-          <a href="#" className="hover:text-primary-foreground">Privacy Policy</a>
-          <a href="#" className="hover:text-primary-foreground">Terms of Service</a>
+      <div className="mt-10 border-t border-primary-foreground/10 pt-6 text-xs text-primary-foreground/40">
+        <p className="mb-4 leading-relaxed">
+          <strong className="text-primary-foreground/60">Disclaimer:</strong> Any product names, logos, brands, and other trademarks or images featured or referred to within Customer Service Center are the property of their respective trademark holders. Customer Service Center is neither associated nor affiliated with any Companies. Logos and images are being used only for representation purpose of post warranty repair and service. We Have Home Appliances Parts Shop and We Provide all Brand service and Repairing. Customer Service Center is an independent organization.
+        </p>
+        <div className="flex flex-wrap justify-between gap-4">
+          <span>© 2026 Customer Service Center. All rights reserved.</span>
+          <div className="flex gap-4">
+            <a href="#" className="hover:text-primary-foreground">Privacy Policy</a>
+            <a href="#" className="hover:text-primary-foreground">Terms of Service</a>
+          </div>
         </div>
       </div>
     </div>
