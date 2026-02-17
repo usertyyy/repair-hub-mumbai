@@ -20,7 +20,7 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: "Customer Service Center",
-  description: "Expert Laptop & AC Repair Service in Vile Parle East, Mumbai. Same-day service, 90-day warranty, genuine parts, free pickup & delivery.",
+  description: "Expert Laptop & AC Repair Service. Same-day service, 90-day warranty, genuine parts, free pickup & delivery.",
   url: "https://customerservicecenter.in",
   telephone: "+919999999999",
   email: "info@customerservicecenter.in",
