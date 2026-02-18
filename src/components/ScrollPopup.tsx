@@ -43,10 +43,10 @@ const ScrollPopup = () => {
           </p>
           <div className="flex w-full gap-3">
             <Button asChild className="flex-1 bg-gradient-to-r from-primary to-accent">
-              <a href="tel:+919999999999"><Phone className="h-4 w-4" /> Call Now</a>
+              <a href="tel:+918282822265"><Phone className="h-4 w-4" /> Call Now</a>
             </Button>
             <Button asChild variant="outline" className="flex-1">
-              <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+              <a href="https://wa.me/918282822265" target="_blank" rel="noopener noreferrer">WhatsApp</a>
             </Button>
           </div>
         </div>
