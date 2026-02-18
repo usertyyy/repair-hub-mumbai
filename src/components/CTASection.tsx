@@ -11,10 +11,10 @@ const CTASection = () => (
           Get same-day repair service with 90-day warranty. Free pickup & delivery across Mumbai.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <a href="tel:+919999999999" className="btn-cta text-base">
+          <a href="tel:+918282822265" className="btn-cta text-base">
             <Phone className="h-5 w-5" /> Call Now
           </a>
-          <a href="https://wa.me/919999999999?text=Hi%2C%20I%20need%20repair%20service" target="_blank" rel="noopener noreferrer" className="btn-whatsapp text-base">
+          <a href="https://wa.me/+918282822265?text=Hi%2C%20I%20need%20repair%20service" target="_blank" rel="noopener noreferrer" className="btn-whatsapp text-base">
             <MessageCircle className="h-5 w-5" /> WhatsApp
           </a>
           <a href="#booking" className="btn-cta-outline text-base border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10">
