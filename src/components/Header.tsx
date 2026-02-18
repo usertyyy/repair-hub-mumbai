@@ -46,7 +46,7 @@ const Header = () => {
               {l.label}
             </a>
           ))}
-          <a href="tel:+919999999999" className="btn-cta text-sm">
+          <a href="tel:+918282822265" className="btn-cta text-sm">
             <Phone className="h-4 w-4" /> Call Now
           </a>
         </nav>
@@ -65,7 +65,7 @@ const Header = () => {
               {l.label}
             </a>
           ))}
-          <a href="tel:+919999999999" className="btn-cta mt-3 w-full text-sm">
+          <a href="tel:+918282822265" className="btn-cta mt-3 w-full text-sm">
             <Phone className="h-4 w-4" /> Call Now
           </a>
         </nav>
