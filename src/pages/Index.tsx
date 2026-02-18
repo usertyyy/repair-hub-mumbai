@@ -22,7 +22,7 @@ const structuredData = {
   name: "Customer Service Center",
   description: "Expert Laptop & AC Repair Service. Same-day service, 90-day warranty, genuine parts, free pickup & delivery.",
   url: "https://customerservicecenter.in",
-  telephone: "+919999999999",
+  telephone: "+918282822265",
   email: "info@customerservicecenter.in",
   address: {
     "@type": "PostalAddress",
