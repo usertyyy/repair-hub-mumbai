@@ -20,7 +20,7 @@ const HeroSection = () => {
           </div>
 
           <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-primary-foreground md:text-5xl lg:text-6xl">
-            Expert Laptop &amp; AC Repair Service in <span className="text-accent">Vile Parle East</span>
+            Expert Laptop, Washing Machine, Fridge &amp; AC Repair Service in <span className="text-accent">Mumbai</span>
           </h1>
 
           <p className="mt-5 text-lg text-primary-foreground/80 md:text-xl">
