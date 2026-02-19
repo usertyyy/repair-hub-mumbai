@@ -22,7 +22,7 @@ const Header = () => {
           <span className="hidden sm:inline">📍 Vile Parle East, Mumbai | Mon–Sun: 9AM–9PM</span>
           <span className="sm:hidden text-xs">📍 Vile Parle East, Mumbai</span>
           <a href="tel:+918282822265" className="flex items-center gap-1 font-semibold hover:underline">
-            <Phone className="h-3 w-3" /> +91 99999 99999
+            <Phone className="h-3 w-3" /> 8282822265
           </a>
         </div>
       </div>
