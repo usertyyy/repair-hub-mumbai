@@ -47,7 +47,7 @@ const faqStructuredData = {
     { "@type": "Question", name: "How much does laptop repair cost?", acceptedAnswer: { "@type": "Answer", text: "Repair costs depend on the issue. We charge a ₹350 inspection fee which is adjustable against the final repair cost." } },
     { "@type": "Question", name: "Do you offer same-day repair service?", acceptedAnswer: { "@type": "Answer", text: "Yes! Most laptop and AC repairs are completed within the same day." } },
     { "@type": "Question", name: "What warranty do you provide?", acceptedAnswer: { "@type": "Answer", text: "We provide a 90-day warranty on all repairs and replaced parts." } },
-    { "@type": "Question", name: "Is pickup and delivery free?", acceptedAnswer: { "@type": "Answer", text: "Yes, we offer free pickup and delivery for laptop repairs across Vile Parle East and surrounding areas." } },
+    { "@type": "Question", name: "Is pickup and delivery free?", acceptedAnswer: { "@type": "Answer", text: "Yes, we offer free pickup and delivery for laptop repairs acrossMumbai and surrounding areas." } },
   ],
 };
 
@@ -65,14 +65,14 @@ const Index = () => {
     document.head.appendChild(script2);
 
     // Update meta
-    document.title = "Laptop & AC Repair in Vile Parle East | Customer Service Center Mumbai";
+    document.title = "Laptop & AC Repair inMumbai | Customer Service Center Mumbai";
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
-      metaDesc.setAttribute("content", "Expert laptop & AC repair in Vile Parle East, Mumbai. Same-day service, 90-day warranty, genuine parts. Free pickup & delivery. Call now!");
+      metaDesc.setAttribute("content", "Expert laptop & AC repair inMumbai, Mumbai. Same-day service, 90-day warranty, genuine parts. Free pickup & delivery. Call now!");
     } else {
       const meta = document.createElement("meta");
       meta.name = "description";
-      meta.content = "Expert laptop & AC repair in Vile Parle East, Mumbai. Same-day service, 90-day warranty, genuine parts. Free pickup & delivery. Call now!";
+      meta.content = "Expert laptop & AC repair inMumbai, Mumbai. Same-day service, 90-day warranty, genuine parts. Free pickup & delivery. Call now!";
       document.head.appendChild(meta);
     }
 

@@ -36,7 +36,7 @@ const ScrollPopup = () => {
           </div>
           <h3 className="text-xl font-bold text-foreground">Need Expert Repair?</h3>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Get <strong>same-day laptop & AC repair</strong> with 90-day warranty. Free pickup & delivery in Vile Parle East & nearby areas!
+            Get <strong>same-day laptop & AC repair</strong> with 90-day warranty. Free pickup & delivery inMumbai & nearby areas!
           </p>
           <p className="text-xs text-muted-foreground/70 leading-relaxed">
             <strong>Disclaimer:</strong> Customer Service Center is an independent organization, not associated or affiliated with any brand. Trademarks belong to their respective holders.

@@ -52,7 +52,7 @@ const Footer = () => (
           <ul className="space-y-3 text-sm text-primary-foreground/60">
             <li className="flex items-start gap-2"><Phone className="h-4 w-4 mt-0.5 shrink-0" /> <a href="tel:+918282822265" className="hover:text-primary-foreground">8282822265</a></li>
             <li className="flex items-start gap-2"><Mail className="h-4 w-4 mt-0.5 shrink-0" /> <a href="mailto:info@customerservicecenter.in" className="hover:text-primary-foreground">info@customerservicecenter.in</a></li>
-            <li className="flex items-start gap-2"><MapPin className="h-4 w-4 mt-0.5 shrink-0" /> Vile Parle East, Mumbai 400057</li>
+            <li className="flex items-start gap-2"><MapPin className="h-4 w-4 mt-0.5 shrink-0" />Mumbai, Mumbai 400057</li>
             <li className="flex items-start gap-2"><Clock className="h-4 w-4 mt-0.5 shrink-0" /> Mon–Sun: 9AM–9PM</li>
           </ul>
         </div>

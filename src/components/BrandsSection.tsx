@@ -1,16 +1,31 @@
 import { motion } from "framer-motion";
 
 const acBrands = [
-  "Blue Star", "BPL", "Carrier", "Croma", "Cruise", "Daikin", "Electrolux", "Godrej",
-  "Gree", "Haier", "Hisense", "Hitachi", "IFB", "Kelvinator", "Koryo", "LG",
-  "Lloyd", "MarQ", "Midea", "Mitashi", "Mitsubishi Electric", "Mitsubishi Heavy",
-  "O General", "Onida", "Panasonic", "Samsung", "Sansui", "TCL", "Toshiba",
-  "Videocon", "Voltas", "Whirlpool",
+  "Blue Star", "Bosch", "BPL", "Carrier", "Croma", "Croma (Reliance)",
+  "Cruise", "Daikin", "Electrolux", "Godrej", "Gree", "Haier", "Hisense",
+  "Hitachi", "IFB", "Kelvinator", "Koryo", "LG", "Lloyd", "MarQ", "Midea",
+  "Mitashi", "Mitsubishi", "Mitsubishi Electric", "Mitsubishi Heavy",
+  "O General", "Onida", "Panasonic", "Samsung", "Sansui", "TCL",
+  "Thomson", "Toshiba", "Videocon", "Voltas", "Whirlpool",
 ];
 
 const laptopBrands = [
   "Dell", "HP", "Lenovo", "Asus", "Acer", "Apple", "MSI", "Razer",
   "Samsung", "Toshiba", "Sony",
+];
+
+const fridgeBrands = [
+  "Blue Star", "Bosch", "Croma (Reliance)", "Electrolux", "Godrej", "Haier",
+  "Hitachi", "IFB", "Intex", "Kelvinator", "LG", "Lloyd", "Mitashi", "Onida",
+  "Panasonic", "Samsung", "Sansui", "Sharp", "Siemens", "TCL", "Thomson",
+  "Toshiba", "Videocon", "Voltas Beko", "Whirlpool",
+];
+
+const washingMachineBrands = [
+  "Bosch", "BPL", "Croma (Reliance)", "Electrolux", "Godrej", "Haier",
+  "IFB", "Intex", "Kelvinator", "LG", "Lloyd", "Mitashi", "Onida",
+  "Panasonic", "Samsung", "Sansui", "Sharp", "Siemens", "TCL", "Thomson",
+  "Toshiba", "Videocon", "Voltas Beko", "Weston", "Whirlpool",
 ];
 
 const BrandChip = ({ name, index }: { name: string; index: number }) => (
@@ -45,6 +60,20 @@ const BrandsSection = () => (
         <h3 className="mb-4 text-lg font-bold text-foreground">Laptop Brands</h3>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-6">
           {laptopBrands.map((b, i) => <BrandChip key={b} name={b} index={i} />)}
+        </div>
+      </div>
+
+      <div className="mt-10">
+        <h3 className="mb-4 text-lg font-bold text-foreground">Fridge Brands</h3>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+          {fridgeBrands.map((b, i) => <BrandChip key={b} name={b} index={i} />)}
+        </div>
+      </div>
+
+      <div className="mt-10">
+        <h3 className="mb-4 text-lg font-bold text-foreground">Washing Machine Brands</h3>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+          {washingMachineBrands.map((b, i) => <BrandChip key={b} name={b} index={i} />)}
         </div>
       </div>
     </div>

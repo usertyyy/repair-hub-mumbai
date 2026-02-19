@@ -5,7 +5,7 @@ const faqs = [
   { q: "What are your AC service charges?", a: "AC service starts from ₹499 for basic servicing. Gas refilling, installation, and repairs are priced based on the AC type and brand. We provide transparent pricing upfront." },
   { q: "Do you offer same-day repair service?", a: "Yes! Most laptop and AC repairs are completed within the same day. For complex motherboard repairs, it may take 24-48 hours." },
   { q: "What warranty do you provide?", a: "We provide a 90-day warranty on all repairs and replaced parts. If the same issue recurs within the warranty period, we fix it for free." },
-  { q: "Is pickup and delivery free?", a: "Yes, we offer free pickup and delivery for laptop repairs across Vile Parle East and surrounding areas in Mumbai." },
+  { q: "Is pickup and delivery free?", a: "Yes, we offer free pickup and delivery for laptop repairs acrossMumbai and surrounding areas in Mumbai." },
   { q: "Is my data safe during repair?", a: "Absolutely. Data safety is our top priority. We never access, copy, or delete any personal data. Your files remain untouched throughout the repair process." },
 ];
 
