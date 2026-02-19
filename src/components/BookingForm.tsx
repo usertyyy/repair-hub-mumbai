@@ -16,6 +16,7 @@ type BookingData = z.infer<typeof bookingSchema>;
 const BookingForm = () => {
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof BookingData, string>>>({});
   const [form, setForm] = useState<BookingData>({
     name: "", phone: "", serviceType: "", issue: "", address: "", preferredTime: "",
@@ -26,7 +27,7 @@ const BookingForm = () => {
     setErrors({ ...errors, [e.target.name]: undefined });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = bookingSchema.safeParse(form);
     if (!result.success) {
@@ -35,7 +36,25 @@ const BookingForm = () => {
       setErrors(fieldErrors);
       return;
     }
-    setSubmitted(true);
+    
+    setIsSubmitting(true);
+    try {
+      // Replace YOUR_FORM_ID with your actual Formspree ID
+      const response = await fetch("https://formspree.io/f/mgollvyl", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        console.error("Form submission failed");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!open) return null;
@@ -67,7 +86,6 @@ const BookingForm = () => {
               <select name="serviceType" value={form.serviceType} onChange={handleChange}
                 className="w-full rounded-xl border border-input bg-background px-4 py-2.5 text-sm text-foreground outline-none focus:ring-2 focus:ring-accent">
                 <option value="">Select service</option>
-                <option>Laptop Repair</option>
                 <option>AC Repair</option>
                 <option>AC Installation</option>
                 <option>AC Service/Maintenance</option>
@@ -93,7 +111,9 @@ const BookingForm = () => {
               </select>
               {errors.preferredTime && <p className="mt-1 text-xs text-destructive">{errors.preferredTime}</p>}
             </div>
-            <button type="submit" className="btn-cta w-full text-base mt-2">Book Free Pickup</button>
+            <button type="submit" disabled={isSubmitting} className="btn-cta w-full text-base mt-2">
+              {isSubmitting ? "Sending..." : "Book Free Pickup"}
+            </button>
             <p className="text-center text-xs text-muted-foreground">Inspection fee: ₹350 (adjustable against repair cost)</p>
           </form>
         )}
@@ -115,6 +135,7 @@ const Field = ({ label, name, value, onChange, error, placeholder, type = "text"
 export const BookingTrigger = () => {
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof BookingData, string>>>({});
   const [form, setForm] = useState<BookingData>({
     name: "", phone: "", serviceType: "", issue: "", address: "", preferredTime: "",
@@ -125,7 +146,7 @@ export const BookingTrigger = () => {
     setErrors({ ...errors, [e.target.name]: undefined });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = bookingSchema.safeParse(form);
     if (!result.success) {
@@ -134,7 +155,22 @@ export const BookingTrigger = () => {
       setErrors(fieldErrors);
       return;
     }
-    setSubmitted(true);
+    
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("https://formspree.io/f/mgollvyl", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (response.ok) {
+        setSubmitted(true);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -169,7 +205,6 @@ export const BookingTrigger = () => {
                   <select name="serviceType" value={form.serviceType} onChange={handleChange}
                     className="w-full rounded-xl border border-input bg-background px-4 py-2.5 text-sm text-foreground outline-none focus:ring-2 focus:ring-accent">
                     <option value="">Select service</option>
-                    <option>Laptop Repair</option>
                     <option>AC Repair</option>
                     <option>AC Installation</option>
                     <option>AC Service/Maintenance</option>
@@ -195,7 +230,9 @@ export const BookingTrigger = () => {
                   </select>
                   {errors.preferredTime && <p className="mt-1 text-xs text-destructive">{errors.preferredTime}</p>}
                 </div>
-                <button type="submit" className="btn-cta w-full text-base mt-2">Book Free Pickup</button>
+                <button type="submit" disabled={isSubmitting} className="btn-cta w-full text-base mt-2">
+              {isSubmitting ? "Sending..." : "Book Free Pickup"}
+            </button>
                 <p className="text-center text-xs text-muted-foreground">Inspection fee: ₹350 (adjustable against repair cost)</p>
               </form>
             )}

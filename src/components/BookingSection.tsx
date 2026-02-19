@@ -24,6 +24,7 @@ const Field = ({ label, name, value, onChange, error, placeholder, type = "text"
 
 const BookingSection = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof BookingData, string>>>({});
   const [form, setForm] = useState<BookingData>({
     name: "", phone: "", serviceType: "", issue: "", address: "", preferredTime: "",
@@ -34,7 +35,7 @@ const BookingSection = () => {
     setErrors({ ...errors, [e.target.name]: undefined });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = bookingSchema.safeParse(form);
     if (!result.success) {
@@ -43,7 +44,22 @@ const BookingSection = () => {
       setErrors(fieldErrors);
       return;
     }
-    setSubmitted(true);
+    
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("https://formspree.io/f/mgollvyl", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (response.ok) {
+        setSubmitted(true);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -75,7 +91,6 @@ const BookingSection = () => {
                   <select name="serviceType" value={form.serviceType} onChange={handleChange}
                     className="w-full rounded-xl border border-input bg-background px-4 py-2.5 text-sm text-foreground outline-none focus:ring-2 focus:ring-accent">
                     <option value="">Select service</option>
-                    <option>Laptop Repair</option>
                     <option>AC Repair</option>
                     <option>AC Installation</option>
                     <option>AC Service/Maintenance</option>
@@ -102,7 +117,9 @@ const BookingSection = () => {
                 {errors.issue && <p className="mt-1 text-xs text-destructive">{errors.issue}</p>}
               </div>
               <Field label="Pickup Address" name="address" value={form.address} onChange={handleChange} error={errors.address} placeholder="Your full address" />
-              <button type="submit" className="btn-cta w-full text-base">Book Free Pickup</button>
+              <button type="submit" disabled={isSubmitting} className="btn-cta w-full text-base">
+                {isSubmitting ? "Sending..." : "Book Free Pickup"}
+              </button>
               <p className="text-center text-xs text-muted-foreground">Inspection fee: ₹350 (adjustable against repair cost) • No Fix No Fee</p>
             </form>
           )}

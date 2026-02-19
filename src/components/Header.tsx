@@ -20,7 +20,7 @@ const Header = () => {
       <div className="bg-primary text-primary-foreground">
         <div className="container flex items-center justify-between py-1.5 text-sm">
           <span className="hidden sm:inline">📍Mumbai | Mon–Sun: 9AM–9PM</span>
-          <span className="sm:hidden text-xs">📍Mumbai's trusted laptop & AC repair service since 2009</span>
+          <span className="sm:hidden text-xs">📍Mumbai's trusted Repair service since 2009</span>
           <a href="tel:+918282822265" className="flex items-center gap-1 font-semibold hover:underline">
             <Phone className="h-3 w-3" /> +918282822265
           </a>

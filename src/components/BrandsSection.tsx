@@ -9,11 +9,6 @@ const acBrands = [
   "Thomson", "Toshiba", "Videocon", "Voltas", "Whirlpool",
 ];
 
-const laptopBrands = [
-  "Dell", "HP", "Lenovo", "Asus", "Acer", "Apple", "MSI", "Razer",
-  "Samsung", "Toshiba", "Sony",
-];
-
 const fridgeBrands = [
   "Blue Star", "Bosch", "Croma (Reliance)", "Electrolux", "Godrej", "Haier",
   "Hitachi", "IFB", "Intex", "Kelvinator", "LG", "Lloyd", "Mitashi", "Onida",
