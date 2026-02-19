@@ -5,7 +5,7 @@ const CTASection = () => (
     <div className="container">
       <div className="rounded-3xl px-6 py-12 text-center md:px-12 md:py-16" style={{ background: "var(--hero-gradient)" }}>
         <h2 className="text-3xl font-extrabold text-primary-foreground md:text-4xl">
-          Need Expert Laptop or AC Repair i nMumbai?
+          Need Expert AC or Appliance Repair in Mumbai?
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-lg text-primary-foreground/80">
           Get same-day repair service with 90-day warranty. Free pickup & delivery across Mumbai.

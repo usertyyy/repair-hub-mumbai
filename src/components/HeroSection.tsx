@@ -7,7 +7,7 @@ const HeroSection = () => {
     <section className="relative overflow-hidden" id="hero">
       {/* Background */}
       <div className="absolute inset-0">
-        <img src={heroBg} alt="Expert technician repairing laptop and AC" className="h-full w-full object-cover" />
+        <img src={heroBg} alt="Expert technician repairing home appliances and AC" className="h-full w-full object-cover" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsl(215 80% 15% / 0.88) 0%, hsl(215 70% 25% / 0.75) 100%)" }} />
       </div>
 

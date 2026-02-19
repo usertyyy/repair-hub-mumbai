@@ -1,12 +1,12 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const faqs = [
-  { q: "How much does laptop repair cost?", a: "Repair costs depend on the issue. We charge a ₹350 inspection fee which is adjustable against the final repair cost. You get a detailed estimate before any work begins." },
+  { q: "How much does the inspection cost?", a: "We charge a ₹350 inspection fee which is adjustable against the final repair cost. You get a detailed estimate before any work begins." },
   { q: "What are your AC service charges?", a: "AC service starts from ₹499 for basic servicing. Gas refilling, installation, and repairs are priced based on the AC type and brand. We provide transparent pricing upfront." },
-  { q: "Do you offer same-day repair service?", a: "Yes! Most laptop and AC repairs are completed within the same day. For complex motherboard repairs, it may take 24-48 hours." },
+  { q: "Do you offer same-day repair service?", a: "Yes! Most AC and appliance repairs are completed within the same day. For complex issues, it may take 24-48 hours." },
   { q: "What warranty do you provide?", a: "We provide a 90-day warranty on all repairs and replaced parts. If the same issue recurs within the warranty period, we fix it for free." },
-  { q: "Is pickup and delivery free?", a: "Yes, we offer free pickup and delivery for laptop repairs acrossMumbai and surrounding areas in Mumbai." },
-  { q: "Is my data safe during repair?", a: "Absolutely. Data safety is our top priority. We never access, copy, or delete any personal data. Your files remain untouched throughout the repair process." },
+  { q: "Is home service available?", a: "Yes, we offer doorstep service for all AC and home appliance repairs across Mumbai and surrounding areas." },
+  { q: "Are the spare parts genuine?", a: "Absolutely. We only use 100% genuine and brand-authorized spare parts for all our repairs to ensure longevity and performance." },
 ];
 
 const FAQSection = () => (

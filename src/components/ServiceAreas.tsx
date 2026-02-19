@@ -28,7 +28,7 @@ const ServiceAreas = () => (
             <div>
               <span className="font-bold text-foreground">{a.name}</span>
               {a.badge && <span className="ml-2 rounded-full bg-accent/10 px-2 py-0.5 text-xs font-semibold text-accent">{a.badge}</span>}
-              <div className="text-xs text-muted-foreground">Laptop & AC Repair</div>
+              <div className="text-xs text-muted-foreground">AC & Appliance Repair</div>
             </div>
           </motion.div>
         ))}

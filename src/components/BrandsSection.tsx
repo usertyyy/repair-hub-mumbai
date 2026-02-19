@@ -41,20 +41,13 @@ const BrandsSection = () => (
     <div className="container">
       <div className="text-center">
         <h2 className="section-heading">All Major Brands We Service</h2>
-        <p className="section-subheading mx-auto max-w-2xl">Authorized service for 40+ leading laptop and AC brands with genuine spare parts.</p>
+        <p className="section-subheading mx-auto max-w-2xl">Authorized service for 40+ leading AC and home appliance brands with genuine spare parts.</p>
       </div>
 
       <div className="mt-10">
         <h3 className="mb-4 text-lg font-bold text-foreground">AC Brands</h3>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
           {acBrands.map((b, i) => <BrandChip key={b} name={b} index={i} />)}
-        </div>
-      </div>
-
-      <div className="mt-10">
-        <h3 className="mb-4 text-lg font-bold text-foreground">Laptop Brands</h3>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-6">
-          {laptopBrands.map((b, i) => <BrandChip key={b} name={b} index={i} />)}
         </div>
       </div>
 

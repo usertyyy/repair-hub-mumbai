@@ -1,16 +1,5 @@
-import { Monitor, Cpu, HardDrive, Database, CircuitBoard, Keyboard, Thermometer, ShieldAlert, Wind, Wrench, ArrowDownUp, Snowflake, Droplets, Power, Calendar, Zap } from "lucide-react";
+import { Wind, Wrench, ArrowDownUp, Snowflake, CircuitBoard, Droplets, Power, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
-
-const laptopServices = [
-  { icon: Monitor, title: "Screen Replacement", desc: "Cracked or damaged screen? We replace all laptop screens with OEM quality." },
-  { icon: Zap, title: "Battery Replacement", desc: "Restore your laptop's battery life with genuine replacement batteries." },
-  { icon: Cpu, title: "Motherboard Repair", desc: "Expert chip-level motherboard repair for all laptop brands." },
-  { icon: Database, title: "Data Recovery", desc: "Recover lost data from crashed hard drives and corrupted storage." },
-  { icon: HardDrive, title: "SSD Upgrade", desc: "Speed up your laptop with a high-performance SSD upgrade." },
-  { icon: Keyboard, title: "Keyboard Replacement", desc: "Replace faulty or broken laptop keyboards quickly." },
-  { icon: Thermometer, title: "Overheating Fix", desc: "Thermal paste, fan cleaning, and cooling system repair." },
-  { icon: ShieldAlert, title: "Virus Removal", desc: "Complete virus, malware removal and system optimization." },
-];
 
 const acServices = [
   { icon: Wind, title: "AC Gas Refilling", desc: "Professional gas top-up and leak detection for all AC brands." },
@@ -41,17 +30,7 @@ const ServicesSection = () => (
     <div className="container">
       <div className="text-center">
         <h2 className="section-heading">Our Expert Repair Services</h2>
-        <p className="section-subheading mx-auto max-w-2xl">Professional repair solutions for laptops and air conditioners with genuine parts and 90-day warranty.</p>
-      </div>
-
-      {/* Laptop */}
-      <div className="mt-12">
-        <h3 className="mb-6 flex items-center gap-2 text-xl font-bold text-foreground">
-          <Monitor className="h-5 w-5 text-accent" /> Laptop Repair Services
-        </h3>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {laptopServices.map((s, i) => <ServiceCard key={s.title} {...s} index={i} />)}
-        </div>
+        <p className="section-subheading mx-auto max-w-2xl">Professional repair solutions for home appliances and air conditioners with genuine parts and 90-day warranty.</p>
       </div>
 
       {/* AC */}

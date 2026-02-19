@@ -2,12 +2,12 @@ import { Star } from "lucide-react";
 import { motion } from "framer-motion";
 
 const reviews = [
-  { name: "Rajesh Sharma", review: "Excellent laptop repair service! My Dell laptop was fixed within 3 hours. Very professional team.", service: "Laptop Motherboard Repair" },
+  { name: "Rajesh Sharma", review: "Excellent washing machine repair service! My LG front load was fixed within 3 hours. Very professional team.", service: "Washing Machine Repair" },
   { name: "Priya Mehta", review: "Best AC service in Vile Parle. Technician was on time and fixed the cooling issue perfectly.", service: "AC Gas Refilling" },
-  { name: "Amit Patel", review: "Got my MacBook screen replaced at a very reasonable price. Genuine parts and great warranty.", service: "Screen Replacement" },
-  { name: "Sneha Desai", review: "Free pickup and delivery was a great convenience. My laptop came back as good as new!", service: "SSD Upgrade" },
+  { name: "Amit Patel", review: "Got my Samsung fridge fixed at a very reasonable price. Genuine parts and great warranty.", service: "Fridge Repair" },
+  { name: "Sneha Desai", review: "Doorstep service was a great convenience. My microwave is working perfectly now!", service: "Microwave Repair" },
   { name: "Vikram Joshi", review: "They fixed my AC water leakage problem that two other services couldn't. Highly recommended!", service: "AC Water Leakage Fix" },
-  { name: "Neha Kulkarni", review: "Very honest pricing. They told me upfront what the issue was and the cost. No hidden charges at all.", service: "Laptop Battery Replacement" },
+  { name: "Neha Kulkarni", review: "Very honest pricing. They told me upfront what the issue was and the cost. No hidden charges at all.", service: "AC Installation" },
 ];
 
 const ReviewsSection = () => (
