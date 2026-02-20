@@ -1,27 +1,5 @@
 import { motion } from "framer-motion";
-
-const acBrands = [
-  "Blue Star", "Bosch", "BPL", "Carrier", "Croma", "Croma (Reliance)",
-  "Cruise", "Daikin", "Electrolux", "Godrej", "Gree", "Haier", "Hisense",
-  "Hitachi", "IFB", "Kelvinator", "Koryo", "LG", "Lloyd", "MarQ", "Midea",
-  "Mitashi", "Mitsubishi", "Mitsubishi Electric", "Mitsubishi Heavy",
-  "O General", "Onida", "Panasonic", "Samsung", "Sansui", "TCL",
-  "Thomson", "Toshiba", "Videocon", "Voltas", "Whirlpool",
-];
-
-const fridgeBrands = [
-  "Blue Star", "Bosch", "Croma (Reliance)", "Electrolux", "Godrej", "Haier",
-  "Hitachi", "IFB", "Intex", "Kelvinator", "LG", "Lloyd", "Mitashi", "Onida",
-  "Panasonic", "Samsung", "Sansui", "Sharp", "Siemens", "TCL", "Thomson",
-  "Toshiba", "Videocon", "Voltas Beko", "Whirlpool",
-];
-
-const washingMachineBrands = [
-  "Bosch", "BPL", "Croma (Reliance)", "Electrolux", "Godrej", "Haier",
-  "IFB", "Intex", "Kelvinator", "LG", "Lloyd", "Mitashi", "Onida",
-  "Panasonic", "Samsung", "Sansui", "Sharp", "Siemens", "TCL", "Thomson",
-  "Toshiba", "Videocon", "Voltas Beko", "Weston", "Whirlpool",
-];
+import { AC_BRANDS, FRIDGE_BRANDS, WASHING_MACHINE_BRANDS } from "@/lib/constants";
 
 const BrandChip = ({ name, index }: { name: string; index: number }) => (
   <motion.a
@@ -47,21 +25,21 @@ const BrandsSection = () => (
       <div className="mt-10">
         <h3 className="mb-4 text-lg font-bold text-foreground">AC Brands</h3>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
-          {acBrands.map((b, i) => <BrandChip key={b} name={b} index={i} />)}
+          {AC_BRANDS.map((b, i) => <BrandChip key={b} name={b} index={i} />)}
         </div>
       </div>
 
       <div className="mt-10">
         <h3 className="mb-4 text-lg font-bold text-foreground">Fridge Brands</h3>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
-          {fridgeBrands.map((b, i) => <BrandChip key={b} name={b} index={i} />)}
+          {FRIDGE_BRANDS.map((b, i) => <BrandChip key={b} name={b} index={i} />)}
         </div>
       </div>
 
       <div className="mt-10">
         <h3 className="mb-4 text-lg font-bold text-foreground">Washing Machine Brands</h3>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
-          {washingMachineBrands.map((b, i) => <BrandChip key={b} name={b} index={i} />)}
+          {WASHING_MACHINE_BRANDS.map((b, i) => <BrandChip key={b} name={b} index={i} />)}
         </div>
       </div>
     </div>

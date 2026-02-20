@@ -1,4 +1,4 @@
-import { Wind, Wrench, ArrowDownUp, Snowflake, CircuitBoard, Droplets, Power, Calendar } from "lucide-react";
+import { Wind, Wrench, ArrowDownUp, Snowflake, CircuitBoard, Droplets, Power, Calendar, Refrigerator, WashingMachine } from "lucide-react";
 import { motion } from "framer-motion";
 
 const acServices = [
@@ -10,6 +10,20 @@ const acServices = [
   { icon: Droplets, title: "Water Leakage Fix", desc: "Resolve water dripping and drainage issues." },
   { icon: Power, title: "AC Not Turning On", desc: "Diagnose and fix power issues in your AC unit." },
   { icon: Calendar, title: "Annual Maintenance", desc: "Comprehensive yearly AC servicing for peak performance." },
+];
+
+const fridgeServices = [
+  { icon: Snowflake, title: "Cooling Issues", desc: "Fixing compressor problems and cooling inefficiency." },
+  { icon: Wind, title: "Gas Refilling", desc: "Eco-friendly refrigerant top-up and leak plugging." },
+  { icon: CircuitBoard, title: "PCB & Sensor Repair", desc: "Motherboard and electronic sensor troubleshooting." },
+  { icon: Power, title: "Power & Defrost Fix", desc: "Resolving power trips and ice buildup issues." },
+];
+
+const washingMachineServices = [
+  { icon: Wrench, title: "Drum & Motor Repair", desc: "Fixing spinning issues and motor replacement." },
+  { icon: Droplets, title: "Water Leakage", desc: "Resolving inlet, outlet, and door seal leaks." },
+  { icon: CircuitBoard, title: "PCB Repair", desc: "Expert motherboard repair for all fully automatic models." },
+  { icon: Calendar, title: "Installation & Service", desc: "Professional setup and deep cleaning service." },
 ];
 
 const ServiceCard = ({ icon: Icon, title, desc, index }: { icon: any; title: string; desc: string; index: number }) => (
@@ -40,6 +54,26 @@ const ServicesSection = () => (
         </h3>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {acServices.map((s, i) => <ServiceCard key={s.title} {...s} index={i} />)}
+        </div>
+      </div>
+
+      {/* Fridge */}
+      <div className="mt-14">
+        <h3 className="mb-6 flex items-center gap-2 text-xl font-bold text-foreground">
+          <Refrigerator className="h-5 w-5 text-accent" /> Refrigerator Repair
+        </h3>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {fridgeServices.map((s, i) => <ServiceCard key={s.title} {...s} index={i} />)}
+        </div>
+      </div>
+
+      {/* Washing Machine */}
+      <div className="mt-14">
+        <h3 className="mb-6 flex items-center gap-2 text-xl font-bold text-foreground">
+          <WashingMachine className="h-5 w-5 text-accent" /> Washing Machine Repair
+        </h3>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {washingMachineServices.map((s, i) => <ServiceCard key={s.title} {...s} index={i} />)}
         </div>
       </div>
     </div>
