@@ -7,7 +7,7 @@ const acIssues = [
   { icon: Droplets, title: "Water Dripping" },
   { icon: Cpu, title: "Compressor Problem" },
   { icon: Cpu, title: "PCB Fault" },
-  { icon: Volume2, title: "Noise Issue" },
+  
 ];
 
 const CommonIssues = () => (
