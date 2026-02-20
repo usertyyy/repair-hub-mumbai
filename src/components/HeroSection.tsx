@@ -2,7 +2,7 @@ import { Phone, MessageCircle, Truck } from "lucide-react";
 import { motion } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
 
-const HeroSection = () => {
+const HeroSection = ({ selectedBrand }: { selectedBrand: string | null }) => {
   return (
     <section className="relative overflow-hidden" id="hero">
       {/* Background */}
@@ -20,7 +20,7 @@ const HeroSection = () => {
           </div>
 
           <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-primary-foreground md:text-5xl lg:text-6xl">
-            Expert Washing Machine, Fridge &amp; AC Repair Service in <span className="text-accent">Mumbai</span>
+            Expert <span className="text-accent">{selectedBrand || "Washing Machine, Fridge & AC"}</span> Repair Service in <span className="text-accent">Mumbai</span>
           </h1>
 
           <p className="mt-5 text-lg text-primary-foreground/80 md:text-xl">

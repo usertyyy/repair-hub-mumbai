@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import TrustBadges from "@/components/TrustBadges";
@@ -52,6 +52,8 @@ const faqStructuredData = {
 };
 
 const Index = () => {
+  const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
+
   useEffect(() => {
     // Inject structured data
     const script1 = document.createElement("script");
@@ -82,14 +84,19 @@ const Index = () => {
     };
   }, []);
 
+  const handleBrandSelect = (brand: string) => {
+    setSelectedBrand(brand);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
       <main>
-        <HeroSection />
+        <HeroSection selectedBrand={selectedBrand} />
         <TrustBadges />
         <ServicesSection />
-        <BrandsSection />
+        <BrandsSection onBrandSelect={handleBrandSelect} />
         <WhyChooseUs />
         <RepairProcess />
         <BookingSection />
