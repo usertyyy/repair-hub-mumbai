@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { auth } from "@/lib/firebase";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import {
   LayoutDashboard, Users, Wrench, Wind, Refrigerator, WashingMachine,
   Bell, Search, ChevronDown, TrendingUp, TrendingDown, Clock,
@@ -7,6 +10,7 @@ import {
   ArrowUpRight, ArrowDownRight, Settings, LogOut, Menu, X, Zap,
   RefreshCw, BadgeCheck, CircleDot
 } from "lucide-react";
+import { toast } from "sonner";
 
 // ── MOCK DATA ──────────────────────────────────────────────────────────────
 const CATEGORIES = {
@@ -165,6 +169,17 @@ export default function Dashboard() {
   const [filterStatus, setFilterStatus] = useState("All");
   const [filterCat, setFilterCat] = useState("All");
   const [selectedLead, setSelectedLead] = useState(null);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      toast.success("Logged out successfully");
+      navigate("/login");
+    } catch (error) {
+      toast.error("Failed to log out");
+    }
+  };
 
   // Filtered leads for leads table
   const categoryMap = { ac:"AC", fridge:"FRIDGE", washing:"WASHING" };
@@ -248,7 +263,10 @@ export default function Dashboard() {
           <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-500 hover:bg-slate-800/50 hover:text-slate-300 transition-all">
             <Settings size={17}/>{sidebarOpen && "Settings"}
           </button>
-          <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-500 hover:bg-red-500/10 hover:text-red-400 transition-all">
+          <button 
+            onClick={handleLogout}
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-500 hover:bg-red-500/10 hover:text-red-400 transition-all"
+          >
             <LogOut size={17}/>{sidebarOpen && "Logout"}
           </button>
         </div>
