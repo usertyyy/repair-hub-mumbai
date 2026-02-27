@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { WashingMachine, Phone, ChevronDown, Star, CheckCircle, ArrowRight, MapPin, Clock, Shield, Wrench, Droplets, Volume2, Power, Settings, AlertTriangle, Send, RotateCcw, Timer } from "lucide-react";
+import BookingSection from "../BookingSection";
 
 const BRANDS = ["LG", "Samsung", "Whirlpool", "IFB", "Bosch", "Haier", "Godrej", "Panasonic", "Videocon", "Electrolux", "Siemens", "Onida"];
 const WM_TYPES = ["Front Load", "Top Load", "Semi-Automatic", "Fully Automatic", "Twin Tub"];
@@ -37,8 +38,6 @@ const FAQS = [
 ];
 
 export default function WashingMachineRepairPage() {
-  const [form, setForm] = useState({ name: "", phone: "", city: "", brand: "", machineType: "", issue: "", slot: "" });
-  const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
 
   return (
@@ -74,13 +73,12 @@ export default function WashingMachineRepairPage() {
             <div style={{ width: 32, height: 32, borderRadius: 7, background: "#047857", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <Wrench size={16} color="#fff" />
             </div>
-            <span style={{ fontWeight: 700, fontSize: 16 }}>ServicePro</span>
+            <span style={{ fontWeight: 700, fontSize: 16 }}>Customer Service Center</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
             <a href="tel:+919876543210" style={{ display: "flex", alignItems: "center", gap: 6, color: "#047857", fontWeight: 600, fontSize: 14, textDecoration: "none" }}>
-              <Phone size={14} /> +91 98765 43210
-            </a>
-            <a href="#book" className="btn-primary" style={{ padding: "8px 18px", fontSize: 14 }}>Book Now</a>
+              <Phone size={14} /> +918282822265            </a>
+            <a href="#booking" className="btn-primary" style={{ padding: "8px 18px", fontSize: 14 }}>Book Now</a>
           </div>
         </div>
       </nav>
@@ -97,7 +95,7 @@ export default function WashingMachineRepairPage() {
               Front load, top load, semi-automatic — all brands repaired at your doorstep. Same-day service with a 30-day warranty.
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 40 }}>
-              <a href="#book" className="btn-primary">Book a Repair <ArrowRight size={16} /></a>
+              <a href="#booking" className="btn-primary">Book a Repair <ArrowRight size={16} /></a>
               <a href="tel:+919876543210" className="btn-outline"><Phone size={15} /> Call Now</a>
             </div>
             <div style={{ display: "flex", gap: 28, flexWrap: "wrap" }}>
@@ -246,81 +244,16 @@ export default function WashingMachineRepairPage() {
 
       <div style={{ height: 1, background: "#f3f4f6" }} />
 
-      {/* FORM */}
-      <section id="book" style={{ padding: "64px 20px", background: "#f0fdf4" }}>
-        <div style={{ maxWidth: 560, margin: "0 auto" }}>
-          <div className="sec-tag">Book a Repair</div>
-          <h2 className="sec-h">Schedule Your Repair</h2>
-          <p className="sec-sub" style={{ marginBottom: 28 }}>We'll confirm your booking with a call within 30 minutes.</p>
-
-          {submitted ? (
-            <div style={{ background: "#fff", border: "1.5px solid #bbf7d0", borderRadius: 10, padding: "40px 28px", textAlign: "center" }}>
-              <CheckCircle size={44} color="#16a34a" style={{ margin: "0 auto 14px" }} />
-              <h3 style={{ fontWeight: 700, fontSize: 18, color: "#111827", marginBottom: 6 }}>Booking Received!</h3>
-              <p style={{ color: "#6b7280", fontSize: 14 }}>Our team will call you within 30 minutes to confirm.</p>
-            </div>
-          ) : (
-            <form onSubmit={e => { e.preventDefault(); setSubmitted(true); }} style={{ background: "#fff", border: "1.5px solid #bbf7d0", borderRadius: 10, padding: "28px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }} className="form-grid">
-                {[["Full Name *", "name", "text", "Your full name"], ["Phone *", "phone", "tel", "+91 98765 43210"]].map(([l, k, t, p]) => (
-                  <div key={k}>
-                    <label className="field-label">{l}</label>
-                    <input required type={t} className="field-input" placeholder={p} value={form[k]} onChange={e => setForm({ ...form, [k]: e.target.value })} />
-                  </div>
-                ))}
-                <div>
-                  <label className="field-label">City *</label>
-                  <input required className="field-input" placeholder="Your city" value={form.city} onChange={e => setForm({ ...form, city: e.target.value })} />
-                </div>
-                <div>
-                  <label className="field-label">Brand *</label>
-                  <select required className="field-input" value={form.brand} onChange={e => setForm({ ...form, brand: e.target.value })}>
-                    <option value="">Select brand</option>
-                    {BRANDS.map(b => <option key={b}>{b}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label className="field-label">Machine Type</label>
-                  <select className="field-input" value={form.machineType} onChange={e => setForm({ ...form, machineType: e.target.value })}>
-                    <option value="">Select type</option>
-                    {WM_TYPES.map(t => <option key={t}>{t}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label className="field-label">Problem *</label>
-                  <select required className="field-input" value={form.issue} onChange={e => setForm({ ...form, issue: e.target.value })}>
-                    <option value="">Select issue</option>
-                    {ISSUES.map(i => <option key={i.label}>{i.label}</option>)}
-                    <option>Other</option>
-                  </select>
-                </div>
-                <div style={{ gridColumn: "1 / -1" }}>
-                  <label className="field-label">Preferred Time</label>
-                  <select className="field-input" value={form.slot} onChange={e => setForm({ ...form, slot: e.target.value })}>
-                    <option value="">Any time (ASAP)</option>
-                    <option>Morning (8AM – 12PM)</option>
-                    <option>Afternoon (12PM – 4PM)</option>
-                    <option>Evening (4PM – 8PM)</option>
-                  </select>
-                </div>
-              </div>
-              <button type="submit" className="btn-primary" style={{ width: "100%", justifyContent: "center", marginTop: 18, padding: "13px" }}>
-                <Send size={15} /> Submit Booking Request
-              </button>
-              <p style={{ textAlign: "center", fontSize: 12, color: "#9ca3af", marginTop: 10 }}>🔒 Your details are safe with us</p>
-            </form>
-          )}
-        </div>
-      </section>
+      <BookingSection />
 
       <footer style={{ background: "#1e293b", padding: "24px 20px", textAlign: "center" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 8 }}>
           <div style={{ width: 26, height: 26, borderRadius: 6, background: "#047857", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <Wrench size={13} color="#fff" />
           </div>
-          <span style={{ fontWeight: 600, color: "#fff", fontSize: 14 }}>ServicePro</span>
+          <span style={{ fontWeight: 600, color: "#fff", fontSize: 14 }}>Customer Service Center</span>
         </div>
-        <p style={{ color: "#64748b", fontSize: 12 }}>© 2025 ServicePro. All rights reserved.</p>
+        <p style={{ color: "#64748b", fontSize: 12 }}>© 2025 Customer Service Center. All rights reserved.</p>
       </footer>
     </div>
   );

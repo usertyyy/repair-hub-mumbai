@@ -230,7 +230,7 @@ export default function Dashboard() {
           </div>
           {sidebarOpen && (
             <div>
-              <p className="text-sm font-bold text-white leading-tight tracking-tight">ServicePro</p>
+              <p className="text-sm font-bold text-white leading-tight tracking-tight">Customer Service Center</p>
               <p className="text-[10px] text-slate-500">Admin Panel</p>
             </div>
           )}
