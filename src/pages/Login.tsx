@@ -20,7 +20,7 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success("Logged in successfully");
-      navigate("/Admin");
+      navigate("/admin");
     } catch (error: any) {
       toast.error(error.message || "Failed to login");
     } finally {
