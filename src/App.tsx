@@ -8,6 +8,9 @@ import NotFound from "./pages/NotFound";
 import Dashboard from "./components/Admin";
 import Login from "./pages/Login";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import ACRepairPage from "./components/ServicePage/Ac";
+import FridgeRepairPage from "./components/ServicePage/Fri";
+import WashingMachineRepairPage from "./components/ServicePage/Wash";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +23,9 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/ac-repair" element={<ACRepairPage />} />
+          <Route path="/refrigerator-repair" element={<FridgeRepairPage />} />
+          <Route path="/washing-machine-repair" element={<WashingMachineRepairPage />} />
           <Route
             path="/admin"
             element={
