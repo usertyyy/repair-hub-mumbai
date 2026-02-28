@@ -185,7 +185,7 @@ export default function WashingMachineRepairPage() {
             <span style={{ fontWeight:800, fontSize:18, color:scrolled?"#0f172a":"#fff", transition:"color 0.4s" }}>Customer Service Centre</span>
           </div>
           <div style={{ display:"flex", alignItems:"center", gap:20 }}>
-            <a href="tel:+919876543210" style={{ display:"flex", alignItems:"center", gap:6, color:scrolled?"#059669":"#fff", fontWeight:600, fontSize:14, textDecoration:"none", transition:"color 0.4s" }}>
+            <a href="tel:+918282822265" style={{ display:"flex", alignItems:"center", gap:6, color:scrolled?"#059669":"#fff", fontWeight:600, fontSize:14, textDecoration:"none", transition:"color 0.4s" }}>
               <Phone size={15} /> +91 98765 43210
             </a>
             <a href="#booking" className="btn-white" style={{ color:"#059669", padding:"10px 22px", fontSize:14 }}>Book Now</a>
@@ -207,7 +207,7 @@ export default function WashingMachineRepairPage() {
             <p className="hero-sub" style={{ marginBottom:36 }}>All brands, all types. Same-day doorstep service with certified technicians and a 30-day warranty on every single repair.</p>
             <div className="hero-btns" style={{ display:"flex", gap:14, flexWrap:"wrap" }}>
               <a href="#booking" className="btn-white"><Send size={16} /> Book a Repair</a>
-              <a href="tel:+919876543210" className="btn-ghost"><Phone size={15} /> Call Now</a>
+              <a href="tel:+918282822265" className="btn-ghost"><Phone size={15} /> Call Now</a>
             </div>
           </div>
           <div className="hviz" style={{ flexShrink:0, position:"relative", animation:"wUp 1s 0.4s ease both" }}>

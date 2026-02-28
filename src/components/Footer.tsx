@@ -7,9 +7,7 @@ const Footer = () => (
         {/* Brand */}
         <div>
           <div className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent">
-              <Wrench className="h-4 w-4 text-accent-foreground" />
-            </div>
+            <img src="/repairlogo.png" alt="Logo" className="h-9 w-9 object-contain" />
             <span className="text-lg font-bold">Customer Service Centre</span>
           </div>
           <p className="mt-3 text-sm text-primary-foreground/60">Mumbai's trusted home appliances & AC repair service since 2009. ISO 9001 certified with 90-day warranty on all repairs.</p>
