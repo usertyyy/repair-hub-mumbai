@@ -37,7 +37,7 @@ const Header = () => {
       {/* Main nav */}
       <div className="container flex items-center justify-between py-3">
         <Link to="/" className="flex items-center gap-2">
-          <img src="/repairlogo.png" alt="Logo" className="h-16 w-10 object-contain" />
+          <img src="/repairlogo.png" alt="Logo" className="h-16 w-16 object-contain" />
           <div className="leading-tight">
             <span className="text-lg font-bold text-foreground">Customer Service</span>
             <span className="block text-xs text-muted-foreground">Centre</span>

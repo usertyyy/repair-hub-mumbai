@@ -339,7 +339,7 @@ export default function ACRepairPage() {
           </div>
           <div style={{ display:"flex", alignItems:"center", gap:20 }}>
             <a href="tel:+918282822265" style={{ display:"flex", alignItems:"center", gap:6, color: scrolled ? "#0369a1" : "#fff", fontWeight:600, fontSize:14, textDecoration:"none", transition:"color 0.4s" }}>
-              <Phone size={15} /> +91 98765 43210
+              <Phone size={15} /> +918282822265
             </a>
             <a href="#booking" className="btn-white" style={{ padding:"10px 22px", fontSize:14, color:"#0369a1", ...(scrolled ? {} : {}) }}>Book Now</a>
           </div>
