@@ -3,7 +3,7 @@ import {
   Refrigerator, Phone, ChevronDown, Star, CheckCircle2, ArrowRight,
   MapPin, Clock, Shield, Wrench, Thermometer, Droplets,
   Volume2, Power, Settings, AlertTriangle, Send, Zap,
-  ThumbsUp, BadgeCheck, Snowflake
+  ThumbsUp, BadgeCheck, Snowflake, MessageCircle
 } from "lucide-react";
 import BookingSection from "../BookingSection";
 
@@ -216,6 +216,9 @@ export default function FridgeRepairPage() {
             <p className="hero-sub" style={{ marginBottom:36 }}>Certified technicians for all fridge brands. Same-day doorstep service with upfront pricing and a 30-day warranty on every repair.</p>
             <div className="hero-btns" style={{ display:"flex", gap:14, flexWrap:"wrap" }}>
               <a href="#booking" className="btn-white"><Send size={16} /> Book a Repair</a>
+              <a href="https://wa.me/918282822265?text=Hi%2C%20I%20need%20repair%20service" target="_blank" rel="noopener noreferrer" className="btn-whatsapp text-base">
+                <MessageCircle size={16} /> WhatsApp
+              </a>
               <a href="tel:+918282822265" className="btn-ghost"><Phone size={15} /> Call Now</a>
             </div>
           </div>

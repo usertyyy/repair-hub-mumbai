@@ -3,7 +3,7 @@ import {
   Wind, Phone, ChevronDown, Star, CheckCircle2, ArrowRight,
   MapPin, Clock, Shield, Wrench, Snowflake, Droplets,
   Volume2, Power, Settings, AlertTriangle, Send, Zap,
-  ThumbsUp, Filter, BadgeCheck
+  ThumbsUp, Filter, BadgeCheck, MessageCircle
 } from "lucide-react";
 import BookingSection from "../BookingSection";
 
@@ -364,8 +364,17 @@ export default function ACRepairPage() {
             <p className="hero-sub" style={{ marginBottom:36 }}>
               Certified technicians for all brands and all AC types. Same-day doorstep service with upfront pricing and a 30-day warranty on every repair.
             </p>
+             {/* Mini trust */}
+          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-primary-foreground/70">
+            <span>✓ No Fix No Fee</span>
+            <span>✓ Inspection ₹350 (Adjustable)</span>
+            <span>✓ ISO 9001 Certified</span>
+          </div>
             <div className="hero-btns" style={{ display:"flex", gap:14, flexWrap:"wrap" }}>
               <a href="#booking" className="btn-white"><Send size={16} /> Book a Repair</a>
+              <a href="https://wa.me/918282822265?text=Hi%2C%20I%20need%20repair%20service" target="_blank" rel="noopener noreferrer" className="btn-whatsapp text-base">
+                <MessageCircle size={16} /> WhatsApp
+              </a>
               <a href="tel:+918282822265" className="btn-ghost"><Phone size={15} /> Call Now</a>
             </div>
           </div>
@@ -506,21 +515,7 @@ export default function ACRepairPage() {
         </div>
       </section>
 
-      {/* ── BRANDS ── */}
-      <section className="section section-alt">
-        <div className="container">
-          <AnimSection style={{ marginBottom:36 }}>
-            <span className="section-eyebrow">Brands</span>
-            <h2 className="section-title">All Brands We Repair</h2>
-            <p className="section-sub">Official-trained technicians for every major AC brand sold in India.</p>
-          </AnimSection>
-          <AnimSection delay={0.2}>
-            <div style={{ display:"flex", flexWrap:"wrap", gap:10 }}>
-              {BRANDS.map(b => <div key={b} className="brand-pill">{b}</div>)}
-            </div>
-          </AnimSection>
-        </div>
-      </section>
+      
 
       {/* ── REVIEWS ── */}
       <section className="section">
