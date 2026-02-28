@@ -582,7 +582,7 @@ export default function ACRepairPage() {
           <img src="/repairlogo.png" alt="Logo" style={{ width: 30, height: 30, objectFit: "contain" }} />
           <span style={{ fontWeight:800, color:"#fff", fontSize:16 }}>Customer Service Centre</span>
         </div>
-        <p style={{ color:"#475569", fontSize:13 }}>© 2025 Customer Service Centre. All rights reserved.</p>
+        <p style={{ color:"#475569", fontSize:13 }}>© 2026 Customer Service Centre. All rights reserved.</p>
       </footer>
     </div>
   );
