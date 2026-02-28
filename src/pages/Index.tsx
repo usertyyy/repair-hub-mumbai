@@ -19,7 +19,7 @@ import ScrollPopup from "@/components/ScrollPopup";
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  name: "Customer Service Center",
+  name: "Customer Service Centre",
   description: "Expert AC & Home Appliance Repair Service. Same-day service, 90-day warranty, genuine parts, doorstep service.",
   url: "https://customerservicecenter.in",
   telephone: "+918282822265",
@@ -67,7 +67,7 @@ const Index = () => {
     document.head.appendChild(script2);
 
     // Update meta
-    document.title = "AC & Appliance Repair in Mumbai | Customer Service Center";
+    document.title = "AC & Appliance Repair in Mumbai | Customer Service Centre";
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute("content", "Expert AC & home appliance repair in Mumbai. Same-day service, 90-day warranty, genuine parts. Doorstep service. Call now!");

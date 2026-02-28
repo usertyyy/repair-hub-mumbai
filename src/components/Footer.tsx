@@ -10,7 +10,7 @@ const Footer = () => (
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent">
               <Wrench className="h-4 w-4 text-accent-foreground" />
             </div>
-            <span className="text-lg font-bold">Customer Service Center</span>
+            <span className="text-lg font-bold">Customer Service Centre</span>
           </div>
           <p className="mt-3 text-sm text-primary-foreground/60">Mumbai's trusted home appliances & AC repair service since 2009. ISO 9001 certified with 90-day warranty on all repairs.</p>
           <div className="mt-4 flex gap-3 text-sm text-primary-foreground/60">
@@ -60,10 +60,10 @@ const Footer = () => (
 
       <div className="mt-10 border-t border-primary-foreground/10 pt-6 text-xs text-primary-foreground/40">
         <p className="mb-4 leading-relaxed">
-          <strong className="text-primary-foreground/60">Disclaimer:</strong> Any product names, logos, brands, and other trademarks or images featured or referred to within Customer Service Center are the property of their respective trademark holders. Customer Service Center is neither associated nor affiliated with any Companies. Logos and images are being used only for representation purpose of post warranty repair and service. We Have Home Appliances Parts Shop and We Provide all Brand service and Repairing. Customer Service Center is an independent organization.
+          <strong className="text-primary-foreground/60">Disclaimer:</strong> Any product names, logos, brands, and other trademarks or images featured or referred to within Customer Service Centre are the property of their respective trademark holders. Customer Service Centre is neither associated nor affiliated with any Companies. Logos and images are being used only for representation purpose of post warranty repair and service. We Have Home Appliances Parts Shop and We Provide all Brand service and Repairing. Customer Service Centre is an independent organization.
         </p>
         <div className="flex flex-wrap justify-between gap-4">
-          <span>© 2026 Customer Service Center. All rights reserved.</span>
+          <span>© 2026 Customer Service Centre. All rights reserved.</span>
           <div className="flex gap-4">
             <a href="#" className="hover:text-primary-foreground">Privacy Policy</a>
             <a href="#" className="hover:text-primary-foreground">Terms of Service</a>

@@ -39,7 +39,7 @@ const ScrollPopup = () => {
             Get <strong>same-day AC, Fridge & Washing Machine repair</strong> with 90-day warranty. Free pickup & delivery in Mumbai!
           </p>
           <p className="text-xs text-muted-foreground/70 leading-relaxed">
-            <strong>Disclaimer:</strong> Customer Service Center is an independent organization, not associated or affiliated with any brand. Trademarks belong to their respective holders.
+            <strong>Disclaimer:</strong> Customer Service Centre is an independent organization, not associated or affiliated with any brand. Trademarks belong to their respective holders.
           </p>
           <div className="flex w-full gap-3">
             <Button asChild className="flex-1 bg-gradient-to-r from-primary to-accent">

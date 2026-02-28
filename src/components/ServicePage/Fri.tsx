@@ -70,7 +70,7 @@ export default function FridgeRepairPage() {
             <div style={{ width: 32, height: 32, borderRadius: 7, background: "#1d4ed8", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <Wrench size={16} color="#fff" />
             </div>
-            <span style={{ fontWeight: 700, fontSize: 16 }}>Customer Service Center</span>
+            <span style={{ fontWeight: 700, fontSize: 16 }}>Customer Service Centre</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
             <a href="tel:+919876543210" style={{ display: "flex", alignItems: "center", gap: 6, color: "#1d4ed8", fontWeight: 600, fontSize: 14, textDecoration: "none" }}>
@@ -231,9 +231,9 @@ export default function FridgeRepairPage() {
           <div style={{ width: 26, height: 26, borderRadius: 6, background: "#1d4ed8", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <Wrench size={13} color="#fff" />
           </div>
-          <span style={{ fontWeight: 600, color: "#fff", fontSize: 14 }}>Customer Service Center</span>
+          <span style={{ fontWeight: 600, color: "#fff", fontSize: 14 }}>Customer Service Centre</span>
         </div>
-        <p style={{ color: "#64748b", fontSize: 12 }}>© 2026 Customer Service Center. All rights reserved.</p>
+        <p style={{ color: "#64748b", fontSize: 12 }}>© 2026 Customer Service Centre. All rights reserved.</p>
       </footer>
     </div>
   );

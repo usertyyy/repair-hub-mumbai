@@ -42,7 +42,7 @@ const Header = () => {
           </div>
           <div className="leading-tight">
             <span className="text-lg font-bold text-foreground">Customer Service</span>
-            <span className="block text-xs text-muted-foreground">Center</span>
+            <span className="block text-xs text-muted-foreground">Centre</span>
           </div>
         </Link>
 

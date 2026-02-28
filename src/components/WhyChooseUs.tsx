@@ -17,7 +17,7 @@ const WhyChooseUs = () => (
       <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
         {/* Content */}
         <div>
-          <h2 className="section-heading">Why Choose Customer Service Center?</h2>
+          <h2 className="section-heading">Why Choose Customer Service Centre?</h2>
           <p className="section-subheading">Trusted by 25,000+ customers across Mumbai for reliable and honest repair services.</p>
 
           <div className="mt-8 space-y-4">
@@ -55,7 +55,7 @@ const WhyChooseUs = () => (
           </div>
           <div className="mt-8 flex items-center gap-2 rounded-xl bg-primary-foreground/10 p-3 text-sm text-primary-foreground">
             <CheckCircle2 className="h-5 w-5 shrink-0" />
-            ISO 9001 Certified Service Center
+            ISO 9001 Certified Service Centre
           </div>
         </motion.div>
       </div>
