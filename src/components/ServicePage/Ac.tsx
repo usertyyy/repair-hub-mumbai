@@ -322,11 +322,17 @@ export default function ACRepairPage() {
         @keyframes floatBadge { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 
         @media(max-width:768px) {
-          .hero-cols { flex-direction:column !important; }
+          .hero-cols { flex-direction:column !important; text-align: center; padding-top: 60px !important; }
           .hero-visual { display:none; }
           .two-col { grid-template-columns:1fr !important; }
           .three-col { grid-template-columns:1fr !important; }
           .stat-row { flex-direction:column; gap:24px !important; }
+          .hero-sub { margin: 0 auto 30px !important; }
+          .hero-btns { justify-content: center; }
+          .hero-badge { margin: 0 auto 20px !important; }
+          .nav-logo-text { display: none; }
+          .nav-phone-text { display: none; }
+          .mini-trust { justify-content: center; }
         }
       `}</style>
 
@@ -335,13 +341,13 @@ export default function ACRepairPage() {
         <div className="container" style={{ height:68, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
           <div style={{ display:"flex", alignItems:"center", gap:10 }}>
             <img src="/repairlogo.png" alt="Logo" style={{ width: 38, height: 38, objectFit: "contain" }} />
-            <span style={{ fontWeight:800, fontSize:18, color: scrolled ? "#0f172a" : "#fff", transition:"color 0.4s" }}>Customer Service Centre</span>
+            <span className="nav-logo-text" style={{ fontWeight:800, fontSize:18, color: scrolled ? "#0f172a" : "#fff", transition:"color 0.4s" }}>Customer Service Centre</span>
           </div>
-          <div style={{ display:"flex", alignItems:"center", gap:20 }}>
+          <div style={{ display:"flex", alignItems:"center", gap:16 }}>
             <a href="tel:+918282822265" style={{ display:"flex", alignItems:"center", gap:6, color: scrolled ? "#0369a1" : "#fff", fontWeight:600, fontSize:14, textDecoration:"none", transition:"color 0.4s" }}>
-              <Phone size={15} /> +918282822265
+              <Phone size={15} /> <span className="nav-phone-text">+91 82828 22265</span>
             </a>
-            <a href="#booking" className="btn-white" style={{ padding:"10px 22px", fontSize:14, color:"#0369a1", ...(scrolled ? {} : {}) }}>Book Now</a>
+            <a href="#booking" className="btn-white" style={{ padding:"10px 22px", fontSize:14, color:"#0369a1" }}>Book Now</a>
           </div>
         </div>
       </nav>
@@ -365,7 +371,7 @@ export default function ACRepairPage() {
               Certified technicians for all brands and all AC types. Same-day doorstep service with upfront pricing and a 30-day warranty on every repair.
             </p>
              {/* Mini trust */}
-          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-primary-foreground/70">
+          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-primary-foreground/70 mini-trust">
             <span>✓ No Fix No Fee</span>
             <span>✓ Inspection ₹350 (Adjustable)</span>
             <span>✓ ISO 9001 Certified</span>

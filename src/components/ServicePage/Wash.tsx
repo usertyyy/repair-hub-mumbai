@@ -174,7 +174,17 @@ export default function WashingMachineRepairPage() {
         .form-card { background:#fff; border-radius:24px; padding:36px; box-shadow:0 4px 6px rgba(0,0,0,0.04),0 20px 60px rgba(5,150,105,0.08); border:1.5px solid #d1fae5; }
         .stat-num { font-size:2.8rem; font-weight:900; letter-spacing:-0.03em; background:linear-gradient(135deg,#059669,#34d399); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 
-        @media(max-width:768px) { .wm-hero-cols{flex-direction:column!important} .hviz{display:none!important} .two-col{grid-template-columns:1fr!important} }
+        @media(max-width:768px) { 
+          .wm-hero-cols{flex-direction:column!important; text-align: center; padding-top: 60px !important;} 
+          .hviz{display:none!important} 
+          .two-col{grid-template-columns:1fr!important}
+          .hero-sub { margin: 0 auto 30px !important; }
+          .hero-btns { justify-content: center; }
+          .hero-badge { margin: 0 auto 20px !important; }
+          .nav-logo-text { display: none; }
+          .nav-phone-text { display: none; }
+          .mini-trust { justify-content: center; }
+        }
       `}</style>
 
       {/* NAV */}
@@ -182,11 +192,11 @@ export default function WashingMachineRepairPage() {
         <div className="container" style={{ height:68, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
           <div style={{ display:"flex", alignItems:"center", gap:10 }}>
             <img src="/repairlogo.png" alt="Logo" style={{ width:38, height:38, objectFit:"contain" }} />
-            <span style={{ fontWeight:800, fontSize:18, color:scrolled?"#0f172a":"#fff", transition:"color 0.4s" }}>Customer Service Centre</span>
+            <span className="nav-logo-text" style={{ fontWeight:800, fontSize:18, color:scrolled?"#0f172a":"#fff", transition:"color 0.4s" }}>Customer Service Centre</span>
           </div>
-          <div style={{ display:"flex", alignItems:"center", gap:20 }}>
+          <div style={{ display:"flex", alignItems:"center", gap:16 }}>
             <a href="tel:+918282822265" style={{ display:"flex", alignItems:"center", gap:6, color:scrolled?"#059669":"#fff", fontWeight:600, fontSize:14, textDecoration:"none", transition:"color 0.4s" }}>
-              <Phone size={15} /> +918282822265
+              <Phone size={15} /> <span className="nav-phone-text">+91 82828 22265</span>
             </a>
             <a href="#booking" className="btn-white" style={{ color:"#059669", padding:"10px 22px", fontSize:14 }}>Book Now</a>
           </div>
@@ -205,6 +215,12 @@ export default function WashingMachineRepairPage() {
               Laundry Stuck?<br /><span style={{ color:"#a7f3d0" }}>Fixed Today.</span>
             </h1>
             <p className="hero-sub" style={{ marginBottom:36 }}>All brands, all types. Same-day doorstep service with certified technicians and a 30-day warranty on every single repair.</p>
+                 {/* Mini trust */}
+          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-primary-foreground/70 mini-trust">
+            <span>✓ No Fix No Fee</span>
+            <span>✓ Inspection ₹350 (Adjustable)</span>
+            <span>✓ ISO 9001 Certified</span>
+          </div>
             <div className="hero-btns" style={{ display:"flex", gap:14, flexWrap:"wrap" }}>
               <a href="#booking" className="btn-white"><Send size={16} /> Book a Repair</a>
               <a href="https://wa.me/918282822265?text=Hi%2C%20I%20need%20repair%20service" target="_blank" rel="noopener noreferrer" className="btn-whatsapp text-base">
