@@ -334,9 +334,7 @@ export default function ACRepairPage() {
       <nav className={`ac-nav ${scrolled ? "scrolled" : ""}`}>
         <div className="container" style={{ height:68, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
           <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-            <div style={{ width:38, height:38, borderRadius:10, background:"linear-gradient(135deg,#0369a1,#0ea5e9)", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 12px rgba(3,105,161,0.3)" }}>
-              <Wrench size={18} color="#fff" />
-            </div>
+            <img src="/repairlogo.png" alt="Logo" style={{ width: 38, height: 38, objectFit: "contain" }} />
             <span style={{ fontWeight:800, fontSize:18, color: scrolled ? "#0f172a" : "#fff", transition:"color 0.4s" }}>Customer Service Centre</span>
           </div>
           <div style={{ display:"flex", alignItems:"center", gap:20 }}>
@@ -581,9 +579,7 @@ export default function ACRepairPage() {
 
       <footer style={{ background:"#0c1a2e", padding:"32px 24px", textAlign:"center" }}>
         <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:8, marginBottom:10 }}>
-          <div style={{ width:30, height:30, borderRadius:7, background:"linear-gradient(135deg,#0369a1,#0ea5e9)", display:"flex", alignItems:"center", justifyContent:"center" }}>
-            <Wrench size={15} color="#fff" />
-          </div>
+          <img src="/repairlogo.png" alt="Logo" style={{ width: 30, height: 30, objectFit: "contain" }} />
           <span style={{ fontWeight:800, color:"#fff", fontSize:16 }}>Customer Service Centre</span>
         </div>
         <p style={{ color:"#475569", fontSize:13 }}>© 2025 Customer Service Centre. All rights reserved.</p>
