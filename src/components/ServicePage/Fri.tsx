@@ -233,7 +233,7 @@ export default function FridgeRepairPage() {
           </div>
           <span style={{ fontWeight: 600, color: "#fff", fontSize: 14 }}>Customer Service Center</span>
         </div>
-        <p style={{ color: "#64748b", fontSize: 12 }}>© 2025 Customer Service Center. All rights reserved.</p>
+        <p style={{ color: "#64748b", fontSize: 12 }}>© 2026 Customer Service Center. All rights reserved.</p>
       </footer>
     </div>
   );
