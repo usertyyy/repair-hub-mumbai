@@ -11,7 +11,7 @@ const bookingSchema = z.object({
   brand: z.string().min(1, "Please select a brand"),
   issue: z.string().trim().min(5, "Describe the issue briefly").max(500),
   address: z.string().trim().min(5, "Address is required").max(300),
-  preferredTime: z.string().min(1, "Select preferred time"),
+  preferredTime: z.string().optional(),
 });
 
 type BookingData = z.infer<typeof bookingSchema>;
