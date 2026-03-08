@@ -140,18 +140,7 @@ const BookingForm = ({ successRedirect }: BookingFormProps) => {
               {errors.issue && <p className="mt-1 text-xs text-destructive">{errors.issue}</p>}
             </div>
             <Field label="Address" name="address" value={form.address} onChange={handleChange} error={errors.address} placeholder="Your pickup address" />
-            <div>
-              <label className="mb-1 block text-sm font-medium text-foreground">Preferred Time</label>
-              <select name="preferredTime" value={form.preferredTime} onChange={handleChange}
-                className="w-full rounded-xl border border-input bg-background px-4 py-2.5 text-sm text-foreground outline-none focus:ring-2 focus:ring-accent">
-                <option value="">Select time slot</option>
-                <option>Morning (9AM–12PM)</option>
-                <option>Afternoon (12PM–3PM)</option>
-                <option>Evening (3PM–6PM)</option>
-                <option>Late Evening (6PM–9PM)</option>
-              </select>
-              {errors.preferredTime && <p className="mt-1 text-xs text-destructive">{errors.preferredTime}</p>}
-            </div>
+           
             <button type="submit" disabled={isSubmitting} className="btn-cta w-full text-base mt-2">
               {isSubmitting ? "Sending..." : "Book Free Pickup"}
             </button>
