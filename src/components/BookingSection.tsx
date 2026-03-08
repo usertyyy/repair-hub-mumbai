@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { z } from "zod";
+import { useNavigate } from "react-router-dom";
 import { SERVICE_TYPES, AC_BRANDS, FRIDGE_BRANDS, WASHING_MACHINE_BRANDS } from "@/lib/constants";
 
 const bookingSchema = z.object({
@@ -24,7 +25,12 @@ const Field = ({ label, name, value, onChange, error, placeholder, type = "text"
   </div>
 );
 
-const BookingSection = () => {
+interface BookingSectionProps {
+  successRedirect?: string;
+}
+
+const BookingSection = ({ successRedirect }: BookingSectionProps) => {
+  const navigate = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof BookingData, string>>>({});
@@ -71,7 +77,11 @@ const BookingSection = () => {
         body: JSON.stringify(form),
       });
       if (response.ok) {
-        setSubmitted(true);
+        if (successRedirect) {
+          navigate(successRedirect);
+        } else {
+          setSubmitted(true);
+        }
       }
     } catch (error) {
       console.error("Error submitting form:", error);

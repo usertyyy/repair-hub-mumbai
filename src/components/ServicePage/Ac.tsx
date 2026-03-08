@@ -576,7 +576,7 @@ export default function ACRepairPage() {
       </section>
 
       {/* ── BOOKING FORM ── */}
-      <BookingSection />
+      <BookingSection successRedirect="/ac-repair/thank-you" />
 
       <footer style={{ background:"#0c1a2e", padding:"32px 24px", textAlign:"center" }}>
         <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:8, marginBottom:10 }}>

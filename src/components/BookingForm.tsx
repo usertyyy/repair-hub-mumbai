@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { X, CheckCircle2 } from "lucide-react";
 import { z } from "zod";
+import { useNavigate } from "react-router-dom";
 import { SERVICE_TYPES, AC_BRANDS, FRIDGE_BRANDS, WASHING_MACHINE_BRANDS } from "@/lib/constants";
 
 const bookingSchema = z.object({
@@ -15,7 +16,12 @@ const bookingSchema = z.object({
 
 type BookingData = z.infer<typeof bookingSchema>;
 
-const BookingForm = () => {
+interface BookingFormProps {
+  successRedirect?: string;
+}
+
+const BookingForm = ({ successRedirect }: BookingFormProps) => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -64,7 +70,11 @@ const BookingForm = () => {
         body: JSON.stringify(form),
       });
       if (response.ok) {
-        setSubmitted(true);
+        if (successRedirect) {
+          navigate(successRedirect);
+        } else {
+          setSubmitted(true);
+        }
       } else {
         console.error("Form submission failed");
       }
@@ -163,7 +173,8 @@ const Field = ({ label, name, value, onChange, error, placeholder, type = "text"
 );
 
 // Export a component that renders the button + modal
-export const BookingTrigger = () => {
+export const BookingTrigger = ({ successRedirect }: BookingFormProps) => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -211,7 +222,11 @@ export const BookingTrigger = () => {
         body: JSON.stringify(form),
       });
       if (response.ok) {
-        setSubmitted(true);
+        if (successRedirect) {
+          navigate(successRedirect);
+        } else {
+          setSubmitted(true);
+        }
       }
     } catch (error) {
       console.error("Error submitting form:", error);

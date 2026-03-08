@@ -373,16 +373,30 @@ export default function FridgeRepairPage() {
 
       {/* FAQ */}
       <section className="section section-alt">
-        <div className="container" style={{ maxWidth:720 }}>
-          <AnimSection style={{ marginBottom:36 }}><span className="eyebrow">FAQ</span><h2 className="sec-title">Frequently Asked Questions</h2></AnimSection>
-          {FAQS.map(([q,a],i)=>(
-            <AnimSection key={i} delay={i*0.07}>
+        <div className="container" style={{ maxWidth: 720 }}>
+          <AnimSection style={{ marginBottom: 36 }}>
+            <span className="eyebrow">FAQ</span>
+            <h2 className="sec-title">Frequently Asked Questions</h2>
+          </AnimSection>
+          {FAQS.map(([q, a], i) => (
+            <AnimSection key={i} delay={i * 0.07}>
               <div className="faq-item">
-                <button className="faq-btn" onClick={()=>setOpenFaq(openFaq===i?null:i)}>
+                <button
+                  className="faq-btn"
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                >
                   <span>{q}</span>
-                  <ChevronDown size={17} color="#94a3b8" style={{ transform:openFaq===i?"rotate(180deg)":"none", transition:"0.3s", flexShrink:0 }} />
+                  <ChevronDown
+                    size={17}
+                    color="#94a3b8"
+                    style={{
+                      transform: openFaq === i ? "rotate(180deg)" : "none",
+                      transition: "0.3s",
+                      flexShrink: 0,
+                    }}
+                  />
                 </button>
-                {openFaq===i && <div className="faq-body">{a}</div>}
+                {openFaq === i && <div className="faq-body">{a}</div>}
               </div>
             </AnimSection>
           ))}
@@ -390,7 +404,7 @@ export default function FridgeRepairPage() {
       </section>
 
       {/* FORM */}
-      <BookingSection />
+      <BookingSection successRedirect="/refrigerator-repair/thank-you" />
 
       <footer style={{ background:"#0c1a2e", padding:"32px 24px", textAlign:"center" }}>
         <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:8, marginBottom:10 }}>

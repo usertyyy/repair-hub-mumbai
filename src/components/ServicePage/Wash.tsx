@@ -390,7 +390,7 @@ export default function WashingMachineRepairPage() {
       </section>
 
       {/* FORM */}
-      <BookingSection />
+      <BookingSection successRedirect="/washing-machine-repair/thank-you" />
 
       <footer style={{ background:"#0c1a2e", padding:"32px 24px", textAlign:"center" }}>
         <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:8, marginBottom:10 }}>

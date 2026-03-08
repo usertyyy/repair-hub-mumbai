@@ -11,6 +11,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import ACRepairPage from "./components/ServicePage/Ac";
 import FridgeRepairPage from "./components/ServicePage/Fri";
 import WashingMachineRepairPage from "./components/ServicePage/Wash";
+import ThankYou from "./pages/ThankYou";
 
 const queryClient = new QueryClient();
 
@@ -24,8 +25,11 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
           <Route path="/ac-repair" element={<ACRepairPage />} />
+          <Route path="/ac-repair/thank-you" element={<ThankYou />} />
           <Route path="/refrigerator-repair" element={<FridgeRepairPage />} />
+          <Route path="/refrigerator-repair/thank-you" element={<ThankYou />} />
           <Route path="/washing-machine-repair" element={<WashingMachineRepairPage />} />
+          <Route path="/washing-machine-repair/thank-you" element={<ThankYou />} />
           <Route
             path="/admin"
             element={
