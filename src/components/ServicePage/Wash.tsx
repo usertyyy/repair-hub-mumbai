@@ -256,6 +256,25 @@ export default function WashingMachineRepairPage() {
           box-shadow: 0 12px 30px -10px rgba(5, 150, 105, 0.2);
         }
 
+        .marquee-container {
+          overflow: hidden;
+          width: 100%;
+          position: relative;
+          padding: 20px 0;
+        }
+        .marquee-content {
+          display: flex;
+          width: max-content;
+          animation: marquee 30s linear infinite;
+        }
+        .marquee-content:hover {
+          animation-play-state: paused;
+        }
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
         @media(max-width:768px) { 
           .wm-hero-cols{flex-direction:column!important; text-align: center; padding-top: 60px !important;} 
           .hviz{display:none!important} 
@@ -447,51 +466,56 @@ export default function WashingMachineRepairPage() {
       {/* SPECIALTIES & BRANDS */}
       <section className="section section-alt">
         <div className="container">
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(300px, 1fr))", gap:60, alignItems: "start" }}>
-            
-            {/* Column 1: We Specialize In */}
-            <AnimSection>
+          
+          {/* We Specialize In */}
+          <AnimSection style={{ marginBottom: 80 }}>
+            <div style={{ textAlign: "center", marginBottom: 40 }}>
               <span className="eyebrow">Expertise</span>
-              <h2 className="sec-title" style={{ marginBottom: 24 }}>We Specialize In</h2>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 12 }}>
-                {[
-                  "Samsung Washing Machine Repair",
-                  "LG Washing Machine Repair",
-                  "Whirlpool Washing Machine Repair",
-                  "Bosch Washing Machine Repair",
-                  "Siemens Washing Machine Repair",
-                  "IFB Washing Machine Repair",
-                  "Washing Machine Repair Near Me",
-                  "LG Washing Machine Repair Near Me",
-                  "Near Me Washing Machine Repair",
-                  "Washing Machine Repair"
-                ].map((item, idx) => (
-                  <div key={idx} style={{ 
-                    display: "flex", 
-                    alignItems: "center", 
-                    gap: 12, 
-                    fontSize: 15, 
-                    fontWeight: 500,
-                    color: "#334155",
-                    background: "#fff",
-                    padding: "10px 16px",
-                    borderRadius: 10,
-                    border: "1px solid #e2e8f0"
-                  }}>
-                    <CheckCircle2 size={18} color="#059669" />
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </AnimSection>
+              <h2 className="sec-title">We Specialize In</h2>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
+              {[
+                "Samsung Washing Machine Repair",
+                "LG Washing Machine Repair",
+                "Whirlpool Washing Machine Repair",
+                "Bosch Washing Machine Repair",
+                "Siemens Washing Machine Repair",
+                "IFB Washing Machine Repair",
+                "Washing Machine Repair Near Me",
+                "LG Washing Machine Repair Near Me",
+                "Near Me Washing Machine Repair",
+                "Washing Machine Repair"
+              ].map((item, idx) => (
+                <div key={idx} style={{ 
+                  display: "flex", 
+                  alignItems: "center", 
+                  gap: 12, 
+                  fontSize: 15, 
+                  fontWeight: 500,
+                  color: "#334155",
+                  background: "#fff",
+                  padding: "12px 20px",
+                  borderRadius: 12,
+                  border: "1px solid #e2e8f0",
+                  boxShadow: "0 2px 4px rgba(0,0,0,0.02)"
+                }}>
+                  <CheckCircle2 size={18} color="#059669" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </AnimSection>
 
-            {/* Column 2: Brands We Work With */}
-            <AnimSection delay={0.2}>
+          {/* Brands Sliding Marquee */}
+          <AnimSection delay={0.2}>
+            <div style={{ textAlign: "center", marginBottom: 40 }}>
               <span className="eyebrow">Brands</span>
-              <h2 className="sec-title" style={{ marginBottom: 12 }}>Brands We Work With</h2>
-              <p className="sec-sub" style={{ marginBottom: 32 }}>We repair all major brands using genuine parts to ensure long-lasting performance.</p>
-              
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
+              <h2 className="sec-title">Brands We Work With</h2>
+              <p className="sec-sub" style={{ margin: "0 auto" }}>We repair all major brands using genuine parts to ensure long-lasting performance.</p>
+            </div>
+
+            <div className="marquee-container">
+              <div className="marquee-content">
                 {[
                   { name: "Samsung", logo: "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" },
                   { name: "LG", logo: "https://upload.wikimedia.org/wikipedia/commons/b/bf/LG_logo_%282015%29.svg" },
@@ -499,32 +523,40 @@ export default function WashingMachineRepairPage() {
                   { name: "Bosch", logo: "https://upload.wikimedia.org/wikipedia/commons/1/16/Bosch-logo.svg" },
                   { name: "Siemens", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Siemens-logo.svg" },
                   { name: "IFB", logo: "https://www.ifbappliances.com/static/version1675334444/frontend/Ifb/theme/en_GB/images/logo.svg" }
-                ].map((brand, idx) => (
+                ].concat([
+                  { name: "Samsung", logo: "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" },
+                  { name: "LG", logo: "https://upload.wikimedia.org/wikipedia/commons/b/bf/LG_logo_%282015%29.svg" },
+                  { name: "Whirlpool", logo: "https://upload.wikimedia.org/wikipedia/commons/0/03/Whirlpool_Corporation_logo.svg" },
+                  { name: "Bosch", logo: "https://upload.wikimedia.org/wikipedia/commons/1/16/Bosch-logo.svg" },
+                  { name: "Siemens", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Siemens-logo.svg" },
+                  { name: "IFB", logo: "https://www.ifbappliances.com/static/version1675334444/frontend/Ifb/theme/en_GB/images/logo.svg" }
+                ]).map((brand, idx) => (
                   <div key={idx} className="brand-logo-card" style={{ 
                     background: "#fff", 
                     border: "1.5px solid #e2e8f0", 
                     borderRadius: 16, 
+                    width: 180,
                     height: 100, 
                     display: "flex", 
                     alignItems: "center", 
                     justifyContent: "center",
                     padding: 20,
-                    transition: "all 0.3s"
+                    margin: "0 10px",
+                    flexShrink: 0
                   }}>
                     <img src={brand.logo} alt={brand.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
                   </div>
                 ))}
               </div>
-              
-              <div style={{ marginTop: 32, display: "flex", flexWrap:"wrap", gap: 8 }}>
-                {BRANDS.filter(b => !["Samsung", "LG", "Whirlpool", "Bosch", "Siemens", "IFB"].includes(b)).map(b => (
-                  <span key={b} style={{ fontSize: 13, color: "#64748b", background: "#f1f5f9", padding: "4px 12px", borderRadius: 99 }}>{b}</span>
-                ))}
-                <span style={{ fontSize: 13, color: "#64748b", background: "#f1f5f9", padding: "4px 12px", borderRadius: 99 }}>& more</span>
-              </div>
-            </AnimSection>
+            </div>
 
-          </div>
+            <div style={{ marginTop: 40, display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center" }}>
+              {BRANDS.map(b => (
+                <span key={b} className="brand-pill" style={{ fontSize: 13 }}>{b}</span>
+              ))}
+            </div>
+          </AnimSection>
+
         </div>
       </section>
 
