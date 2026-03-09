@@ -10,14 +10,42 @@ import BookingSection from "../BookingSection";
 const BRANDS = ["LG","Samsung","Whirlpool","IFB","Bosch","Haier","Godrej","Panasonic","Videocon","Electrolux","Siemens","Onida"];
 const WM_TYPES = ["Front Load","Top Load","Semi-Automatic","Fully Automatic","Twin Tub"];
 const ISSUES = [
-  { icon: Power,         label:"Not Starting",          desc:"Machine won't power on" },
-  { icon: Droplets,      label:"Water Leakage",         desc:"Water leaking from drum" },
-  { icon: Volume2,       label:"Noisy / Vibrating",     desc:"Loud noise during cycle" },
-  { icon: RotateCcw,     label:"Drum Not Spinning",     desc:"Drum stuck or very slow" },
-  { icon: Droplets,      label:"Not Draining",          desc:"Water not draining after wash" },
-  { icon: Settings,      label:"Door Lock Issue",       desc:"Door not opening or locking" },
-  { icon: AlertTriangle, label:"Error Code",            desc:"Display showing error message" },
-  { icon: Timer,         label:"Cycle Not Completing",  desc:"Wash stops midway" },
+  {
+    title: "Not Spinning or Draining",
+    desc: "Drum won't spin or water stays inside after a wash cycle.",
+    img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
+    badge: "Common"
+  },
+  {
+    title: "Excessive Vibration & Noise",
+    desc: "Loud banging, shaking, or unusual sounds during operation.",
+    img: "https://images.unsplash.com/photo-1626806819282-2c1dc01a5e0c?q=80&w=800&auto=format&fit=crop",
+    badge: "Urgent"
+  },
+  {
+    title: "Water Leakage",
+    desc: "Water pooling around or under the machine during use.",
+    img: "https://images.unsplash.com/photo-1521207418485-99c705420785?q=80&w=800&auto=format&fit=crop",
+    badge: "Critical"
+  },
+  {
+    title: "Machine Not Turning On",
+    desc: "No power, no lights, or unresponsive controls.",
+    img: "https://images.unsplash.com/photo-1550963295-019d8a8a61c5?q=80&w=800&auto=format&fit=crop",
+    badge: "Power"
+  },
+  {
+    title: "Error Codes on Display",
+    desc: "Flashing error codes indicating internal faults.",
+    img: "https://images.unsplash.com/photo-1517646281553-9b935c7a4c65?q=80&w=800&auto=format&fit=crop",
+    badge: "Digital"
+  },
+  {
+    title: "Door Won't Open / Lock Issues",
+    desc: "Door stuck shut or latch mechanism failure.",
+    img: "https://images.unsplash.com/photo-1540340061722-9293d5163008?q=80&w=800&auto=format&fit=crop",
+    badge: "Hardware"
+  }
 ];
 const STEPS = [
   { n:"01", title:"Book Online",    desc:"Quick 2-min form with your details" },
@@ -174,6 +202,51 @@ export default function WashingMachineRepairPage() {
         .form-card { background:#fff; border-radius:24px; padding:36px; box-shadow:0 4px 6px rgba(0,0,0,0.04),0 20px 60px rgba(5,150,105,0.08); border:1.5px solid #d1fae5; }
         .stat-num { font-size:2.8rem; font-weight:900; letter-spacing:-0.03em; background:linear-gradient(135deg,#059669,#34d399); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 
+        .problem-card {
+          background: #fff;
+          border-radius: 20px;
+          overflow: hidden;
+          border: 1px solid #e2e8f0;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          height: 100%;
+        }
+        .problem-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 25px 50px -12px rgba(5, 150, 105, 0.15);
+          border-color: #10b981;
+        }
+        .problem-img-container {
+          width: 100%;
+          height: 200px;
+          overflow: hidden;
+          position: relative;
+        }
+        .problem-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.6s ease;
+        }
+        .problem-card:hover .problem-img {
+          transform: scale(1.1);
+        }
+        .problem-badge {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          background: rgba(255, 255, 255, 0.9);
+          backdrop-filter: blur(4px);
+          color: #059669;
+          padding: 4px 12px;
+          border-radius: 99px;
+          font-size: 11px;
+          font-weight: 700;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .problem-content {
+          padding: 24px;
+        }
+
         @media(max-width:768px) { 
           .wm-hero-cols{flex-direction:column!important; text-align: center; padding-top: 60px !important;} 
           .hviz{display:none!important} 
@@ -264,21 +337,44 @@ export default function WashingMachineRepairPage() {
         </div>
       </section>
 
-      {/* ISSUES */}
-      <section className="section">
+      {/* COMMON PROBLEMS */}
+      <section className="section" style={{ background: "#fff" }}>
         <div className="container">
-          <AnimSection><span className="eyebrow">Problems We Fix</span><h2 className="sec-title">Common Washing Machine Issues</h2><p className="sec-sub" style={{ marginBottom:40 }}>From drum faults to motor replacements — our experts handle everything.</p></AnimSection>
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(160px,1fr))", gap:16 }}>
-            {ISSUES.map(({ icon:Icon, label, desc },i)=>(
-              <AnimSection key={label} delay={i*0.07}>
-                <div className="issue-card">
-                  <div className="issue-icon-wrap"><Icon size={24} color="#059669" className="iico" /></div>
-                  <div style={{ fontWeight:700, fontSize:14, color:"#0f172a", marginBottom:6 }}>{label}</div>
-                  <div style={{ fontSize:12, color:"#94a3b8", lineHeight:1.5 }}>{desc}</div>
+          <AnimSection style={{ textAlign: "center", marginBottom: 50 }}>
+            <span className="eyebrow">Problems We Fix</span>
+            <h2 className="sec-title">Common Washing Machine Problems We Fix</h2>
+            <p className="sec-sub" style={{ margin: "0 auto" }}>Is your washing machine showing these issues? Our certified technicians can diagnose and fix them — same day.</p>
+          </AnimSection>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 30 }}>
+            {ISSUES.map((prob, i) => (
+              <AnimSection key={i} delay={i * 0.1}>
+                <div className="problem-card">
+                  <div className="problem-img-container">
+                    <img src={prob.img} alt={prob.title} className="problem-img" />
+                    <div className="problem-badge">{prob.badge}</div>
+                  </div>
+                  <div className="problem-content">
+                    <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 12, color: "#0f172a" }}>{prob.title}</h3>
+                    <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.6, marginBottom: 18 }}>{prob.desc}</p>
+                    <div style={{ display: "flex", alignItems: "center", gap: 6, color: "#059669", fontWeight: 700, fontSize: 13, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                      <Wrench size={14} /> Get it fixed today
+                    </div>
+                  </div>
                 </div>
               </AnimSection>
             ))}
           </div>
+
+          <AnimSection style={{ textAlign: "center", marginTop: 60 }}>
+             <p style={{ fontSize: 18, fontWeight: 600, color: "#0f172a", maxWidth: 600, margin: "0 auto" }}>
+               Whether you need to <span style={{ color: "#059669" }}>fix washing machine near you</span> or urgent help — we've got you covered.
+             </p>
+             <div style={{ marginTop: 24, display: "flex", gap: 12, justifyContent: "center" }}>
+               <a href="#booking" className="btn-primary">Book Expert Repair</a>
+               <a href="tel:+918282822265" className="btn-ghost" style={{ borderColor: "#059669", color: "#059669" }}>Call Now</a>
+             </div>
+          </AnimSection>
         </div>
       </section>
 
