@@ -258,6 +258,34 @@ export default function FridgeRepairPage() {
           padding: 24px;
         }
 
+        .brand-logo-card {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .brand-logo-card:hover {
+          border-color: #7c3aed !important;
+          transform: translateY(-5px);
+          box-shadow: 0 12px 30px -10px rgba(124, 58, 237, 0.2);
+        }
+
+        .marquee-container {
+          overflow: hidden;
+          width: 100%;
+          position: relative;
+          padding: 20px 0;
+        }
+        .marquee-content {
+          display: flex;
+          width: max-content;
+          animation: marquee 30s linear infinite;
+        }
+        .marquee-content:hover {
+          animation-play-state: paused;
+        }
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
         @media(max-width:768px) { 
           .hero-cols{flex-direction:column!important; text-align: center; padding-top: 60px !important;} 
           .hviz{display:none!important} 
@@ -437,11 +465,100 @@ export default function FridgeRepairPage() {
         </div>
       </section>
 
-      {/* BRANDS */}
+      {/* SPECIALTIES & BRANDS */}
       <section className="section section-alt">
         <div className="container">
-          <AnimSection style={{ marginBottom:32 }}><span className="eyebrow">Brands</span><h2 className="sec-title">All Brands We Repair</h2><p className="sec-sub">Certified technicians for every major fridge brand sold in India.</p></AnimSection>
-          <AnimSection delay={0.2}><div style={{ display:"flex", flexWrap:"wrap", gap:10 }}>{BRANDS.map(b=><div key={b} className="brand-pill">{b}</div>)}</div></AnimSection>
+          
+          {/* We Specialize In */}
+          <AnimSection style={{ marginBottom: 80 }}>
+            <div style={{ textAlign: "center", marginBottom: 40 }}>
+              <span className="eyebrow">Expertise</span>
+              <h2 className="sec-title">We Specialize In</h2>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
+              {[
+                "Samsung Refrigerator Repair",
+                "LG Refrigerator Repair",
+                "Whirlpool Refrigerator Repair",
+                "Godrej Refrigerator Repair",
+                "Haier Refrigerator Repair",
+                "Bosch Refrigerator Repair",
+                "Refrigerator Repair Near Me",
+                "LG Refrigerator Repair Near Me",
+                "Near Me Refrigerator Repair",
+                "Refrigerator Repair"
+              ].map((item, idx) => (
+                <div key={idx} style={{ 
+                  display: "flex", 
+                  alignItems: "center", 
+                  gap: 12, 
+                  fontSize: 15, 
+                  fontWeight: 500,
+                  color: "#334155",
+                  background: "#fff",
+                  padding: "12px 20px",
+                  borderRadius: 12,
+                  border: "1px solid #e2e8f0",
+                  boxShadow: "0 2px 4px rgba(0,0,0,0.02)"
+                }}>
+                  <CheckCircle2 size={18} color="#7c3aed" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </AnimSection>
+
+          {/* Brands Sliding Marquee */}
+          <AnimSection delay={0.2}>
+            <div style={{ textAlign: "center", marginBottom: 40 }}>
+              <span className="eyebrow">Brands</span>
+              <h2 className="sec-title">Brands We Work With</h2>
+              <p className="sec-sub" style={{ margin: "0 auto" }}>We repair all major brands using genuine parts to ensure long-lasting performance.</p>
+            </div>
+
+            <div className="marquee-container">
+              <div className="marquee-content">
+                {[
+                  { name: "LG", logo: "https://upload.wikimedia.org/wikipedia/commons/b/bf/LG_logo_%282015%29.svg" },
+                  { name: "Samsung", logo: "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" },
+                  { name: "Whirlpool", logo: "https://upload.wikimedia.org/wikipedia/commons/0/03/Whirlpool_Corporation_logo.svg" },
+                  { name: "Godrej", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Godrej_Group_logo.svg/1200px-Godrej_Group_logo.svg.png" },
+                  { name: "Haier", logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Haier_logo.svg" },
+                  { name: "Bosch", logo: "https://upload.wikimedia.org/wikipedia/commons/1/16/Bosch-logo.svg" }
+                ].concat([
+                  { name: "LG", logo: "https://upload.wikimedia.org/wikipedia/commons/b/bf/LG_logo_%282015%29.svg" },
+                  { name: "Samsung", logo: "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" },
+                  { name: "Whirlpool", logo: "https://upload.wikimedia.org/wikipedia/commons/0/03/Whirlpool_Corporation_logo.svg" },
+                  { name: "Godrej", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Godrej_Group_logo.svg/1200px-Godrej_Group_logo.svg.png" },
+                  { name: "Haier", logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Haier_logo.svg" },
+                  { name: "Bosch", logo: "https://upload.wikimedia.org/wikipedia/commons/1/16/Bosch-logo.svg" }
+                ]).map((brand, idx) => (
+                  <div key={idx} className="brand-logo-card" style={{ 
+                    background: "#fff", 
+                    border: "1.5px solid #e2e8f0", 
+                    borderRadius: 16, 
+                    width: 180,
+                    height: 100, 
+                    display: "flex", 
+                    alignItems: "center", 
+                    justifyContent: "center",
+                    padding: 20,
+                    margin: "0 10px",
+                    flexShrink: 0
+                  }}>
+                    <img src={brand.logo} alt={brand.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ marginTop: 40, display: "flex", flexWrap:"wrap", gap: 10, justifyContent: "center" }}>
+              {BRANDS.map(b => (
+                <span key={b} className="brand-pill" style={{ fontSize: 13 }}>{b}</span>
+              ))}
+            </div>
+          </AnimSection>
+
         </div>
       </section>
 

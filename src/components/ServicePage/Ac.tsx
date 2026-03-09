@@ -388,6 +388,34 @@ export default function ACRepairPage() {
           padding: 24px;
         }
 
+        .brand-logo-card {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .brand-logo-card:hover {
+          border-color: #0ea5e9 !important;
+          transform: translateY(-5px);
+          box-shadow: 0 12px 30px -10px rgba(14, 165, 233, 0.2);
+        }
+
+        .marquee-container {
+          overflow: hidden;
+          width: 100%;
+          position: relative;
+          padding: 20px 0;
+        }
+        .marquee-content {
+          display: flex;
+          width: max-content;
+          animation: marquee 30s linear infinite;
+        }
+        .marquee-content:hover {
+          animation-play-state: paused;
+        }
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
         .floating-badge {
           position:absolute; background:#fff; border-radius:14px; padding:12px 16px;
           box-shadow:0 8px 32px rgba(0,0,0,0.12); display:flex; align-items:center; gap:10px;
@@ -610,6 +638,103 @@ export default function ACRepairPage() {
               </AnimSection>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── SPECIALTIES & BRANDS ── */}
+      <section className="section section-alt">
+        <div className="container">
+          
+          {/* We Specialize In */}
+          <AnimSection style={{ marginBottom: 80 }}>
+            <div style={{ textAlign: "center", marginBottom: 40 }}>
+              <span className="section-eyebrow">Expertise</span>
+              <h2 className="section-title">We Specialize In</h2>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
+              {[
+                "Samsung Air Conditioner Repair",
+                "LG Air Conditioner Repair",
+                "Daikin Air Conditioner Repair",
+                "Voltas Air Conditioner Repair",
+                "Blue Star Air Conditioner Repair",
+                "Hitachi Air Conditioner Repair",
+                "AC Repair Near Me",
+                "LG AC Repair Near Me",
+                "Near Me AC Repair",
+                "Air Conditioner Repair"
+              ].map((item, idx) => (
+                <div key={idx} style={{ 
+                  display: "flex", 
+                  alignItems: "center", 
+                  gap: 12, 
+                  fontSize: 15, 
+                  fontWeight: 500,
+                  color: "#334155",
+                  background: "#fff",
+                  padding: "12px 20px",
+                  borderRadius: 12,
+                  border: "1px solid #e2e8f0",
+                  boxShadow: "0 2px 4px rgba(0,0,0,0.02)"
+                }}>
+                  <CheckCircle2 size={18} color="#0369a1" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </AnimSection>
+
+          {/* Brands Sliding Marquee */}
+          <AnimSection delay={0.2}>
+            <div style={{ textAlign: "center", marginBottom: 40 }}>
+              <span className="section-eyebrow">Brands</span>
+              <h2 className="section-title">Brands We Work With</h2>
+              <p className="section-sub" style={{ margin: "0 auto" }}>We repair all major brands using genuine parts to ensure long-lasting performance.</p>
+            </div>
+
+            <div className="marquee-container">
+              <div className="marquee-content">
+                {[
+                  { name: "Daikin", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b9/Daikin_logo.svg" },
+                  { name: "LG", logo: "https://upload.wikimedia.org/wikipedia/commons/b/bf/LG_logo_%282015%29.svg" },
+                  { name: "Samsung", logo: "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" },
+                  { name: "Voltas", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Voltas_logo.svg" },
+                  { name: "Blue Star", logo: "https://upload.wikimedia.org/wikipedia/en/8/8e/Blue_Star_logo.svg" },
+                  { name: "Hitachi", logo: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Hitachi_logo.svg" }
+                ].concat([
+                  { name: "Daikin", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b9/Daikin_logo.svg" },
+                  { name: "LG", logo: "https://upload.wikimedia.org/wikipedia/commons/b/bf/LG_logo_%282015%29.svg" },
+                  { name: "Samsung", logo: "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" },
+                  { name: "Voltas", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Voltas_logo.svg" },
+                  { name: "Blue Star", logo: "https://upload.wikimedia.org/wikipedia/en/8/8e/Blue_Star_logo.svg" },
+                  { name: "Hitachi", logo: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Hitachi_logo.svg" }
+                ]).map((brand, idx) => (
+                  <div key={idx} className="brand-logo-card" style={{ 
+                    background: "#fff", 
+                    border: "1.5px solid #e2e8f0", 
+                    borderRadius: 16, 
+                    width: 180,
+                    height: 100, 
+                    display: "flex", 
+                    alignItems: "center", 
+                    justifyContent: "center",
+                    padding: 20,
+                    margin: "0 10px",
+                    flexShrink: 0
+                  }}>
+                    <img src={brand.logo} alt={brand.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ marginTop: 40, display: "flex", flexWrap:"wrap", gap: 10, justifyContent: "center" }}>
+              {BRANDS.map(b => (
+                <span key={b} className="brand-pill" style={{ fontSize: 13 }}>{b}</span>
+              ))}
+            </div>
+          </AnimSection>
+
         </div>
       </section>
 
