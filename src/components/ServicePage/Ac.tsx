@@ -10,12 +10,42 @@ import BookingSection from "../BookingSection";
 const BRANDS = ["Daikin","LG","Samsung","Voltas","Blue Star","Carrier","Hitachi","Panasonic","O General","Lloyd","Godrej","Whirlpool"];
 const AC_TYPES = ["Split AC","Window AC","Inverter AC","Cassette AC","Tower AC","Portable AC"];
 const ISSUES = [
-  { icon: Snowflake,     label: "Not Cooling",         desc: "Room not reaching desired temp" },
-  { icon: Droplets,      label: "Water Dripping",       desc: "Leaking from indoor unit" },
-  { icon: Volume2,       label: "Noisy Unit",           desc: "Unusual sounds during operation" },
-  { icon: Power,         label: "Not Starting",         desc: "AC won't power on at all" },
-  { icon: Filter,        label: "Gas Refill",           desc: "Low refrigerant top-up needed" },
-  { icon: Settings,      label: "Servicing & Cleaning", desc: "Annual maintenance & deep clean" },
+  {
+    title: "Not Cooling",
+    desc: "Room not reaching desired temperature or AC blowing warm air.",
+    img: "https://images.unsplash.com/photo-1631545724501-31464687634c?q=80&w=800&auto=format&fit=crop",
+    badge: "Common"
+  },
+  {
+    title: "Water Dripping",
+    desc: "Water leaking from indoor unit or blocked drain pipe issues.",
+    img: "https://images.unsplash.com/photo-1521207418485-99c705420785?q=80&w=800&auto=format&fit=crop",
+    badge: "Critical"
+  },
+  {
+    title: "Noisy Unit",
+    desc: "Unusual grinding, buzzing, or rattling sounds during operation.",
+    img: "https://images.unsplash.com/photo-1599939331505-efd4a2243971?q=80&w=800&auto=format&fit=crop",
+    badge: "Urgent"
+  },
+  {
+    title: "AC Not Starting",
+    desc: "Power issues, remote unresponsive, or blown fuses.",
+    img: "https://images.unsplash.com/photo-1550963295-019d8a8a61c5?q=80&w=800&auto=format&fit=crop",
+    badge: "Power"
+  },
+  {
+    title: "Gas Refill Needed",
+    desc: "Low refrigerant levels causing poor cooling performance.",
+    img: "https://images.unsplash.com/photo-1517646281553-9b935c7a4c65?q=80&w=800&auto=format&fit=crop",
+    badge: "Gas"
+  },
+  {
+    title: "Servicing & Cleaning",
+    desc: "Deep cleaning of filters and coils for optimal airflow.",
+    img: "https://images.unsplash.com/photo-1581094288338-2314dddb7dea?q=80&w=800&auto=format&fit=crop",
+    badge: "Service"
+  }
 ];
 const STEPS = [
   { n:"01", title:"Fill the Form",     desc:"Quick 2-min booking with your details" },
@@ -313,6 +343,51 @@ export default function ACRepairPage() {
           -webkit-background-clip:text; -webkit-text-fill-color:transparent;
         }
 
+        .problem-card {
+          background: #fff;
+          border-radius: 20px;
+          overflow: hidden;
+          border: 1px solid #e2e8f0;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          height: 100%;
+        }
+        .problem-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 25px 50px -12px rgba(3, 105, 161, 0.15);
+          border-color: #0ea5e9;
+        }
+        .problem-img-container {
+          width: 100%;
+          height: 200px;
+          overflow: hidden;
+          position: relative;
+        }
+        .problem-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.6s ease;
+        }
+        .problem-card:hover .problem-img {
+          transform: scale(1.1);
+        }
+        .problem-badge {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          background: rgba(255, 255, 255, 0.9);
+          backdrop-filter: blur(4px);
+          color: #0369a1;
+          padding: 4px 12px;
+          border-radius: 99px;
+          font-size: 11px;
+          font-weight: 700;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .problem-content {
+          padding: 24px;
+        }
+
         .floating-badge {
           position:absolute; background:#fff; border-radius:14px; padding:12px 16px;
           box-shadow:0 8px 32px rgba(0,0,0,0.12); display:flex; align-items:center; gap:10px;
@@ -435,27 +510,44 @@ export default function ACRepairPage() {
         </div>
       </section>
 
-      {/* ── ISSUES ── */}
-      <section className="section">
+      {/* ── COMMON PROBLEMS ── */}
+      <section className="section" style={{ background: "#fff" }}>
         <div className="container">
-          <AnimSection>
+          <AnimSection style={{ textAlign: "center", marginBottom: 50 }}>
             <span className="section-eyebrow">Problems We Fix</span>
-            <h2 className="section-title">Common AC Issues We Solve</h2>
-            <p className="section-sub" style={{ marginBottom:40 }}>From gas top-ups to PCB replacements — our certified technicians handle it all.</p>
+            <h2 className="section-title">Common Air Conditioner Problems We Fix</h2>
+            <p className="section-sub" style={{ margin: "0 auto" }}>Is your AC not performing? Our certified technicians can diagnose and fix any issue — same day.</p>
           </AnimSection>
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(170px,1fr))", gap:16 }} className="three-col">
-            {ISSUES.map(({ icon: Icon, label, desc }, i) => (
-              <AnimSection key={label} delay={i * 0.08}>
-                <div className="issue-card">
-                  <div className="issue-icon-wrap">
-                    <Icon size={24} color="#0369a1" className="issue-icon" />
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 30 }}>
+            {ISSUES.map((prob, i) => (
+              <AnimSection key={i} delay={i * 0.1}>
+                <div className="problem-card">
+                  <div className="problem-img-container">
+                    <img src={prob.img} alt={prob.title} className="problem-img" />
+                    <div className="problem-badge">{prob.badge}</div>
                   </div>
-                  <div style={{ fontWeight:700, fontSize:14, color:"#0f172a", marginBottom:6 }}>{label}</div>
-                  <div style={{ fontSize:12, color:"#94a3b8", lineHeight:1.5 }}>{desc}</div>
+                  <div className="problem-content">
+                    <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 12, color: "#0f172a" }}>{prob.title}</h3>
+                    <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.6, marginBottom: 18 }}>{prob.desc}</p>
+                    <div style={{ display: "flex", alignItems: "center", gap: 6, color: "#0369a1", fontWeight: 700, fontSize: 13, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                      <Wrench size={14} /> Get it fixed today
+                    </div>
+                  </div>
                 </div>
               </AnimSection>
             ))}
           </div>
+
+          <AnimSection style={{ textAlign: "center", marginTop: 60 }}>
+             <p style={{ fontSize: 18, fontWeight: 600, color: "#0f172a", maxWidth: 600, margin: "0 auto" }}>
+               Whether you need to <span style={{ color: "#0369a1" }}>fix AC near you</span> or urgent help — we've got you covered.
+             </p>
+             <div style={{ marginTop: 24, display: "flex", gap: 12, justifyContent: "center" }}>
+               <a href="#booking" className="btn-primary">Book Expert Repair</a>
+               <a href="tel:+918282822265" className="btn-ghost" style={{ borderColor: "#0369a1", color: "#0369a1" }}>Call Now</a>
+             </div>
+          </AnimSection>
         </div>
       </section>
 
