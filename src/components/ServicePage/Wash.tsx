@@ -584,6 +584,52 @@ export default function WashingMachineRepairPage() {
         </div>
       </section>
 
+      {/* WHY CHOOSE US */}
+      <section className="section">
+        <div className="container">
+          <AnimSection style={{ textAlign: "center", marginBottom: 48 }}>
+            <span className="eyebrow">Trust & Excellence</span>
+            <h2 className="sec-title">Why Choose Us for Washing Machine Repair?</h2>
+            <p className="sec-sub" style={{ margin: "0 auto" }}>We take pride in our service quality and customer satisfaction across Mumbai.</p>
+          </AnimSection>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 24 }}>
+            {[
+              ["10+", "10+ Years Experience"],
+              ["50,000+", "Repairs Done"],
+              ["33,000+", "Happy Clients"],
+              ["100%", "Genuine Spare Parts"],
+              ["Yes", "Same Day Response"]
+            ].map(([val, label], i) => (
+              <AnimSection key={i} delay={i * 0.1}>
+                <div style={{ 
+                  textAlign: "center", 
+                  padding: "36px 20px", 
+                  background: "#f0fdf4", 
+                  borderRadius: 24, 
+                  border: "1.5px solid #d1fae5",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  transition: "all 0.3s"
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = "translateY(-5px)";
+                  e.currentTarget.style.boxShadow = "0 12px 24px rgba(5,150,105,0.1)";
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}>
+                  <div className="stat-num" style={{ fontSize: "2.4rem", marginBottom: 10 }}>{val}</div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", lineHeight: 1.4 }}>{label}</div>
+                </div>
+              </AnimSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="section section-alt">
         <div className="container" style={{ maxWidth:720 }}>
