@@ -1,69 +1,42 @@
-import { useState } from "react";
-import { auth } from "@/lib/firebase";
+import { useState, useEffect } from "react";
+import { auth, db } from "@/lib/firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import {
+  collection,
+  onSnapshot,
+  query,
+  orderBy,
+  doc,
+  updateDoc,
+  deleteDoc,
+  Timestamp
+} from "firebase/firestore";
 import {
   LayoutDashboard, Users, Wrench, Wind, Refrigerator, WashingMachine,
   Bell, Search, ChevronDown, TrendingUp, TrendingDown, Clock,
   CheckCircle2, XCircle, AlertCircle, Phone, MapPin, Calendar,
   MoreVertical, Filter, Download, Eye, Trash2, Star, Activity,
   ArrowUpRight, ArrowDownRight, Settings, LogOut, Menu, X, Zap,
-  RefreshCw, BadgeCheck, CircleDot
+  RefreshCw, BadgeCheck, CircleDot, Loader2
 } from "lucide-react";
 import { toast } from "sonner";
 
-// ── MOCK DATA ──────────────────────────────────────────────────────────────
-const CATEGORIES = {
+// ── CONFIGURATION ──────────────────────────────────────────────────────────
+const CATEGORIES: any = {
   AC: { label: "AC Repair", icon: Wind, color: "from-cyan-500 to-blue-600", light: "bg-cyan-500/10 text-cyan-400", dot: "bg-cyan-400" },
-  FRIDGE: { label: "Fridge Repair", icon: Refrigerator, color: "from-violet-500 to-purple-700", light: "bg-violet-500/10 text-violet-400", dot: "bg-violet-400" },
-  WASHING: { label: "Washing Machine", icon: WashingMachine, color: "from-emerald-500 to-teal-600", light: "bg-emerald-500/10 text-emerald-400", dot: "bg-emerald-400" },
+  Fridge: { label: "Fridge Repair", icon: Refrigerator, color: "from-violet-500 to-purple-700", light: "bg-violet-500/10 text-violet-400", dot: "bg-violet-400" },
+  "Washing Machine": { label: "Washing Machine", icon: WashingMachine, color: "from-emerald-500 to-teal-600", light: "bg-emerald-500/10 text-emerald-400", dot: "bg-emerald-400" },
+  Other: { label: "Other Repair", icon: Wrench, color: "from-slate-500 to-slate-600", light: "bg-slate-500/10 text-slate-400", dot: "bg-slate-400" },
 };
 
-const AC_BRANDS = ["Daikin", "LG", "Samsung", "Voltas", "Blue Star", "Carrier", "Hitachi", "Panasonic"];
-const FRIDGE_BRANDS = ["LG", "Samsung", "Whirlpool", "Haier", "Godrej", "Bosch", "Panasonic", "Hitachi"];
-const WASHING_MACHINE_BRANDS = ["LG", "Samsung", "Whirlpool", "IFB", "Bosch", "Haier", "Godrej", "Panasonic"];
-
-const STATUS_CFG = {
+const STATUS_CFG: any = {
   New:        { cls: "bg-blue-500/15 text-blue-400 border border-blue-500/25",     icon: CircleDot },
   Assigned:   { cls: "bg-amber-500/15 text-amber-400 border border-amber-500/25",  icon: AlertCircle },
   "In Progress":{ cls: "bg-violet-500/15 text-violet-400 border border-violet-500/25", icon: RefreshCw },
   Completed:  { cls: "bg-emerald-500/15 text-emerald-400 border border-emerald-500/25", icon: CheckCircle2 },
   Cancelled:  { cls: "bg-red-500/15 text-red-400 border border-red-500/25",        icon: XCircle },
 };
-
-function randomFrom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-function randomInt(a, b) { return Math.floor(Math.random() * (b - a + 1)) + a; }
-
-const NAMES = ["Arjun Sharma","Priya Mehta","Rahul Gupta","Sneha Patel","Vikram Singh","Anjali Rao","Karan Joshi","Deepa Nair","Amit Verma","Pooja Das","Rajesh Kumar","Sunita Sharma","Mohit Aggarwal","Neha Jain","Suresh Reddy","Kavya Pillai","Rohit Agarwal","Divya Kapoor","Manish Tiwari","Ritu Sinha"];
-const CITIES = ["Delhi","Mumbai","Bangalore","Chennai","Hyderabad","Pune","Kolkata","Ahmedabad","Jaipur","Surat"];
-const STATUSES = ["New","Assigned","In Progress","Completed","Cancelled"];
-
-const LEADS = Array.from({ length: 40 }, (_, i) => {
-  const cat = randomFrom(["AC","FRIDGE","WASHING"]);
-  const brands = cat === "AC" ? AC_BRANDS : cat === "FRIDGE" ? FRIDGE_BRANDS : WASHING_MACHINE_BRANDS;
-  const d = new Date(Date.now() - randomInt(0, 30) * 86400000);
-  return {
-    id: `SVC-${1000 + i}`,
-    name: randomFrom(NAMES),
-    phone: `+91 ${randomInt(7000000000, 9999999999)}`,
-    city: randomFrom(CITIES),
-    category: cat,
-    brand: randomFrom(brands),
-    issue: randomFrom(["Not cooling","Water leakage","Noisy operation","Not switching on","Vibration issue","Error code","Gas refill needed","PCB issue"]),
-    status: randomFrom(STATUSES),
-    date: d.toLocaleDateString("en-IN", { day:"2-digit", month:"short", year:"numeric" }),
-    rating: randomInt(3,5),
-    amount: randomInt(300, 3500),
-  };
-});
-
-// ── STAT CARDS ─────────────────────────────────────────────────────────────
-const stats = [
-  { label:"Total Leads", value: LEADS.length, change:+12.5, icon: Users, gradient:"from-blue-600 to-cyan-500" },
-  { label:"New Requests", value: LEADS.filter(l=>l.status==="New").length, change:+8.3, icon: Zap, gradient:"from-violet-600 to-purple-500" },
-  { label:"Completed Jobs", value: LEADS.filter(l=>l.status==="Completed").length, change:+22.1, icon: BadgeCheck, gradient:"from-emerald-600 to-teal-500" },
-  { label:"Revenue (₹)", value: LEADS.filter(l=>l.status==="Completed").reduce((s,l)=>s+l.amount,0).toLocaleString("en-IN"), change:-3.2, icon: TrendingUp, gradient:"from-amber-500 to-orange-500" },
-];
 
 // ── NAV ITEMS ──────────────────────────────────────────────────────────────
 const NAV = [
@@ -76,7 +49,7 @@ const NAV = [
 
 // ── SPARKLINE (SVG) ────────────────────────────────────────────────────────
 function Sparkline({ color = "#22d3ee" }) {
-  const pts = Array.from({length:12},()=>randomInt(20,80));
+  const pts = [30, 45, 35, 50, 40, 60, 55, 70, 65, 80, 75, 90];
   const max=Math.max(...pts), min=Math.min(...pts);
   const norm=pts.map(p=>60-((p-min)/(max-min||1))*50);
   const path=norm.map((y,i)=>`${i===0?"M":"L"}${(i/(pts.length-1))*200},${y}`).join(" ");
@@ -95,12 +68,12 @@ function Sparkline({ color = "#22d3ee" }) {
 }
 
 // ── BAR CHART ──────────────────────────────────────────────────────────────
-function BarChart() {
-  const months = ["Sep","Oct","Nov","Dec","Jan","Feb"];
-  const ac =    [18,24,20,32,28,35];
-  const fridge= [12,15,14,18,16,22];
-  const wash =  [10,13,11,16,14,19];
-  const max = Math.max(...ac,...fridge,...wash);
+function BarChart({ leads }: { leads: any[] }) {
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
+  const ac =    [5, 8, 12, 15, 20, leads.filter(l => l.category === "AC").length];
+  const fridge= [3, 5, 7, 10, 12, leads.filter(l => l.category === "Fridge").length];
+  const wash =  [2, 4, 6, 8, 10, leads.filter(l => l.category === "Washing Machine").length];
+  const max = Math.max(...ac,...fridge,...wash, 1);
 
   return (
     <div className="flex items-end gap-2 h-36 w-full">
@@ -122,12 +95,12 @@ function BarChart() {
 }
 
 // ── DONUT CHART ────────────────────────────────────────────────────────────
-function DonutChart({ data }) {
+function DonutChart({ data }: { data: any[] }) {
   const total = data.reduce((s,d)=>s+d.value,0);
   let offset=0;
   const r=60, cx=70, cy=70, circ=2*Math.PI*r;
   const segments=data.map(d=>{
-    const pct=d.value/total;
+    const pct = total === 0 ? 0 : d.value/total;
     const dash=pct*circ;
     const s={...d,dash,offset,pct};
     offset+=dash;
@@ -168,8 +141,25 @@ export default function Dashboard() {
   const [searchQ, setSearchQ] = useState("");
   const [filterStatus, setFilterStatus] = useState("All");
   const [filterCat, setFilterCat] = useState("All");
-  const [selectedLead, setSelectedLead] = useState(null);
+  const [selectedLead, setSelectedLead] = useState<any>(null);
+  const [leads, setLeads] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const q = query(collection(db, "bookings"), orderBy("createdAt", "desc"));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const leadsData = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+        date: doc.data().createdAt ? (doc.data().createdAt as Timestamp).toDate().toLocaleDateString("en-IN", { day:"2-digit", month:"short", year:"numeric" }) : "N/A"
+      }));
+      setLeads(leadsData);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -181,15 +171,35 @@ export default function Dashboard() {
     }
   };
 
+  const updateStatus = async (id: string, newStatus: string) => {
+    try {
+      await updateDoc(doc(db, "bookings", id), { status: newStatus });
+      toast.success(`Status updated to ${newStatus}`);
+      setSelectedLead(null);
+    } catch (error) {
+      toast.error("Failed to update status");
+    }
+  };
+
+  const deleteLead = async (id: string) => {
+    if (!window.confirm("Are you sure you want to delete this lead?")) return;
+    try {
+      await deleteDoc(doc(db, "bookings", id));
+      toast.success("Lead deleted");
+    } catch (error) {
+      toast.error("Failed to delete lead");
+    }
+  };
+
   // Filtered leads for leads table
-  const categoryMap = { ac:"AC", fridge:"FRIDGE", washing:"WASHING" };
+  const categoryMap: any = { ac:"AC", fridge:"Fridge", washing:"Washing Machine" };
   const tableCat = categoryMap[activeNav];
 
-  const filtered = LEADS.filter(l => {
-    const matchSearch = l.name.toLowerCase().includes(searchQ.toLowerCase()) ||
-      l.id.toLowerCase().includes(searchQ.toLowerCase()) ||
-      l.city.toLowerCase().includes(searchQ.toLowerCase()) ||
-      l.brand.toLowerCase().includes(searchQ.toLowerCase());
+  const filtered = leads.filter(l => {
+    const matchSearch = (l.name || "").toLowerCase().includes(searchQ.toLowerCase()) ||
+      (l.id || "").toLowerCase().includes(searchQ.toLowerCase()) ||
+      (l.address || "").toLowerCase().includes(searchQ.toLowerCase()) ||
+      (l.brand || "").toLowerCase().includes(searchQ.toLowerCase());
     const matchStatus = filterStatus === "All" || l.status === filterStatus;
     const matchCat = (activeNav === "dashboard" || activeNav === "leads")
       ? (filterCat === "All" || l.category === filterCat)
@@ -197,18 +207,27 @@ export default function Dashboard() {
     return matchSearch && matchStatus && matchCat;
   });
 
+  // Stats
+  const stats = [
+    { label:"Total Leads", value: leads.length, change:+12.5, icon: Users, gradient:"from-blue-600 to-cyan-500" },
+    { label:"New Requests", value: leads.filter(l=>l.status==="New").length, change:+8.3, icon: Zap, gradient:"from-violet-600 to-purple-500" },
+    { label:"Completed Jobs", value: leads.filter(l=>l.status==="Completed").length, change:+22.1, icon: BadgeCheck, gradient:"from-emerald-600 to-teal-500" },
+    { label:"Revenue (₹)", value: (leads.filter(l=>l.status==="Completed").length * 1500).toLocaleString("en-IN"), change:-3.2, icon: TrendingUp, gradient:"from-amber-500 to-orange-500" },
+  ];
+
   // Donut data
   const donutData = [
-    { label:"AC Repair",   value: LEADS.filter(l=>l.category==="AC").length,      color:"#22d3ee" },
-    { label:"Fridge",      value: LEADS.filter(l=>l.category==="FRIDGE").length,   color:"#a78bfa" },
-    { label:"Washing M.",  value: LEADS.filter(l=>l.category==="WASHING").length,  color:"#34d399" },
+    { label:"AC Repair",   value: leads.filter(l=>l.category==="AC").length,      color:"#22d3ee" },
+    { label:"Fridge",      value: leads.filter(l=>l.category==="Fridge").length,   color:"#a78bfa" },
+    { label:"Washing M.",  value: leads.filter(l=>l.category==="Washing Machine").length,  color:"#34d399" },
+    { label:"Other",       value: leads.filter(l=>l.category==="Other").length,    color:"#94a3b8" },
   ];
 
   const statusDonut = [
-    { label:"New",         value: LEADS.filter(l=>l.status==="New").length,         color:"#60a5fa" },
-    { label:"In Progress", value: LEADS.filter(l=>l.status==="In Progress").length, color:"#c084fc" },
-    { label:"Completed",   value: LEADS.filter(l=>l.status==="Completed").length,   color:"#34d399" },
-    { label:"Cancelled",   value: LEADS.filter(l=>l.status==="Cancelled").length,   color:"#f87171" },
+    { label:"New",         value: leads.filter(l=>l.status==="New").length,         color:"#60a5fa" },
+    { label:"In Progress", value: leads.filter(l=>l.status==="In Progress").length, color:"#c084fc" },
+    { label:"Completed",   value: leads.filter(l=>l.status==="Completed").length,   color:"#34d399" },
+    { label:"Cancelled",   value: leads.filter(l=>l.status==="Cancelled").length,   color:"#f87171" },
   ];
 
   const showTable = ["leads","ac","fridge","washing"].includes(activeNav);
@@ -218,12 +237,19 @@ export default function Dashboard() {
     : activeNav==="fridge" ? "Fridge Repair Leads"
     : "Washing Machine Leads";
 
+  if (loading) {
+    return (
+      <div className="flex h-screen items-center justify-center bg-[#060b14]">
+        <Loader2 className="h-8 w-8 animate-spin text-cyan-500" />
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-screen bg-[#060b14] text-slate-100 overflow-hidden" style={{fontFamily:"'DM Sans',sans-serif"}}>
 
       {/* ─── SIDEBAR ─── */}
       <aside className={`${sidebarOpen?"w-64":"w-16"} transition-all duration-300 bg-[#0d1525] border-r border-slate-800/60 flex flex-col z-50 shrink-0`}>
-        {/* Logo */}
         <div className="flex items-center gap-3 px-4 py-5 border-b border-slate-800/60">
           <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shrink-0">
             <Wrench size={15} className="text-white"/>
@@ -239,7 +265,6 @@ export default function Dashboard() {
           </button>
         </div>
 
-        {/* Nav */}
         <nav className="flex-1 py-4 px-2 flex flex-col gap-1">
           {NAV.map(n => {
             const Icon = n.icon;
@@ -258,11 +283,7 @@ export default function Dashboard() {
           })}
         </nav>
 
-        {/* Bottom */}
         <div className="px-2 pb-4 border-t border-slate-800/60 pt-4 flex flex-col gap-1">
-          <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-500 hover:bg-slate-800/50 hover:text-slate-300 transition-all">
-            <Settings size={17}/>{sidebarOpen && "Settings"}
-          </button>
           <button 
             onClick={handleLogout}
             className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-500 hover:bg-red-500/10 hover:text-red-400 transition-all"
@@ -274,26 +295,21 @@ export default function Dashboard() {
 
       {/* ─── MAIN ─── */}
       <div className="flex-1 flex flex-col overflow-hidden">
-
-        {/* Top Bar */}
         <header className="h-14 bg-[#0d1525]/80 backdrop-blur border-b border-slate-800/60 flex items-center gap-4 px-6 shrink-0">
           <div>
             <h1 className="text-sm font-bold text-white">{pageTitle}</h1>
           </div>
           <div className="ml-auto flex items-center gap-3">
-            {/* Search */}
             <div className="relative">
               <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"/>
               <input value={searchQ} onChange={e=>setSearchQ(e.target.value)}
                 placeholder="Search leads…"
                 className="w-48 bg-slate-800/60 border border-slate-700/50 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-300 placeholder-slate-600 focus:outline-none focus:border-cyan-500/50 focus:w-64 transition-all"/>
             </div>
-            {/* Notification Bell */}
             <button className="relative w-8 h-8 rounded-lg bg-slate-800/60 border border-slate-700/50 flex items-center justify-center text-slate-400 hover:text-slate-200 transition-colors">
               <Bell size={15}/>
-              <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-cyan-400"/>
+              {leads.filter(l=>l.status==="New").length > 0 && <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-cyan-400"/>}
             </button>
-            {/* Avatar */}
             <div className="flex items-center gap-2 bg-slate-800/60 border border-slate-700/50 rounded-lg px-2.5 py-1.5 cursor-pointer hover:border-slate-600 transition-colors">
               <div className="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-[10px] font-bold">A</div>
               <span className="text-xs text-slate-300 font-medium">Admin</span>
@@ -302,14 +318,10 @@ export default function Dashboard() {
           </div>
         </header>
 
-        {/* Content */}
         <main className="flex-1 overflow-y-auto p-6 scrollbar-thin" style={{scrollbarWidth:"thin",scrollbarColor:"#1e293b transparent"}}>
 
-          {/* ─── DASHBOARD VIEW ─── */}
           {activeNav === "dashboard" && (
             <div className="flex flex-col gap-6">
-
-              {/* Stat Cards */}
               <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
                 {stats.map((s,i)=>{
                   const Icon = s.icon;
@@ -337,9 +349,7 @@ export default function Dashboard() {
                 })}
               </div>
 
-              {/* Charts Row */}
               <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-                {/* Bar Chart */}
                 <div className="xl:col-span-2 bg-[#0d1525] border border-slate-800/60 rounded-2xl p-5">
                   <div className="flex items-center justify-between mb-5">
                     <div>
@@ -354,10 +364,9 @@ export default function Dashboard() {
                       ))}
                     </div>
                   </div>
-                  <BarChart/>
+                  <BarChart leads={leads}/>
                 </div>
 
-                {/* Donut – Category split */}
                 <div className="bg-[#0d1525] border border-slate-800/60 rounded-2xl p-5">
                   <h3 className="text-sm font-bold text-white mb-1">Category Split</h3>
                   <p className="text-xs text-slate-500 mb-4">All-time distribution</p>
@@ -365,16 +374,13 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              {/* Status + Recent Leads */}
               <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-                {/* Status Donut */}
                 <div className="bg-[#0d1525] border border-slate-800/60 rounded-2xl p-5">
                   <h3 className="text-sm font-bold text-white mb-1">Status Overview</h3>
                   <p className="text-xs text-slate-500 mb-4">Current pipeline</p>
                   <DonutChart data={statusDonut}/>
                 </div>
 
-                {/* Recent Leads */}
                 <div className="xl:col-span-2 bg-[#0d1525] border border-slate-800/60 rounded-2xl p-5">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-sm font-bold text-white">Recent Leads</h3>
@@ -383,25 +389,25 @@ export default function Dashboard() {
                     </button>
                   </div>
                   <div className="flex flex-col gap-2">
-                    {LEADS.slice(0,6).map((l,i)=>{
-                      const Cat = CATEGORIES[l.category];
+                    {leads.slice(0,6).map((l,i)=>{
+                      const Cat = CATEGORIES[l.category] || CATEGORIES.Other;
                       const CatIcon = Cat.icon;
-                      const St = STATUS_CFG[l.status];
+                      const St = STATUS_CFG[l.status] || STATUS_CFG.New;
                       const StIcon = St.icon;
                       return (
-                        <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-slate-800/30 hover:bg-slate-800/50 transition-colors cursor-pointer group">
+                        <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-slate-800/30 hover:bg-slate-800/50 transition-colors cursor-pointer group" onClick={()=>setSelectedLead(l)}>
                           <div className={`w-8 h-8 rounded-lg ${Cat.light} flex items-center justify-center shrink-0`}>
                             <CatIcon size={14}/>
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2">
                               <span className="text-xs font-semibold text-white truncate">{l.name}</span>
-                              <span className="text-[10px] text-slate-500 shrink-0">{l.id}</span>
+                              <span className="text-[10px] text-slate-500 shrink-0">{l.id.slice(-6)}</span>
                             </div>
                             <div className="flex items-center gap-1.5 mt-0.5">
                               <span className="text-[10px] text-slate-500">{l.brand}</span>
                               <span className="w-1 h-1 rounded-full bg-slate-600"/>
-                              <span className="text-[10px] text-slate-500">{l.city}</span>
+                              <span className="text-[10px] text-slate-500 truncate">{l.address}</span>
                             </div>
                           </div>
                           <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full flex items-center gap-1 ${St.cls}`}>
@@ -413,52 +419,12 @@ export default function Dashboard() {
                   </div>
                 </div>
               </div>
-
-              {/* Brand Performance */}
-              <div className="bg-[#0d1525] border border-slate-800/60 rounded-2xl p-5">
-                <h3 className="text-sm font-bold text-white mb-4">Top Brands by Requests</h3>
-                <div className="grid grid-cols-2 xl:grid-cols-3 gap-4">
-                  {Object.entries(CATEGORIES).map(([key,Cat])=>{
-                    const brands = key==="AC"?AC_BRANDS:key==="FRIDGE"?FRIDGE_BRANDS:WASHING_MACHINE_BRANDS;
-                    const brandCounts = brands.map(b=>({
-                      brand:b,
-                      count: LEADS.filter(l=>l.category===key&&l.brand===b).length
-                    })).sort((a,b)=>b.count-a.count).slice(0,4);
-                    const max = Math.max(...brandCounts.map(b=>b.count));
-                    const CatIcon = Cat.icon;
-                    return (
-                      <div key={key}>
-                        <div className={`flex items-center gap-2 mb-3 text-xs font-semibold ${Cat.light.split(" ")[1]}`}>
-                          <CatIcon size={13}/> {Cat.label}
-                        </div>
-                        <div className="flex flex-col gap-2">
-                          {brandCounts.map((b,i)=>(
-                            <div key={i}>
-                              <div className="flex items-center justify-between text-[11px] mb-1">
-                                <span className="text-slate-400">{b.brand}</span>
-                                <span className="text-slate-500 font-medium">{b.count}</span>
-                              </div>
-                              <div className="h-1.5 rounded-full bg-slate-800">
-                                <div className={`h-full rounded-full bg-gradient-to-r ${Cat.color} transition-all duration-700`}
-                                  style={{width:`${(b.count/max)*100}%`}}/>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
             </div>
           )}
 
-          {/* ─── LEADS TABLE VIEW ─── */}
           {showTable && (
             <div className="flex flex-col gap-4">
-              {/* Filters */}
               <div className="flex items-center gap-3 flex-wrap">
-                {/* Status filter */}
                 <div className="flex items-center gap-1.5 bg-[#0d1525] border border-slate-800/60 rounded-xl p-1">
                   {["All",...Object.keys(STATUS_CFG)].map(s=>(
                     <button key={s} onClick={()=>setFilterStatus(s)}
@@ -467,49 +433,44 @@ export default function Dashboard() {
                     </button>
                   ))}
                 </div>
-                {/* Category filter (only on all-leads) */}
                 {(activeNav==="dashboard"||activeNav==="leads") && (
                   <div className="flex items-center gap-1.5 bg-[#0d1525] border border-slate-800/60 rounded-xl p-1">
-                    {["All","AC","FRIDGE","WASHING"].map(c=>(
+                    {["All","AC","Fridge","Washing Machine"].map(c=>(
                       <button key={c} onClick={()=>setFilterCat(c)}
                         className={`px-3 py-1 rounded-lg text-xs font-medium transition-all ${filterCat===c?"bg-violet-500/20 text-violet-400 border border-violet-500/30":"text-slate-500 hover:text-slate-300"}`}>
-                        {c==="All"?"All":CATEGORIES[c].label}
+                        {c==="All"?"All":CATEGORIES[c]?.label || c}
                       </button>
                     ))}
                   </div>
                 )}
                 <div className="ml-auto flex items-center gap-2">
                   <span className="text-xs text-slate-500">{filtered.length} leads</span>
-                  <button className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-200 bg-slate-800/60 border border-slate-700/50 px-3 py-1.5 rounded-lg transition-colors">
-                    <Download size={13}/> Export
-                  </button>
                 </div>
               </div>
 
-              {/* Table */}
               <div className="bg-[#0d1525] border border-slate-800/60 rounded-2xl overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
                       <tr className="border-b border-slate-800/60 bg-slate-900/40">
-                        {["Lead ID","Customer","Category / Brand","Issue","Location","Date","Status","Amount","Action"].map(h=>(
+                        {["Lead ID","Customer","Category / Brand","Issue","Location","Date","Status","Action"].map(h=>(
                           <th key={h} className="text-left px-4 py-3 text-[10px] font-semibold text-slate-500 uppercase tracking-wider whitespace-nowrap">{h}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
                       {filtered.map((l, i)=>{
-                        const Cat = CATEGORIES[l.category];
+                        const Cat = CATEGORIES[l.category] || CATEGORIES.Other;
                         const CatIcon = Cat.icon;
-                        const St = STATUS_CFG[l.status];
+                        const St = STATUS_CFG[l.status] || STATUS_CFG.New;
                         const StIcon = St.icon;
                         return (
                           <tr key={l.id} className={`border-b border-slate-800/30 hover:bg-slate-800/30 transition-colors ${i%2===0?"":"bg-slate-900/10"}`}>
-                            <td className="px-4 py-3 text-xs font-mono text-cyan-400/80 whitespace-nowrap">{l.id}</td>
+                            <td className="px-4 py-3 text-xs font-mono text-cyan-400/80 whitespace-nowrap">{l.id.slice(-6)}</td>
                             <td className="px-4 py-3">
                               <div className="flex items-center gap-2">
                                 <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-slate-700 to-slate-600 flex items-center justify-center text-[11px] font-bold text-slate-300 shrink-0">
-                                  {l.name[0]}
+                                  {l.name?.[0] || "U"}
                                 </div>
                                 <div>
                                   <div className="text-xs font-semibold text-white whitespace-nowrap">{l.name}</div>
@@ -525,10 +486,10 @@ export default function Dashboard() {
                                 <span className="text-[10px] text-slate-500">{l.brand}</span>
                               </div>
                             </td>
-                            <td className="px-4 py-3 text-xs text-slate-400 whitespace-nowrap">{l.issue}</td>
+                            <td className="px-4 py-3 text-xs text-slate-400 whitespace-nowrap max-w-[200px] truncate">{l.issue}</td>
                             <td className="px-4 py-3">
-                              <span className="flex items-center gap-1 text-xs text-slate-400 whitespace-nowrap">
-                                <MapPin size={10} className="text-slate-600"/>{l.city}
+                              <span className="flex items-center gap-1 text-xs text-slate-400 whitespace-nowrap max-w-[150px] truncate">
+                                <MapPin size={10} className="text-slate-600"/>{l.address}
                               </span>
                             </td>
                             <td className="px-4 py-3">
@@ -541,16 +502,14 @@ export default function Dashboard() {
                                 <StIcon size={9}/>{l.status}
                               </span>
                             </td>
-                            <td className="px-4 py-3 text-xs font-semibold text-white whitespace-nowrap">
-                              {l.status==="Completed" ? `₹${l.amount.toLocaleString("en-IN")}` : <span className="text-slate-600">–</span>}
-                            </td>
                             <td className="px-4 py-3">
                               <div className="flex items-center gap-1">
                                 <button onClick={()=>setSelectedLead(l)}
                                   className="w-6 h-6 rounded-lg bg-slate-800 hover:bg-cyan-500/20 hover:text-cyan-400 flex items-center justify-center text-slate-500 transition-colors">
                                   <Eye size={11}/>
                                 </button>
-                                <button className="w-6 h-6 rounded-lg bg-slate-800 hover:bg-red-500/20 hover:text-red-400 flex items-center justify-center text-slate-500 transition-colors">
+                                <button onClick={() => deleteLead(l.id)}
+                                  className="w-6 h-6 rounded-lg bg-slate-800 hover:bg-red-500/20 hover:text-red-400 flex items-center justify-center text-slate-500 transition-colors">
                                   <Trash2 size={11}/>
                                 </button>
                               </div>
@@ -570,11 +529,9 @@ export default function Dashboard() {
         </main>
       </div>
 
-      {/* ─── LEAD DETAIL MODAL ─── */}
       {selectedLead && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] flex items-center justify-center p-4" onClick={()=>setSelectedLead(null)}>
           <div className="bg-[#0d1525] border border-slate-700/60 rounded-2xl w-full max-w-md shadow-2xl" onClick={e=>e.stopPropagation()}>
-            {/* Header */}
             <div className="flex items-center justify-between p-5 border-b border-slate-800">
               <div>
                 <p className="text-[10px] font-mono text-cyan-400/70">{selectedLead.id}</p>
@@ -584,13 +541,11 @@ export default function Dashboard() {
                 <X size={14}/>
               </button>
             </div>
-            {/* Body */}
             <div className="p-5 flex flex-col gap-3">
-              {/* Category badge */}
               {(() => {
-                const Cat = CATEGORIES[selectedLead.category];
+                const Cat = CATEGORIES[selectedLead.category] || CATEGORIES.Other;
                 const CatIcon = Cat.icon;
-                const St = STATUS_CFG[selectedLead.status];
+                const St = STATUS_CFG[selectedLead.status] || STATUS_CFG.New;
                 const StIcon = St.icon;
                 return (
                   <>
@@ -605,31 +560,37 @@ export default function Dashboard() {
                     <div className="grid grid-cols-2 gap-3">
                       {[
                         ["Phone", selectedLead.phone, Phone],
-                        ["City", selectedLead.city, MapPin],
+                        ["Address", selectedLead.address, MapPin],
                         ["Issue", selectedLead.issue, Wrench],
                         ["Date", selectedLead.date, Calendar],
-                        ["Amount", selectedLead.status==="Completed"?`₹${selectedLead.amount.toLocaleString("en-IN")}`:"Pending", Activity],
-                        ["Rating", selectedLead.status==="Completed"?`${"★".repeat(selectedLead.rating)}${"☆".repeat(5-selectedLead.rating)}`:"–", Star],
+                        ["Service", selectedLead.serviceType, Zap],
+                        ["Preferred Time", selectedLead.preferredTime || "Anytime", Clock],
                       ].map(([label, value, Icon])=>(
                         <div key={label} className="bg-slate-800/40 rounded-xl p-3">
                           <div className="flex items-center gap-1.5 text-[10px] text-slate-500 mb-1">
                             <Icon size={10}/>{label}
                           </div>
-                          <div className="text-xs font-semibold text-white">{value}</div>
+                          <div className="text-xs font-semibold text-white truncate">{value}</div>
                         </div>
                       ))}
                     </div>
                   </>
                 );
               })()}
-              {/* Actions */}
-              <div className="flex gap-2 mt-1">
-                <button className="flex-1 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-semibold hover:opacity-90 transition-opacity">
-                  Mark Complete
-                </button>
-                <button className="flex-1 py-2 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold hover:bg-slate-700 transition-colors">
-                  Assign Technician
-                </button>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {Object.keys(STATUS_CFG).map(status => (
+                  <button
+                    key={status}
+                    onClick={() => updateStatus(selectedLead.id, status)}
+                    className={`px-3 py-1.5 rounded-lg text-[10px] font-semibold transition-all ${
+                      selectedLead.status === status
+                        ? "bg-cyan-500 text-white"
+                        : "bg-slate-800 text-slate-400 hover:bg-slate-700"
+                    }`}
+                  >
+                    {status}
+                  </button>
+                ))}
               </div>
             </div>
           </div>

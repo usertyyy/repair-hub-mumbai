@@ -3,6 +3,8 @@ import { CheckCircle2 } from "lucide-react";
 import { z } from "zod";
 import { useNavigate } from "react-router-dom";
 import { SERVICE_TYPES, AC_BRANDS, FRIDGE_BRANDS, WASHING_MACHINE_BRANDS } from "@/lib/constants";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 const bookingSchema = z.object({
   name: z.string().trim().min(2, "Name is required").max(100),
@@ -71,17 +73,27 @@ const BookingSection = ({ successRedirect }: BookingSectionProps) => {
     
     setIsSubmitting(true);
     try {
-      const response = await fetch("https://formspree.io/f/mgollvyl", {
+      const category = SERVICE_TYPES.find(s => s.label === form.serviceType)?.category;
+      
+      // Save to Firebase
+      await addDoc(collection(db, "bookings"), {
+        ...form,
+        category: category || "Other",
+        status: "New",
+        createdAt: serverTimestamp(),
+      });
+
+      // Also send to Formspree as backup
+      await fetch("https://formspree.io/f/mgollvyl", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      if (response.ok) {
-        if (successRedirect) {
-          navigate(successRedirect);
-        } else {
-          setSubmitted(true);
-        }
+
+      if (successRedirect) {
+        navigate(successRedirect);
+      } else {
+        setSubmitted(true);
       }
     } catch (error) {
       console.error("Error submitting form:", error);

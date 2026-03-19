@@ -28,7 +28,7 @@ const App = () => (
           <Route path="/ac-repair/thank-you" element={<ThankYou />} />
           <Route path="/refrigerator-repair" element={<FridgeRepairPage />} />
           <Route path="/refrigerator-repair/thank-you" element={<ThankYou />} />
-          <Route path="/washing-machine-repair" element={<WashingMachineRepairPage />} />
+2          <Route path="/washing-machine-repair" element={<WashingMachineRepairPage />} />
           <Route path="/washing-machine-repair/thank-you" element={<ThankYou />} />
           <Route
             path="/admin"
