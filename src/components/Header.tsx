@@ -46,7 +46,7 @@ const Header = () => {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-6 lg:flex">
-          {/* Services Dropdown */}
+          {/* Services Dropdown
           <div 
             className="relative"
             onMouseEnter={() => setServicesOpen(true)}
@@ -70,7 +70,7 @@ const Header = () => {
                 ))}
               </div>
             )}
-          </div>
+          </div> */}
 
           {navLinks.map((l) => (
             <a key={l.href} href={l.href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
@@ -92,7 +92,7 @@ const Header = () => {
       {mobileOpen && (
         <nav className="border-t border-border bg-card px-4 pb-4 lg:hidden animate-slide-in-bottom max-h-[80vh] overflow-y-auto">
           {/* Mobile Services Accordion */}
-          <div className="border-b border-border">
+          {/* <div className="border-b border-border">
             <button 
               onClick={() => setServicesOpen(!servicesOpen)}
               className="flex w-full items-center justify-between py-3 text-sm font-medium text-foreground"
@@ -114,7 +114,7 @@ const Header = () => {
                 ))}
               </div>
             )}
-          </div>
+          </div> */}
 
           {navLinks.map((l) => (
             <a key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="block py-3 text-sm font-medium text-foreground border-b border-border last:border-0">
