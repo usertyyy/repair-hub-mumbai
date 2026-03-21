@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { AC_BRANDS, FRIDGE_BRANDS, WASHING_MACHINE_BRANDS } from "@/lib/constants";
+import { WASHING_MACHINE_BRANDS } from "@/lib/constants";
 
 const BrandChip = ({ name, index, onClick }: { name: string; index: number; onClick: (name: string) => void }) => (
   <motion.button
@@ -19,21 +19,7 @@ const BrandsSection = ({ onBrandSelect }: { onBrandSelect: (brand: string) => vo
     <div className="container">
       <div className="text-center">
         <h2 className="section-heading">All Major Brands We Service</h2>
-        <p className="section-subheading mx-auto max-w-2xl">Authorized service for 40+ leading AC and home appliance brands with genuine spare parts.</p>
-      </div>
-
-      <div className="mt-10">
-        <h3 className="mb-4 text-lg font-bold text-foreground">AC Brands</h3>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
-          {AC_BRANDS.map((b, i) => <BrandChip key={b} name={b} index={i} onClick={onBrandSelect} />)}
-        </div>
-      </div>
-
-      <div className="mt-10">
-        <h3 className="mb-4 text-lg font-bold text-foreground">Fridge Brands</h3>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
-          {FRIDGE_BRANDS.map((b, i) => <BrandChip key={b} name={b} index={i} onClick={onBrandSelect} />)}
-        </div>
+        <p className="section-subheading mx-auto max-w-2xl">Authorized service for leading washing machine brands with genuine spare parts.</p>
       </div>
 
       <div className="mt-10">

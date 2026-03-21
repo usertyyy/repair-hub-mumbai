@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { z } from "zod";
 import { useNavigate } from "react-router-dom";
-import { SERVICE_TYPES, AC_BRANDS, FRIDGE_BRANDS, WASHING_MACHINE_BRANDS } from "@/lib/constants";
+import { SERVICE_TYPES, WASHING_MACHINE_BRANDS } from "@/lib/constants";
 import { db } from "@/lib/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
@@ -43,8 +43,6 @@ const BookingSection = ({ successRedirect }: BookingSectionProps) => {
   const availableBrands = useMemo(() => {
     const service = SERVICE_TYPES.find(s => s.label === form.serviceType);
     if (!service) return [];
-    if (service.category === "AC") return AC_BRANDS;
-    if (service.category === "Fridge") return FRIDGE_BRANDS;
     if (service.category === "Washing Machine") return WASHING_MACHINE_BRANDS;
     return [];
   }, [form.serviceType]);
