@@ -13,37 +13,37 @@ const ISSUES = [
   {
     title: "Not Spinning or Draining",
     desc: "Drum won't spin or water stays inside after a wash cycle.",
-    img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
+    img: "https://samedayrepairblr.com/wp-content/uploads/2026/03/not-spinning.png",
     badge: "Common"
   },
   {
     title: "Excessive Vibration & Noise",
     desc: "Loud banging, shaking, or unusual sounds during operation.",
-    img: "https://images.unsplash.com/photo-1626806819282-2c1dc01a5e0c?q=80&w=800&auto=format&fit=crop",
+    img: "https://samedayrepairblr.com/wp-content/uploads/2026/03/excessive-vibration.png",
     badge: "Urgent"
   },
   {
     title: "Water Leakage",
     desc: "Water pooling around or under the machine during use.",
-    img: "https://images.unsplash.com/photo-1521207418485-99c705420785?q=80&w=800&auto=format&fit=crop",
+    img: "https://samedayrepairblr.com/wp-content/uploads/2026/03/waterleakage.png",
     badge: "Critical"
   },
   {
     title: "Machine Not Turning On",
     desc: "No power, no lights, or unresponsive controls.",
-    img: "https://images.unsplash.com/photo-1550963295-019d8a8a61c5?q=80&w=800&auto=format&fit=crop",
+    img: "https://samedayrepairblr.com/wp-content/uploads/2026/03/machine-not-turning-on.png",
     badge: "Power"
   },
   {
     title: "Error Codes on Display",
     desc: "Flashing error codes indicating internal faults.",
-    img: "https://images.unsplash.com/photo-1517646281553-9b935c7a4c65?q=80&w=800&auto=format&fit=crop",
+    img: "https://samedayrepairblr.com/wp-content/uploads/2026/03/error-codes.png",
     badge: "Digital"
   },
   {
     title: "Door Won't Open / Lock Issues",
     desc: "Door stuck shut or latch mechanism failure.",
-    img: "https://images.unsplash.com/photo-1540340061722-9293d5163008?q=80&w=800&auto=format&fit=crop",
+    img: "https://samedayrepairblr.com/wp-content/uploads/2026/03/door-lock-issues.png",
     badge: "Hardware"
   }
 ];
