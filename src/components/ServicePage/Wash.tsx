@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import BookingSection from "../BookingSection";
 
-const BRANDS = ["LG","Samsung","Whirlpool","IFB","Bosch","Haier","Godrej","Panasonic","Videocon","Electrolux","Siemens"];
+const BRANDS = ["Whirlpool","Bosch","Haier","Godrej","Panasonic","Videocon","Electrolux","Siemens"];
 const WM_TYPES = ["Front Load","Top Load","Semi-Automatic","Fully Automatic","Twin Tub"];
 const ISSUES = [
   {
@@ -60,7 +60,7 @@ const REVIEWS = [
 ];
 const FAQS = [
   ["How fast can you send a technician?","Within 1–4 hours of booking in major cities. Same-day availability in most service areas."],
-  ["Which brands do you service?","All brands: LG, Samsung, IFB, Whirlpool, Bosch, Haier, Godrej, Panasonic, and more."],
+  ["Which brands do you service?","All brands: Whirlpool, Bosch, Haier, Godrej, Panasonic, and more."],
   ["Do you repair front load and top load both?","Yes — front load, top load, semi-automatic, fully automatic and twin tub machines all covered."],
   ["What does a repair cost approximately?","Minor repairs from ₹500. Motor or drum repairs ₹1,500–₹4,000. We quote before starting any work."],
   ["Is there a warranty on the repair?","All repairs come with a 30-day service warranty on labor and replaced parts."],
