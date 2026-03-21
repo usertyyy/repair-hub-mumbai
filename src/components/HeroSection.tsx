@@ -7,7 +7,7 @@ const HeroSection = ({ selectedBrand }: { selectedBrand: string | null }) => {
     <section className="relative overflow-hidden" id="hero">
       {/* Background */}
       <div className="absolute inset-0">
-        <img src={heroBg} alt="Expert technician repairing home appliances and AC" className="h-full w-full object-cover" />
+        <img src={heroBg} alt="Expert technician repairing washing machines" className="h-full w-full object-cover" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsl(215 80% 15% / 0.88) 0%, hsl(215 70% 25% / 0.75) 100%)" }} />
       </div>
 
@@ -20,7 +20,7 @@ const HeroSection = ({ selectedBrand }: { selectedBrand: string | null }) => {
           </div>
 
           <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-primary-foreground md:text-5xl lg:text-6xl">
-            Expert <span className="text-accent">{selectedBrand || "Washing Machine, Fridge & AC"}</span> Repair Service in <span className="text-accent">Mumbai</span>
+            Expert <span className="text-accent">{selectedBrand || "Washing Machine"}</span> Repair Service in <span className="text-accent">Mumbai</span>
           </h1>
 
           <p className="mt-5 text-lg text-primary-foreground/80 md:text-xl">
