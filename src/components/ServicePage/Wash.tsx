@@ -54,9 +54,9 @@ const STEPS = [
   { n:"04", title:"All Fixed",      desc:"Repaired, tested, under warranty" },
 ];
 const REVIEWS = [
-  { name:"Neha J.",  city:"Pune",    stars:5, brand:"IFB",     text:"IFB front loader was leaking badly. Technician came in 3 hours and fixed a drum seal. Excellent — same-day repair!" },
-  { name:"Manoj K.", city:"Chennai", stars:5, brand:"Samsung", text:"Samsung top load making awful noise. Very professional team, explained the fault clearly. Highly recommend." },
-  { name:"Kavita P.", city:"Kolkata",stars:5, brand:"LG",      text:"LG machine stopped draining. Fixed within an hour. Very reasonable rates and polite technician." },
+  { name:"Neha J.",  city:"Pune",    stars:5, brand:"Whirlpool",     text:"My front loader was leaking badly. Technician came in 3 hours and fixed a drum seal. Excellent — same-day repair!" },
+  { name:"Manoj K.", city:"Chennai", stars:5, brand:"Bosch", text:"My top load making awful noise. Very professional team, explained the fault clearly. Highly recommend." },
+  { name:"Kavita P.", city:"Kolkata",stars:5, brand:"Haier",      text:"My machine stopped draining. Fixed within an hour. Very reasonable rates and polite technician." },
 ];
 const FAQS = [
   ["How fast can you send a technician?","Within 1–4 hours of booking in major cities. Same-day availability in most service areas."],
