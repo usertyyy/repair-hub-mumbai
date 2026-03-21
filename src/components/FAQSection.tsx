@@ -2,10 +2,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 const faqs = [
   { q: "How much does the inspection cost?", a: "We charge a ₹350 inspection fee which is adjustable against the final repair cost. You get a detailed estimate before any work begins." },
-  { q: "What are your AC service charges?", a: "AC service starts from ₹499 for basic servicing. Gas refilling, installation, and repairs are priced based on the AC type and brand. We provide transparent pricing upfront." },
-  { q: "Do you offer same-day repair service?", a: "Yes! Most AC and appliance repairs are completed within the same day. For complex issues, it may take 24-48 hours." },
+  { q: "Do you offer same-day repair service?", a: "Yes! Most washing machine repairs are completed within the same day. For complex issues, it may take 24-48 hours." },
   { q: "What warranty do you provide?", a: "We provide a 90-day warranty on all repairs and replaced parts. If the same issue recurs within the warranty period, we fix it for free." },
-  { q: "Is home service available?", a: "Yes, we offer doorstep service for all AC and home appliance repairs across Mumbai and surrounding areas." },
+  { q: "Is home service available?", a: "Yes, we offer doorstep service for all washing machine repairs across Mumbai and surrounding areas." },
   { q: "Are the spare parts genuine?", a: "Absolutely. We only use 100% genuine and brand-authorized spare parts for all our repairs to ensure longevity and performance." },
 ];
 

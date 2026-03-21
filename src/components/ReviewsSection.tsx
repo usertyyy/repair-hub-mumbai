@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 
 const reviews = [
   { name: "Rajesh Sharma", review: "Excellent washing machine repair service! My LG front load was fixed within 3 hours. Very professional team.", service: "Washing Machine Repair" },
-  { name: "Priya Mehta", review: "Best AC service in Vile Parle. Technician was on time and fixed the cooling issue perfectly.", service: "AC Gas Refilling" },
-  { name: "Amit Patel", review: "Got my Samsung fridge fixed at a very reasonable price. Genuine parts and great warranty.", service: "Fridge Repair" },
-  { name: "Sneha Desai", review: "Doorstep service was a great convenience. My microwave is working perfectly now!", service: "Microwave Repair" },
-  { name: "Vikram Joshi", review: "They fixed my AC water leakage problem that two other services couldn't. Highly recommended!", service: "AC Water Leakage Fix" },
-  { name: "Neha Kulkarni", review: "Very honest pricing. They told me upfront what the issue was and the cost. No hidden charges at all.", service: "AC Installation" },
+  { name: "Priya Mehta", review: "Technician was on time and fixed my washing machine perfectly. Great service!", service: "Washing Machine Service" },
+  { name: "Amit Patel", review: "Got my Samsung washing machine fixed at a very reasonable price. Genuine parts and great warranty.", service: "Washing Machine Repair" },
+  { name: "Sneha Desai", review: "Doorstep service was a great convenience. My washing machine is working perfectly now!", service: "Washing Machine Repair" },
+  { name: "Vikram Joshi", review: "They fixed my washing machine water leakage problem that two other services couldn't. Highly recommended!", service: "Washing Machine Repair" },
+  { name: "Neha Kulkarni", review: "Very honest pricing. They told me upfront what the issue was and the cost. No hidden charges at all.", service: "Washing Machine Installation" },
 ];
 
 const ReviewsSection = () => (

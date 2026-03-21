@@ -10,7 +10,7 @@ const Footer = () => (
             <img src="/repairlogo.png" alt="Logo" className="h-9 w-9 object-contain" />
             <span className="text-lg font-bold">Customer Service Centre</span>
           </div>
-          <p className="mt-3 text-sm text-primary-foreground/60">Mumbai's trusted home appliances & AC repair service since 2009. ISO 9001 certified with 90-day warranty on all repairs.</p>
+          <p className="mt-3 text-sm text-primary-foreground/60">Mumbai's trusted washing machine repair service since 2009. ISO 9001 certified with 90-day warranty on all repairs.</p>
           <div className="mt-4 flex gap-3 text-sm text-primary-foreground/60">
             <a href="#" className="hover:text-primary-foreground">Facebook</a>
             <a href="#" className="hover:text-primary-foreground">Instagram</a>
@@ -23,11 +23,9 @@ const Footer = () => (
           <h4 className="font-bold mb-3">Services</h4>
           <ul className="space-y-2 text-sm text-primary-foreground/60">
             <li><a href="#services" className="hover:text-primary-foreground">Washing Machine Repair</a></li>
-            <li><a href="#services" className="hover:text-primary-foreground">Fridge Repair</a></li>
-            <li><a href="#services" className="hover:text-primary-foreground">AC Repair</a></li>
-            <li><a href="#services" className="hover:text-primary-foreground">AC Installation</a></li>
-            <li><a href="#services" className="hover:text-primary-foreground">AC Gas Refilling</a></li>
-            <li><a href="#services" className="hover:text-primary-foreground">Microwave Repair</a></li>
+            <li><a href="#services" className="hover:text-primary-foreground">Washing Machine Installation</a></li>
+            <li><a href="#services" className="hover:text-primary-foreground">Drum & Motor Repair</a></li>
+            <li><a href="#services" className="hover:text-primary-foreground">PCB Repair</a></li>
           </ul>
         </div>
 

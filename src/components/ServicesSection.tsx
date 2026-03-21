@@ -1,23 +1,5 @@
-import { Wind, Wrench, ArrowDownUp, Snowflake, CircuitBoard, Droplets, Power, Calendar, Refrigerator, WashingMachine } from "lucide-react";
+import { Wrench, CircuitBoard, Droplets, Calendar, WashingMachine } from "lucide-react";
 import { motion } from "framer-motion";
-
-const acServices = [
-  { icon: Wind, title: "AC Gas Refilling", desc: "Professional gas top-up and leak detection for all AC brands." },
-  { icon: Wrench, title: "AC Installation", desc: "Expert split and window AC installation with warranty." },
-  { icon: ArrowDownUp, title: "AC Uninstallation", desc: "Safe removal and shifting of AC units." },
-  { icon: Snowflake, title: "Cooling Issue Repair", desc: "Fix AC not cooling properly with expert diagnosis." },
-  { icon: CircuitBoard, title: "AC PCB Repair", desc: "Circuit board repair and replacement for AC units." },
-  { icon: Droplets, title: "Water Leakage Fix", desc: "Resolve water dripping and drainage issues." },
-  { icon: Power, title: "AC Not Turning On", desc: "Diagnose and fix power issues in your AC unit." },
-  { icon: Calendar, title: "Annual Maintenance", desc: "Comprehensive yearly AC servicing for peak performance." },
-];
-
-const fridgeServices = [
-  { icon: Snowflake, title: "Cooling Issues", desc: "Fixing compressor problems and cooling inefficiency." },
-  { icon: Wind, title: "Gas Refilling", desc: "Eco-friendly refrigerant top-up and leak plugging." },
-  { icon: CircuitBoard, title: "PCB & Sensor Repair", desc: "Motherboard and electronic sensor troubleshooting." },
-  { icon: Power, title: "Power & Defrost Fix", desc: "Resolving power trips and ice buildup issues." },
-];
 
 const washingMachineServices = [
   { icon: Wrench, title: "Drum & Motor Repair", desc: "Fixing spinning issues and motor replacement." },
@@ -43,28 +25,8 @@ const ServicesSection = () => (
   <section id="services" className="py-16 md:py-20">
     <div className="container">
       <div className="text-center">
-        <h2 className="section-heading">Our Expert Repair Services</h2>
-        <p className="section-subheading mx-auto max-w-2xl">Professional repair solutions for home appliances and air conditioners with genuine parts and 90-day warranty.</p>
-      </div>
-
-      {/* AC */}
-      <div className="mt-14">
-        <h3 className="mb-6 flex items-center gap-2 text-xl font-bold text-foreground">
-          <Wind className="h-5 w-5 text-accent" /> AC Repair &amp; Service
-        </h3>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {acServices.map((s, i) => <ServiceCard key={s.title} {...s} index={i} />)}
-        </div>
-      </div>
-
-      {/* Fridge */}
-      <div className="mt-14">
-        <h3 className="mb-6 flex items-center gap-2 text-xl font-bold text-foreground">
-          <Refrigerator className="h-5 w-5 text-accent" /> Refrigerator Repair
-        </h3>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {fridgeServices.map((s, i) => <ServiceCard key={s.title} {...s} index={i} />)}
-        </div>
+        <h2 className="section-heading">Our Expert Washing Machine Repair Services</h2>
+        <p className="section-subheading mx-auto max-w-2xl">Professional repair solutions for washing machines with genuine parts and 90-day warranty.</p>
       </div>
 
       {/* Washing Machine */}
