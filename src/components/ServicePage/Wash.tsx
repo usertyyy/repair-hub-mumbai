@@ -350,6 +350,16 @@ export default function WashingMachineRepairPage() {
       {/* COMMON PROBLEMS */}
       <section className="section" style={{ background: "#fff" }}>
         <div className="container">
+          <AnimSection style={{ marginBottom: 40 }}>
+            <div style={{ width: "100%", height: "auto", maxHeight: "400px", overflow: "hidden", borderRadius: "24px", marginBottom: "40px", boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}>
+              <img 
+                src="https://samedayrepairblr.com/wp-content/uploads/2026/03/washing-machines-banner-Cuju2RW7.png" 
+                alt="Washing Machine Repair Service" 
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
+          </AnimSection>
+
           <AnimSection style={{ textAlign: "center", marginBottom: 50 }}>
             <span className="eyebrow">Problems We Fix</span>
             <h2 className="sec-title">Common Washing Machine Problems We Fix</h2>
