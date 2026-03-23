@@ -3,11 +3,45 @@ import {
   WashingMachine, Phone, ChevronDown, Star, CheckCircle2,
   ArrowRight, MapPin, Shield, Wrench, Droplets,
   Volume2, Power, Settings, AlertTriangle, Send, Zap,
-  ThumbsUp, BadgeCheck, RotateCcw, Timer, MessageCircle
+  ThumbsUp, BadgeCheck, RotateCcw, Timer, MessageCircle, Truck
 } from "lucide-react";
 import BookingSection from "../BookingSection";
 
-const BRANDS = ["Whirlpool","Bosch","Haier","Godrej","Panasonic","Videocon","Electrolux","Siemens"];
+const WashCTA = () => (
+  <section id="contact" className="section" style={{ background: "#fff", paddingTop: 0 }}>
+    <div className="container">
+      <div className="rounded-3xl px-6 py-12 text-center md:px-12 md:py-16" 
+        style={{ 
+          background: "linear-gradient(135deg,#064e3b 0%,#059669 45%,#10b981 100%)",
+          boxShadow: "0 20px 50px rgba(5,150,105,0.2)",
+          position: "relative",
+          overflow: "hidden"
+        }}>
+        <div style={{ position: "absolute", inset: 0, opacity: 0.1, backgroundImage: "linear-gradient(rgba(255,255,255,0.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.6) 1px,transparent 1px)", backgroundSize: "48px 48px" }} />
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <h2 className="text-3xl font-extrabold text-white md:text-4xl" style={{ marginBottom: 16 }}>
+            Need Expert Washing Machine Repair in Mumbai?
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-white/80" style={{ marginBottom: 32 }}>
+            Get same-day repair service with 30-day warranty. Free pickup & delivery across Mumbai. Genuine spare parts guaranteed.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <a href="tel:+918282822265" className="btn-white text-base">
+              <Phone size={18} /> Call Now
+            </a>
+            <a href="https://wa.me/918282822265?text=Hi%2C%20I%20need%20washing%20machine%20repair" target="_blank" rel="noopener noreferrer" className="btn-whatsapp text-base">
+              <MessageCircle size={18} /> WhatsApp
+            </a>
+            <a href="#booking" className="btn-ghost text-base border-white/40 text-white hover:bg-white/10">
+              <Truck size={18} /> Book Pickup
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
 const WM_TYPES = ["Front Load","Top Load","Semi-Automatic","Fully Automatic","Twin Tub"];
 const ISSUES = [
   {
@@ -56,11 +90,11 @@ const STEPS = [
 const REVIEWS = [
   { name:"Neha J.",  city:"Pune",    stars:5,  text:"My front loader was leaking badly. Technician came in 3 hours and fixed a drum seal. Excellent — same-day repair!" },
   { name:"Manoj K.", city:"Chennai", stars:5,  text:"My top load making awful noise. Very professional team, explained the fault clearly. Highly recommend." },
-  { name:"Kavita P.", city:"Kolkata",stars:5, text:"My machine stopped draining. Fixed within an hour. Very reasonable rates and polite technician." },
+  { name:"Kavita P.", city:"Kolkata",stars:5,  text:"My machine stopped draining. Fixed within an hour. Very reasonable rates and polite technician." },
 ];
 const FAQS = [
   ["How fast can you send a technician?","Within 1–4 hours of booking in major cities. Same-day availability in most service areas."],
-  ["Which brands do you service?","All brands: Whirlpool, Bosch, Haier, Godrej, Panasonic, and more."],
+  ["Which brands do you service?","We service all major domestic and imported brands. Our technicians are trained for all makes and models."],
   ["Do you repair front load and top load both?","Yes — front load, top load, semi-automatic, fully automatic and twin tub machines all covered."],
   ["What does a repair cost approximately?","Minor repairs from ₹500. Motor or drum repairs ₹1,500–₹4,000. We quote before starting any work."],
   ["Is there a warranty on the repair?","All repairs come with a 30-day service warranty on labor and replaced parts."],
@@ -315,7 +349,7 @@ export default function WashingMachineRepairPage() {
             <h1 className="hero-h1" style={{ marginBottom:20 }}>
               Laundry Stuck?<br /><span style={{ color:"#a7f3d0" }}>Fixed Today.</span>
             </h1>
-            <p className="hero-sub" style={{ marginBottom:36 }}>All brands, all types. Same-day doorstep service with certified technicians and a 30-day warranty on every single repair.</p>
+            <p className="hero-sub" style={{ marginBottom:36 }}>Expert repair for all makes and models. Same-day doorstep service with certified technicians and a 30-day warranty on every single repair.</p>
                  {/* Mini trust */}
           <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-primary-foreground/70 mini-trust">
             <span>✓ No Fix No Fee</span>
@@ -475,12 +509,11 @@ export default function WashingMachineRepairPage() {
                 <div className="review-card">
                   <div style={{ display:"flex", gap:3, marginBottom:14 }}>{[...Array(r.stars)].map((_,j)=><Star key={j} size={15} fill="#f59e0b" color="#f59e0b" />)}</div>
                   <p style={{ fontSize:14, color:"#374151", lineHeight:1.75, marginBottom:18 }}>"{r.text}"</p>
-                  <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", paddingTop:16, borderTop:"1px solid #f1f5f9" }}>
+                  <div style={{ display:"flex", alignItems:"center", paddingTop:16, borderTop:"1px solid #f1f5f9" }}>
                     <div>
                       <div style={{ fontWeight:700, fontSize:14 }}>{r.name}</div>
                       <div style={{ fontSize:12, color:"#94a3b8", display:"flex", alignItems:"center", gap:4, marginTop:2 }}><MapPin size={11} />{r.city}</div>
                     </div>
-                    <span style={{ fontSize:12, fontWeight:700, color:"#059669", background:"#f0fdf4", border:"1.5px solid #a7f3d0", borderRadius:8, padding:"4px 12px" }}></span>
                   </div>
                 </div>
               </AnimSection>
@@ -555,6 +588,8 @@ export default function WashingMachineRepairPage() {
 
       {/* FORM */}
       <BookingSection successRedirect="/washing-machine-repair/thank-you" />
+
+      <WashCTA />
 
       <footer style={{ background:"#0c1a2e", padding:"32px 24px", textAlign:"center" }}>
         <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:8, marginBottom:10 }}>

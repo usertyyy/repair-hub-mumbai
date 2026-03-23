@@ -29,15 +29,16 @@ const Field = ({ label, name, value, onChange, error, placeholder, type = "text"
 
 interface BookingSectionProps {
   successRedirect?: string;
+  hideBrand?: boolean;
 }
 
-const BookingSection = ({ successRedirect }: BookingSectionProps) => {
+const BookingSection = ({ successRedirect, hideBrand }: BookingSectionProps) => {
   const navigate = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof BookingData, string>>>({});
   const [form, setForm] = useState<BookingData>({
-    name: "", phone: "", serviceType: "", brand: "", issue: "", address: "", preferredTime: "",
+    name: "", phone: "", serviceType: "", brand: hideBrand ? "General" : "", issue: "", address: "", preferredTime: "",
   });
 
   const availableBrands = useMemo(() => {
@@ -51,7 +52,7 @@ const BookingSection = ({ successRedirect }: BookingSectionProps) => {
     const { name, value } = e.target;
     setForm(prev => {
       const next = { ...prev, [name]: value };
-      if (name === "serviceType") {
+      if (name === "serviceType" && !hideBrand) {
         next.brand = "";
       }
       return next;
@@ -64,18 +65,26 @@ const BookingSection = ({ successRedirect }: BookingSectionProps) => {
     const result = bookingSchema.safeParse(form);
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
-      result.error.errors.forEach((err) => { fieldErrors[err.path[0] as string] = err.message; });
-      setErrors(fieldErrors);
-      return;
+      result.error.errors.forEach((err) => { 
+        if (hideBrand && err.path[0] === "brand") return;
+        fieldErrors[err.path[0] as string] = err.message; 
+      });
+      if (Object.keys(fieldErrors).length > 0) {
+        setErrors(fieldErrors);
+        return;
+      }
     }
     
     setIsSubmitting(true);
     try {
       const category = SERVICE_TYPES.find(s => s.label === form.serviceType)?.category;
       
+      const submissionData = { ...form };
+      if (hideBrand) submissionData.brand = "General";
+
       // Save to Firebase
       await addDoc(collection(db, "bookings"), {
-        ...form,
+        ...submissionData,
         category: category || "Other",
         status: "New",
         createdAt: serverTimestamp(),
@@ -85,7 +94,7 @@ const BookingSection = ({ successRedirect }: BookingSectionProps) => {
       await fetch("https://formspree.io/f/mgollvyl", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(submissionData),
       });
 
       if (successRedirect) {
@@ -114,7 +123,7 @@ const BookingSection = ({ successRedirect }: BookingSectionProps) => {
               <CheckCircle2 className="mx-auto h-16 w-16 text-success" />
               <h4 className="mt-4 text-xl font-bold text-foreground">Booking Confirmed!</h4>
               <p className="mt-2 text-muted-foreground">Thank you! Our team will call you shortly to confirm your appointment.</p>
-              <button onClick={() => { setSubmitted(false); setForm({ name: "", phone: "", serviceType: "", brand: "", issue: "", address: "", preferredTime: "" }); }}
+              <button onClick={() => { setSubmitted(false); setForm({ name: "", phone: "", serviceType: "", brand: hideBrand ? "General" : "", issue: "", address: "", preferredTime: "" }); }}
                 className="btn-cta mt-6">Book Another</button>
             </div>
           ) : (
@@ -123,7 +132,7 @@ const BookingSection = ({ successRedirect }: BookingSectionProps) => {
                 <Field label="Full Name" name="name" value={form.name} onChange={handleChange} error={errors.name} placeholder="Your name" />
                 <Field label="Phone Number" name="phone" value={form.phone} onChange={handleChange} error={errors.phone} placeholder="10-digit mobile" type="tel" />
               </div>
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className={`grid gap-4 ${hideBrand ? "sm:grid-cols-1" : "sm:grid-cols-2"}`}>
                 <div>
                   <label className="mb-1 block text-sm font-medium text-foreground">Service Type</label>
                   <select name="serviceType" value={form.serviceType} onChange={handleChange}
@@ -133,16 +142,18 @@ const BookingSection = ({ successRedirect }: BookingSectionProps) => {
                   </select>
                   {errors.serviceType && <p className="mt-1 text-xs text-destructive">{errors.serviceType}</p>}
                 </div>
-                <div>
-                  <label className="mb-1 block text-sm font-medium text-foreground">Brand</label>
-                  <select name="brand" value={form.brand} onChange={handleChange} disabled={!form.serviceType}
-                    className="w-full rounded-xl border border-input bg-background px-4 py-2.5 text-sm text-foreground outline-none focus:ring-2 focus:ring-accent disabled:opacity-50">
-                    <option value="">Select brand</option>
-                    {availableBrands.map(b => <option key={b} value={b}>{b}</option>)}
-                    <option value="Other">Other</option>
-                  </select>
-                  {errors.brand && <p className="mt-1 text-xs text-destructive">{errors.brand}</p>}
-                </div>
+                {!hideBrand && (
+                  <div>
+                    <label className="mb-1 block text-sm font-medium text-foreground">Brand</label>
+                    <select name="brand" value={form.brand} onChange={handleChange} disabled={!form.serviceType}
+                      className="w-full rounded-xl border border-input bg-background px-4 py-2.5 text-sm text-foreground outline-none focus:ring-2 focus:ring-accent disabled:opacity-50">
+                      <option value="">Select brand</option>
+                      {availableBrands.map(b => <option key={b} value={b}>{b}</option>)}
+                      <option value="Other">Other</option>
+                    </select>
+                    {errors.brand && <p className="mt-1 text-xs text-destructive">{errors.brand}</p>}
+                  </div>
+                )}
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field label="Pickup Address" name="address" value={form.address} onChange={handleChange} error={errors.address} placeholder="Your full address" />
