@@ -53,7 +53,7 @@ const ISSUES = [
   {
     title: "Excessive Vibration & Noise",
     desc: "Loud banging, shaking, or unusual sounds during operation.",
-    img: "https://samedayrepairblr.com/wp-content/uploads/2026/03/excessive-vibration.png",
+    img: "https://samedayrepairblr.com/wp-content/uploads/2026/03/noice.png",
     badge: "Urgent"
   },
   {
@@ -65,19 +65,19 @@ const ISSUES = [
   {
     title: "Machine Not Turning On",
     desc: "No power, no lights, or unresponsive controls.",
-    img: "https://samedayrepairblr.com/wp-content/uploads/2026/03/machine-not-turning-on.png",
+    img: "https://samedayrepairblr.com/wp-content/uploads/2026/03/Machine-Not-Turning-On.png",
     badge: "Power"
   },
   {
     title: "Error Codes on Display",
     desc: "Flashing error codes indicating internal faults.",
-    img: "https://samedayrepairblr.com/wp-content/uploads/2026/03/error-codes.png",
+    img: "https://samedayrepairblr.com/wp-content/uploads/2026/03/Error-Codes-on-Display.png",
     badge: "Digital"
   },
   {
     title: "Door Won't Open / Lock Issues",
     desc: "Door stuck shut or latch mechanism failure.",
-    img: "https://samedayrepairblr.com/wp-content/uploads/2026/03/door-lock-issues.png",
+    img: "https://samedayrepairblr.com/wp-content/uploads/2026/03/Door-Wont-Open-Lock-Issues.png",
     badge: "Hardware"
   }
 ];
@@ -217,9 +217,6 @@ export default function WashingMachineRepairPage() {
         .step-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,#059669,#34d399); transform:scaleX(0); transform-origin:left; transition:transform 0.4s; }
         .step-card:hover::before { transform:scaleX(1); }
 
-        .brand-pill { border:1.5px solid #e2e8f0; border-radius:8px; padding:9px 18px; font-size:14px; font-weight:600; color:#334155; background:#fff; cursor:default; transition:all 0.25s; box-shadow:0 1px 3px rgba(0,0,0,0.04); }
-        .brand-pill:hover { border-color:#059669; color:#059669; background:#f0fdf4; transform:translateY(-2px); box-shadow:0 4px 16px rgba(5,150,105,0.12); }
-
         .review-card { background:#fff; border:1.5px solid #e2e8f0; border-radius:20px; padding:28px; transition:all 0.3s; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
         .review-card:hover { box-shadow:0 16px 48px rgba(5,150,105,0.1); transform:translateY(-4px); border-color:#a7f3d0; }
 
@@ -271,56 +268,7 @@ export default function WashingMachineRepairPage() {
           background: rgba(255, 255, 255, 0.9);
           backdrop-filter: blur(4px);
           color: #059669;
-          padding: 4px 12px;
-          border-radius: 99px;
-          font-size: 11px;
-          font-weight: 700;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .problem-content {
-          padding: 24px;
-        }
-
-        .brand-logo-card {
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .brand-logo-card:hover {
-          border-color: #059669 !important;
-          transform: translateY(-5px);
-          box-shadow: 0 12px 30px -10px rgba(5, 150, 105, 0.2);
-        }
-
-        .marquee-container {
-          overflow: hidden;
-          width: 100%;
-          position: relative;
-          padding: 20px 0;
-        }
-        .marquee-content {
-          display: flex;
-          width: max-content;
-          animation: marquee 30s linear infinite;
-        }
-        .marquee-content:hover {
-          animation-play-state: paused;
-        }
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-
-        @media(max-width:768px) { 
-          .wm-hero-cols{flex-direction:column!important; text-align: center; padding-top: 60px !important;} 
-          .hviz{display:none!important} 
-          .two-col{grid-template-columns:1fr!important}
-          .hero-sub { margin: 0 auto 30px !important; }
-          .hero-btns { justify-content: center; }
-          .hero-badge { margin: 0 auto 20px !important; }
-          .nav-logo-text { display: none; }
-          .nav-phone-text { display: none; }
-          .mini-trust { justify-content: center; }
-        }
-      `}</style>
+          padding: 4px 12px; border-radius: 99px; font-size: 11px; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.1); } .problem-content { padding: 24px; } .marquee-container { overflow: hidden; width: 100%; position: relative; padding: 20px 0; } .marquee-content { display: flex; width: max-content; animation: marquee 30s linear infinite; } .marquee-content:hover { animation-play-state: paused; } @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } } @media(max-width:768px) { .wm-hero-cols{flex-direction:column!important; text-align: center; padding-top: 60px !important;} .hviz{display:none!important} .two-col{grid-template-columns:1fr!important} .hero-sub { margin: 0 auto 30px !important; } .hero-btns { justify-content: center; } .hero-badge { margin: 0 auto 20px !important; } .nav-logo-text { display: none; } .nav-phone-text { display: none; } .mini-trust { justify-content: center; } } `}</style>
 
       {/* NAV */}
       <nav className={`wm-nav ${scrolled?"scrolled":""}`}>
@@ -459,7 +407,7 @@ export default function WashingMachineRepairPage() {
               </div>
             </div>
             <div style={{ flex:1, minWidth:280, display:"grid", gridTemplateColumns:"1fr 1fr", gap:16 }}>
-              {([[Zap,"Fast Dispatch","Within hours of booking"],[BadgeCheck,"Certified Techs","Brand-trained experts"],[Shield,"Warranty","30-day guarantee"],[ThumbsUp,"No Hidden Costs","Quoted upfront"]] as const).map(([Icon,t,d])=>(
+              {([[Zap,"Fast Dispatch","Within hours of booking"],[BadgeCheck,"Certified Techs","Expert Technicians"],[Shield,"Warranty","30-day guarantee"],[ThumbsUp,"No Hidden Costs","Quoted upfront"]] as const).map(([Icon,t,d])=>(
                 <div key={t} style={{ background:"#fff", border:"1.5px solid #e2e8f0", borderRadius:14, padding:"20px 18px", transition:"all 0.3s" }}
                   onMouseEnter={e=>{e.currentTarget.style.borderColor="#a7f3d0";e.currentTarget.style.boxShadow="0 8px 24px rgba(5,150,105,0.1)";}}
                   onMouseLeave={e=>{e.currentTarget.style.borderColor="#e2e8f0";e.currentTarget.style.boxShadow="none";}}>
