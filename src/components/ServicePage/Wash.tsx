@@ -54,9 +54,9 @@ const STEPS = [
   { n:"04", title:"All Fixed",      desc:"Repaired, tested, under warranty" },
 ];
 const REVIEWS = [
-  { name:"Neha J.",  city:"Pune",    stars:5, brand:"Whirlpool",     text:"My front loader was leaking badly. Technician came in 3 hours and fixed a drum seal. Excellent — same-day repair!" },
-  { name:"Manoj K.", city:"Chennai", stars:5, brand:"Bosch", text:"My top load making awful noise. Very professional team, explained the fault clearly. Highly recommend." },
-  { name:"Kavita P.", city:"Kolkata",stars:5, brand:"Haier",      text:"My machine stopped draining. Fixed within an hour. Very reasonable rates and polite technician." },
+  { name:"Neha J.",  city:"Pune",    stars:5,  text:"My front loader was leaking badly. Technician came in 3 hours and fixed a drum seal. Excellent — same-day repair!" },
+  { name:"Manoj K.", city:"Chennai", stars:5,  text:"My top load making awful noise. Very professional team, explained the fault clearly. Highly recommend." },
+  { name:"Kavita P.", city:"Kolkata",stars:5, text:"My machine stopped draining. Fixed within an hour. Very reasonable rates and polite technician." },
 ];
 const FAQS = [
   ["How fast can you send a technician?","Within 1–4 hours of booking in major cities. Same-day availability in most service areas."],
@@ -480,7 +480,7 @@ export default function WashingMachineRepairPage() {
                       <div style={{ fontWeight:700, fontSize:14 }}>{r.name}</div>
                       <div style={{ fontSize:12, color:"#94a3b8", display:"flex", alignItems:"center", gap:4, marginTop:2 }}><MapPin size={11} />{r.city}</div>
                     </div>
-                    <span style={{ fontSize:12, fontWeight:700, color:"#059669", background:"#f0fdf4", border:"1.5px solid #a7f3d0", borderRadius:8, padding:"4px 12px" }}>{r.brand}</span>
+                    <span style={{ fontSize:12, fontWeight:700, color:"#059669", background:"#f0fdf4", border:"1.5px solid #a7f3d0", borderRadius:8, padding:"4px 12px" }}></span>
                   </div>
                 </div>
               </AnimSection>
