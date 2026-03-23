@@ -3,7 +3,7 @@ import { Phone, Menu, X, Wrench, ChevronDown, Refrigerator, WashingMachine, Wind
 import { Link } from "react-router-dom";
 
 const navLinks = [
-  { label: "Brands", href: "#brands" },
+  
   { label: "Why Us", href: "#why-us" },
   { label: "Process", href: "#process" },
   { label: "Reviews", href: "#reviews" },
