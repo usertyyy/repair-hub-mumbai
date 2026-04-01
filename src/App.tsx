@@ -2,8 +2,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
+import WashPage from "./pages/WashPage";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./components/Admin";
 import Login from "./pages/Login";
@@ -22,13 +23,14 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<Navigate to="/washing-machine-repair" replace />} />
+          <Route path="/index" element={<Index />} />
           <Route path="/login" element={<Login />} />
           <Route path="/ac-repair" element={<ACRepairPage />} />
           <Route path="/ac-repair/thank-you" element={<ThankYou />} />
           <Route path="/refrigerator-repair" element={<FridgeRepairPage />} />
           <Route path="/refrigerator-repair/thank-you" element={<ThankYou />} />
-          <Route path="/washing-machine-repair" element={<WashingMachineRepairPage />} />
+          <Route path="/washing-machine-repair" element={<WashPage />} />
           <Route path="/washing-machine-repair/thank-you" element={<ThankYou />} />
           <Route
             path="/admin"
