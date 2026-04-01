@@ -98,7 +98,7 @@ const WashPage = () => {
             <a href="#contact" onClick={() => setIsMenuOpen(false)}>Contact</a>
           </div>
           <div className="navbar-cta">
-            <a href="tel:+912269645080" className="btn btn-outline btn-sm" style={{ padding: '10px 18px', fontSize: '0.85rem' }}>📞 Call Now</a>
+            <a href="tel:+918080803043" className="btn btn-outline btn-sm" style={{ padding: '10px 18px', fontSize: '0.85rem' }}>📞 Call Now</a>
             <a href="#leadform" className="btn btn-primary" style={{ padding: '10px 18px', fontSize: '0.85rem' }}>Get Free Quote</a>
           </div>
           <div className="hamburger" onClick={toggleMenu}>
@@ -134,7 +134,7 @@ const WashPage = () => {
                   </div>
                 </div>
                 <div className="hero-cta-row">
-                  <a href="tel:+912269645080" className="btn btn-call btn-lg">📞 Call Now: 022 6964 5080</a>
+                  <a href="tel:+918080803043" className="btn btn-call btn-lg">📞 Call Now: 022 6964 5080</a>
                   <a href="https://wa.me/912269645080?text=Hi%2C%20I%20need%20washing%20machine%20repair%20in%20Mumbai" target="_blank" rel="noreferrer" className="btn btn-whatsapp btn-lg">💬 WhatsApp Us</a>
                 </div>
                 <div className="hero-pills">
@@ -260,7 +260,7 @@ const WashPage = () => {
           <div className="text-center mt-40">
             <p style={{ marginBottom: '16px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>Whether you need emergency washing machine repair near you or same-day help — we've got Mumbai covered.</p>
             <div className="contact-row" style={{ justifyContent: 'center' }}>
-              <a href="tel:+912269645080" className="btn btn-call">📞 Call Now: 022 6964 5080</a>
+              <a href="tel:+918080803043" className="btn btn-call">📞 Call Now: 022 6964 5080</a>
               <a href="https://wa.me/912269645080" target="_blank" rel="noreferrer" className="btn btn-whatsapp">💬 WhatsApp Us</a>
             </div>
           </div>
@@ -366,7 +366,7 @@ const WashPage = () => {
             <div className="cta-sub">Technicians available across Andheri, Bandra, Thane, Navi Mumbai, Dadar, Borivali & more.</div>
           </div>
           <div className="cta-btns">
-            <a href="tel:+912269645080" className="btn btn-call">📞 022 6964 5080</a>
+            <a href="tel:+918080803043" className="btn btn-call">📞 022 6964 5080</a>
             <a href="https://wa.me/912269645080" target="_blank" rel="noreferrer" className="btn btn-whatsapp">💬 WhatsApp</a>
             <a href="#leadform" className="btn btn-primary">Get Free Quote</a>
           </div>
@@ -447,7 +447,7 @@ const WashPage = () => {
                 <h2>Get a <span className="text-red">Free Callback</span><br />Within 30 Minutes</h2>
                 <p style={{ margin: '16px 0 24px' }}>Leave your details and our team will call you right back to schedule your same-day repair slot.</p>
                 <div className="contact-row">
-                  <a href="tel:+912269645080" className="btn btn-call">📞 022 6964 5080</a>
+                  <a href="tel:+918080803043" className="btn btn-call">📞 022 6964 5080</a>
                   <a href="https://wa.me/912269645080" target="_blank" rel="noreferrer" className="btn btn-whatsapp">💬 WhatsApp</a>
                 </div>
                 <div className="img-placeholder" style={{ aspectRatio: '16/9', borderRadius: 'var(--radius)', marginTop: '24px' }}>
@@ -640,7 +640,7 @@ const WashPage = () => {
                   <div className="leadform-list-item"><span className="check">✅</span> All Mumbai areas covered</div>
                 </div>
                 <div className="contact-row mt-40">
-                  <a href="tel:+912269645080" className="btn btn-call btn-lg">📞 022 6964 5080</a>
+                  <a href="tel:+918080803043" className="btn btn-call btn-lg">📞 022 6964 5080</a>
                   <a href="https://wa.me/912269645080" target="_blank" rel="noreferrer" className="btn btn-whatsapp btn-lg">💬 WhatsApp</a>
                 </div>
                 <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '12px' }}>*We are an independent appliance repair service and are not affiliated with any brands mentioned.</p>
@@ -651,8 +651,6 @@ const WashPage = () => {
                 <div className="form-title">Book Your Washing Machine Repair</div>
                 <div className="form-sub">Fill in the form and we'll call you back within 30 minutes.</div>
                 <form onSubmit={handleSubmit}>
-                  <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_API_KEY_HERE" />
-                  <input type="hidden" name="subject" value="Bottom Form Lead – Washing Machine Repair Mumbai" />
                   <div className="form-group">
                     <label>Your Name *</label>
                     <input type="text" name="name" placeholder="e.g. Rahul Mehta" required />
@@ -700,7 +698,7 @@ const WashPage = () => {
               <div className="logo"><span>Same</span>day</div>
               <p className="footer-desc">Mumbai's most trusted washing machine repair service. Same day response. 90-day warranty. Certified technicians across all Mumbai areas.</p>
               <div className="footer-contact">
-                <a href="tel:+912269645080">📞 022 6964 5080</a>
+                <a href="tel:+918080803043">📞 022 6964 5080</a>
                 <a href="https://wa.me/912269645080" target="_blank" rel="noreferrer">💬 WhatsApp Us</a>
                 <a href="mailto:service@sameday.in">✉️ service@sameday.in</a>
               </div>
@@ -753,7 +751,7 @@ const WashPage = () => {
               <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Same day service across all Mumbai areas. Call or book online.</div>
             </div>
             <div className="footer-final-cta">
-              <a href="tel:+912269645080" className="btn btn-call">📞 Call Now</a>
+              <a href="tel:+918080803043" className="btn btn-call">📞 Call Now</a>
               <a href="https://wa.me/912269645080" target="_blank" rel="noreferrer" className="btn btn-whatsapp">💬 WhatsApp</a>
               <a href="#leadform" className="btn btn-primary">Book Online</a>
             </div>
@@ -767,7 +765,7 @@ const WashPage = () => {
 
       {/* FLOATING BUTTONS */}
       <div className="floating-btns">
-        <a href="tel:+912269645080" className="float-btn float-call" title="Call Us">
+        <a href="tel:+918080803043" className="float-btn float-call" title="Call Us">
           📞
           <span className="float-tooltip">Call Us</span>
         </a>
