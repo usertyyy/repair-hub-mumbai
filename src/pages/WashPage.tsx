@@ -64,13 +64,15 @@ const WashPage = () => {
 
     try {
       const formData = new FormData(form);
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const data = Object.fromEntries(formData);
+      
+      const response = await fetch('https://formspree.io/f/mgollvyl', {
         method: 'POST',
-        body: formData
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
       });
-      const data = await response.json();
 
-      if (data.success) {
+      if (response.ok) {
         window.location.href = '/washing-machine-repair/thank-you';
       } else {
         btn.innerHTML = '❌ Failed. Try again.';
@@ -150,8 +152,6 @@ const WashPage = () => {
                   <div className="form-title">Book Your Repair Today</div>
                   <div className="form-sub">Get a free diagnosis. Technician at your door within 2–4 hours.</div>
                   <form onSubmit={handleSubmit}>
-                    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_API_KEY_HERE" />
-                    <input type="hidden" name="subject" value="New Lead – Washing Machine Repair Mumbai" />
                     <div className="form-group">
                       <label>Your Name *</label>
                       <input type="text" name="name" placeholder="e.g. Rahul Mehta" required />
@@ -166,7 +166,7 @@ const WashPage = () => {
                     </div>
                     <div className="form-group">
                       <label>Washing Machine Type</label>
-                      <select name="brand">
+                      <select name="type">
                         <option value="">Select Type</option>
                         <option>Front Load</option>
                         <option>Top Load</option>
@@ -461,8 +461,6 @@ const WashPage = () => {
                 <div className="form-title">Send Us a Message</div>
                 <div className="form-sub">We'll respond within 15 minutes during working hours.</div>
                 <form onSubmit={handleSubmit}>
-                  <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_API_KEY_HERE" />
-                  <input type="hidden" name="subject" value="Mid-page Lead – Washing Machine Repair Mumbai" />
                   <div className="form-group">
                     <label>Name *</label>
                     <input type="text" name="name" placeholder="Your full name" required />
