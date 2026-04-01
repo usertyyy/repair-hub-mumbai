@@ -120,7 +120,7 @@ const WashPage = () => {
                   <span className="line-2">Repair in Mumbai</span>
                 </h1>
                 <p className="hero-sub">
-                  Searching for <strong style={{ color: 'var(--white)' }}>washing machine repair near me</strong> in Mumbai? Our certified technicians come to your doorstep — same day. We fix Samsung, LG, Whirlpool, Bosch, IFB, Siemens & all major brands.
+                  Searching for <strong style={{ color: 'var(--white)' }}>washing machine repair near me</strong> in Mumbai? Our certified technicians come to your doorstep — same day. We fix all major brands.
                 </p>
                 <div className="hero-trust-row">
                   <div className="google-badge">
@@ -165,18 +165,12 @@ const WashPage = () => {
                       <input type="text" name="area" placeholder="e.g. Andheri, Bandra, Thane..." required />
                     </div>
                     <div className="form-group">
-                      <label>Washing Machine Brand</label>
+                      <label>Washing Machine Type</label>
                       <select name="brand">
-                        <option value="">Select Brand</option>
-                        <option>Samsung</option>
-                        <option>LG</option>
-                        <option>Whirlpool</option>
-                        <option>Bosch</option>
-                        <option>IFB</option>
-                        <option>Siemens</option>
-                        <option>Godrej</option>
-                        <option>Haier</option>
-                        <option>Panasonic</option>
+                        <option value="">Select Type</option>
+                        <option>Front Load</option>
+                        <option>Top Load</option>
+                        <option>Semi-Automatic</option>
                         <option>Other</option>
                       </select>
                     </div>
@@ -234,28 +228,6 @@ const WashPage = () => {
           </Reveal>
         </div>
       </section>
-
-      {/* BRAND LOGOS */}
-      <div className="logos-section">
-        <Reveal>
-          <div className="container mb-24">
-            <div className="section-label">Brands We Repair</div>
-            <h2>We Repair <span className="text-red">All Major Brands</span></h2>
-            <p style={{ maxWidth: '500px', marginTop: '8px' }}>Using genuine OEM-standard spare parts. All brands covered.</p>
-          </div>
-        </Reveal>
-        <div style={{ overflow: 'hidden' }}>
-          <div className="logos-track">
-            {['Samsung', 'LG', 'Whirlpool', 'Bosch', 'IFB', 'Siemens', 'Godrej', 'Haier', 'Panasonic', 'Videocon', 'Onida', 'Hitachi'].map((brand, i) => (
-              <div key={i} className="brand-logo">{brand}</div>
-            ))}
-            {/* Duplicate for infinite scroll */}
-            {['Samsung', 'LG', 'Whirlpool', 'Bosch', 'IFB', 'Siemens', 'Godrej', 'Haier', 'Panasonic', 'Videocon', 'Onida', 'Hitachi'].map((brand, i) => (
-              <div key={`dup-${i}`} className="brand-logo">{brand}</div>
-            ))}
-          </div>
-        </div>
-      </div>
 
       {/* PROBLEMS */}
       <section className="section" id="problems" style={{ background: 'var(--dark)' }}>
@@ -359,9 +331,9 @@ const WashPage = () => {
           <Reveal>
             <div className="cases-grid">
               {[
-                { tag: 'LG', title: 'LG Front Load – Motor Replacement', val: '₹6K', label: 'Saved vs. new machine', desc: "Repaired within 3 hours at the customer's home in Andheri West. Machine running perfectly." },
-                { tag: 'Samsung', title: 'Samsung PCB Board – Error Code Fix', val: '1 Day', label: 'Turnaround time', desc: "E3 error code resolved same day. Customer in Bandra couldn't believe how fast it was." },
-                { tag: 'IFB', title: 'IFB Drainage Issue – Full Service', val: '90D', label: 'Warranty provided', desc: "Complete service + drainage pump replaced. Client in Thane, happy with transparent pricing." }
+                { tag: 'Front Load', title: 'Front Load – Motor Replacement', val: '₹6K', label: 'Saved vs. new machine', desc: "Repaired within 3 hours at the customer's home in Andheri West. Machine running perfectly." },
+                { tag: 'Top Load', title: 'Top Load – PCB Board Repair', val: '1 Day', label: 'Turnaround time', desc: "Error code resolved same day. Customer in Bandra couldn't believe how fast it was." },
+                { tag: 'Service', title: 'Drainage Issue – Full Service', val: '90D', label: 'Warranty provided', desc: "Complete service + drainage pump replaced. Client in Thane, happy with transparent pricing." }
               ].map((item, i) => (
                 <div key={i} className="case-card">
                   <div className="case-img">
@@ -505,7 +477,7 @@ const WashPage = () => {
                   </div>
                   <div className="form-group">
                     <label>Brand & Issue</label>
-                    <textarea name="message" placeholder="e.g. Samsung front load, not draining..."></textarea>
+                    <textarea name="message" placeholder="e.g. Front load, not draining..."></textarea>
                   </div>
                   <button type="submit" className="btn btn-primary btn-full">📲 Get Free Callback</button>
                 </form>
@@ -528,12 +500,12 @@ const WashPage = () => {
           <Reveal>
             <div className="testimonials-grid">
               {[
-                { name: 'Priya Nair', role: 'HR Manager, Andheri West', avatar: 'P', text: 'I searched for washing machine repair near me in Mumbai and found Sameday. My LG washing machine repair was done within 3 hours in Andheri. The technician was professional and the price was fair. Highly recommended!' },
-                { name: 'Rohit Sharma', role: 'IT Professional, Bandra', avatar: 'R', text: 'Needed urgent Samsung washing machine repair in Mumbai. Called Sameday at 10am and the technician was at my door by 1pm in Bandra. Fixed an E2 error code same day. Outstanding service!', avatarColor: 'linear-gradient(135deg, #3b82f6 0%, #6366f1 100%)' },
-                { name: 'Anita Rao', role: 'Homemaker, Thane West', avatar: 'A', text: 'Sameday provided the most affordable and transparent washing machine repair in Mumbai. IFB drainage issue fixed in one visit. The 90-day warranty gave me complete peace of mind. Very satisfied!', avatarColor: 'linear-gradient(135deg, #10b981 0%, #059669 100%)' },
-                { name: 'Suresh Kapoor', role: 'Business Owner, Borivali', avatar: 'S', text: 'My Bosch washing machine was making a terrible noise. Searched for Bosch washing machine repair near me and Sameday came up. Drum bearing replaced same day. No more noise — runs perfectly!', avatarColor: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)' },
-                { name: 'Meera Joshi', role: 'Teacher, Navi Mumbai', avatar: 'M', text: 'Water was leaking everywhere. I was worried about floor damage. Booked Sameday for Whirlpool washing machine repair in Navi Mumbai. The technician identified the inlet valve issue instantly. Fixed in 90 minutes. Brilliant!', avatarColor: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)' },
-                { name: 'Kavita Patil', role: 'Nurse, Dadar', avatar: 'K', text: "My IFB machine stopped mid-cycle and wouldn't open the door. Sameday came in 2 hours to Dadar. Fixed the door lock mechanism and gave a 90-day warranty. Excellent washing machine repair service in Mumbai. Will call them every time!", avatarColor: 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)' }
+                { name: 'Priya Nair', role: 'HR Manager, Andheri West', avatar: 'P', text: 'I searched for washing machine repair near me in Mumbai and found Sameday. My washing machine repair was done within 3 hours in Andheri. The technician was professional and the price was fair. Highly recommended!' },
+                { name: 'Rohit Sharma', role: 'IT Professional, Bandra', avatar: 'R', text: 'Needed urgent washing machine repair in Mumbai. Called Sameday at 10am and the technician was at my door by 1pm in Bandra. Fixed an error code same day. Outstanding service!', avatarColor: 'linear-gradient(135deg, #3b82f6 0%, #6366f1 100%)' },
+                { name: 'Anita Rao', role: 'Homemaker, Thane West', avatar: 'A', text: 'Sameday provided the most affordable and transparent washing machine repair in Mumbai. Drainage issue fixed in one visit. The 90-day warranty gave me complete peace of mind. Very satisfied!', avatarColor: 'linear-gradient(135deg, #10b981 0%, #059669 100%)' },
+                { name: 'Suresh Kapoor', role: 'Business Owner, Borivali', avatar: 'S', text: 'My washing machine was making a terrible noise. Searched for repair near me and Sameday came up. Drum bearing replaced same day. No more noise — runs perfectly!', avatarColor: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)' },
+                { name: 'Meera Joshi', role: 'Teacher, Navi Mumbai', avatar: 'M', text: 'Water was leaking everywhere. I was worried about floor damage. Booked Sameday for washing machine repair in Navi Mumbai. The technician identified the inlet valve issue instantly. Fixed in 90 minutes. Brilliant!', avatarColor: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)' },
+                { name: 'Kavita Patil', role: 'Nurse, Dadar', avatar: 'K', text: "My machine stopped mid-cycle and wouldn't open the door. Sameday came in 2 hours to Dadar. Fixed the door lock mechanism and gave a 90-day warranty. Excellent washing machine repair service in Mumbai. Will call them every time!", avatarColor: 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)' }
               ].map((testi, i) => (
                 <div key={i} className="testi-card">
                   <div className="quote-mark">"</div>
@@ -635,7 +607,7 @@ const WashPage = () => {
                 { q: 'What warranty do you provide on repairs?', a: 'Every repair at Sameday comes with a 90-day written warranty. If the same issue reappears within 90 days of the repair, we\'ll fix it at no extra charge. That\'s our commitment to quality.' },
                 { q: 'Which areas in Mumbai do you cover?', a: 'We cover all areas across Mumbai including Andheri, Bandra, Juhu, Borivali, Kandivali, Malad, Goregaon, Kurla, Dadar, Thane, Navi Mumbai, Powai, Vikhroli, Mulund, Ghatkopar, and more. If you\'re in Greater Mumbai, we\'ve got you covered.' },
                 { q: 'Is it better to repair or replace my washing machine?', a: 'In most cases, repair is far more cost-effective. A new washing machine costs ₹15,000–₹40,000+. Most repairs cost ₹500–₹4,000. Unless your machine is over 10 years old and has multiple major failures, repair almost always makes more financial sense.' },
-                { q: 'Which washing machine brands do you repair in Mumbai?', a: 'We repair all major brands including Samsung, LG, Whirlpool, Bosch, IFB, Siemens, Godrej, Haier, Panasonic, Videocon, Hitachi, and more. Front load, top load, semi-automatic — we handle them all.' }
+                { q: 'Which washing machine brands do you repair in Mumbai?', a: 'We repair all major brands. Front load, top load, semi-automatic — we handle them all.' }
               ].map((faq, i) => (
                 <div key={i} className={`faq-item ${openFaqIndex === i ? 'open' : ''}`}>
                   <div className="faq-q" onClick={() => toggleFaq(i)}>
@@ -696,24 +668,18 @@ const WashPage = () => {
                     <input type="text" name="area" placeholder="Andheri, Bandra, Thane..." required />
                   </div>
                   <div className="form-group">
-                    <label>Select Brand</label>
+                    <label>Washing Machine Type</label>
                     <select name="brand">
-                      <option value="">Select Brand</option>
-                      <option>Samsung</option>
-                      <option>LG</option>
-                      <option>Whirlpool</option>
-                      <option>Bosch</option>
-                      <option>IFB</option>
-                      <option>Siemens</option>
-                      <option>Godrej</option>
-                      <option>Haier</option>
-                      <option>Panasonic</option>
+                      <option value="">Select Type</option>
+                      <option>Front Load</option>
+                      <option>Top Load</option>
+                      <option>Semi-Automatic</option>
                       <option>Other</option>
                     </select>
                   </div>
                   <div className="form-group">
                     <label>Describe the Problem</label>
-                    <textarea name="message" placeholder="e.g. Machine not spinning, leaking water, showing error code..."></textarea>
+                    <textarea name="message" placeholder="e.g. Machine not spinning, leaking water..."></textarea>
                   </div>
                   <button type="submit" className="btn btn-primary btn-full btn-lg">🔧 Book My Repair Now</button>
                   <div className="warranty-note" style={{ marginTop: '12px' }}>
@@ -744,12 +710,12 @@ const WashPage = () => {
             <div>
               <div className="footer-col-title">Services</div>
               <div className="footer-links">
-                <a href="#leadform">Washing Machine Repair Mumbai</a>
-                <a href="#leadform">LG Washing Machine Repair</a>
-                <a href="#leadform">Samsung Washing Machine Repair</a>
-                <a href="#leadform">Whirlpool Repair Mumbai</a>
-                <a href="#leadform">IFB Repair Mumbai</a>
-                <a href="#leadform">Bosch Repair Mumbai</a>
+                <a href="#leadform">Washing Machine Repair</a>
+                <a href="#leadform">Front Load Repair</a>
+                <a href="#leadform">Top Load Repair</a>
+                <a href="#leadform">Semi-Automatic Repair</a>
+                <a href="#leadform">PCB Board Repair</a>
+                <a href="#leadform">Motor Replacement</a>
               </div>
             </div>
             <div>
@@ -796,7 +762,7 @@ const WashPage = () => {
           </div>
           <div className="footer-bottom">
             <p>© 2026 Sameday. All rights reserved. | Washing Machine Repair in Mumbai</p>
-            <p>*Sameday is an independent appliance repair service and is not affiliated with Samsung, LG, Whirlpool, Bosch, IFB, Siemens, or any other brand mentioned.</p>
+            <p>*Sameday is an independent appliance repair service and is not affiliated with any brand mentioned.</p>
           </div>
         </div>
       </footer>
