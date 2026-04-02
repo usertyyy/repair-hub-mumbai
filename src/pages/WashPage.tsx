@@ -185,8 +185,8 @@ function Navbar() {
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <a href="tel:+918080803043" className="rounded-xl border-2 border-blue-700 text-blue-700 font-bold text-sm px-5 py-2.5 transition-all duration-200 no-underline hover:bg-blue-50"
-            style={{ fontFamily:"'Plus Jakarta Sans',sans-serif" }}>📞 8080803043</a>
+          <a href="tel:+918282822265" className="rounded-xl border-2 border-blue-700 text-blue-700 font-bold text-sm px-5 py-2.5 transition-all duration-200 no-underline hover:bg-blue-50"
+            style={{ fontFamily:"'Plus Jakarta Sans',sans-serif" }}>📞 8282822265</a>
           <a href="#leadform" className="rounded-xl text-white font-bold text-sm px-5 py-2.5 no-underline transition-all duration-200"
             style={{ background:"linear-gradient(135deg,#0047CC,#1A6BFF)", boxShadow:"0 4px 16px rgba(0,71,204,.35)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}
             onMouseOver={e=>(e.currentTarget as HTMLElement).style.transform="translateY(-2px)"}
@@ -211,7 +211,7 @@ function Navbar() {
             return <a key={label} href={href} className="py-3 font-semibold text-sm no-underline border-b" style={{ color:"#2E3F5C", borderColor:"#D8E4F5" }} onClick={()=>setMenuOpen(false)}>{label}</a>;
           })}
           <div className="flex gap-3 pt-3">
-            <a href="tel:+918080803043" className="flex-1 text-center rounded-xl border-2 border-blue-700 text-blue-700 font-bold text-sm py-3 no-underline">📞 Call</a>
+            <a href="tel:+918282822265" className="flex-1 text-center rounded-xl border-2 border-blue-700 text-blue-700 font-bold text-sm py-3 no-underline">📞 Call</a>
             <a href="#leadform" className="flex-1 text-center rounded-xl text-white font-bold text-sm py-3 no-underline" style={{ background:"linear-gradient(135deg,#0047CC,#1A6BFF)" }} onClick={()=>setMenuOpen(false)}>Book Now</a>
           </div>
         </div>
@@ -303,11 +303,11 @@ function Hero() {
 
             <Reveal delay={300}>
               <div className="flex flex-wrap gap-3 mb-7">
-                <a href="tel:+918080803043" className="inline-flex items-center gap-2 rounded-xl text-white font-bold text-base px-7 py-3.5 no-underline transition-all duration-200"
+                <a href="tel:+918282822265" className="inline-flex items-center gap-2 rounded-xl text-white font-bold text-base px-7 py-3.5 no-underline transition-all duration-200"
                   style={{ background:"linear-gradient(135deg,#0047CC,#1A6BFF)", boxShadow:"0 4px 20px rgba(0,71,204,.38)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}
                   onMouseOver={e=>(e.currentTarget as HTMLElement).style.transform="translateY(-2px)"}
-                  onMouseOut={e=>(e.currentTarget as HTMLElement).style.transform=""}>📞 Call: 8080803043</a>
-                <a href="https://wa.me/918080803043" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl text-white font-bold text-base px-7 py-3.5 no-underline transition-all duration-200"
+                  onMouseOut={e=>(e.currentTarget as HTMLElement).style.transform=""}>📞 Call: 8282822265</a>
+                <a href="https://wa.me/918282822265" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl text-white font-bold text-base px-7 py-3.5 no-underline transition-all duration-200"
                   style={{ background:"linear-gradient(135deg,#25D366,#128C7E)", boxShadow:"0 4px 16px rgba(37,211,102,.35)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}
                   onMouseOver={e=>(e.currentTarget as HTMLElement).style.transform="translateY(-2px)"}
                   onMouseOut={e=>(e.currentTarget as HTMLElement).style.transform=""}>💬 WhatsApp</a>
@@ -461,11 +461,11 @@ function ProblemsSection() {
         </div>
         <Reveal>
           <div className="flex flex-wrap gap-3 justify-center">
-            <a href="tel:+918080803043" className="inline-flex items-center gap-2 rounded-xl text-white font-bold px-7 py-3.5 no-underline transition-all duration-200"
+            <a href="tel:+918282822265" className="inline-flex items-center gap-2 rounded-xl text-white font-bold px-7 py-3.5 no-underline transition-all duration-200"
               style={{ background:"linear-gradient(135deg,#0047CC,#1A6BFF)", boxShadow:"0 4px 20px rgba(0,71,204,.35)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}
               onMouseOver={e=>(e.currentTarget as HTMLElement).style.transform="translateY(-2px)"}
-              onMouseOut={e=>(e.currentTarget as HTMLElement).style.transform=""}>📞 Call: 8080803043</a>
-            <a href="https://wa.me/918080803043" className="inline-flex items-center gap-2 rounded-xl text-white font-bold px-7 py-3.5 no-underline transition-all duration-200"
+              onMouseOut={e=>(e.currentTarget as HTMLElement).style.transform=""}>📞 Call: 8282822265</a>
+            <a href="https://wa.me/918282822265" className="inline-flex items-center gap-2 rounded-xl text-white font-bold px-7 py-3.5 no-underline transition-all duration-200"
               style={{ background:"linear-gradient(135deg,#25D366,#128C7E)", boxShadow:"0 4px 16px rgba(37,211,102,.35)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}
               onMouseOver={e=>(e.currentTarget as HTMLElement).style.transform="translateY(-2px)"}
               onMouseOut={e=>(e.currentTarget as HTMLElement).style.transform=""}>💬 WhatsApp</a>
@@ -631,8 +631,8 @@ function CTAStrip() {
             </div>
             <div className="flex flex-wrap gap-3">
               {[
-                { label:"📞 8080803043", href:"tel:+918080803043", style:{ background:"#fff", color:"#0047CC", boxShadow:"0 4px 20px rgba(0,0,0,.15)" } },
-                { label:"💬 WhatsApp",   href:"https://wa.me/918080803043", style:{ background:"linear-gradient(135deg,#25D366,#128C7E)", color:"#fff", boxShadow:"0 4px 16px rgba(37,211,102,.35)" } },
+                { label:"📞 8282822265", href:"tel:+918282822265", style:{ background:"#fff", color:"#0047CC", boxShadow:"0 4px 20px rgba(0,0,0,.15)" } },
+                { label:"💬 WhatsApp",   href:"https://wa.me/918282822265", style:{ background:"linear-gradient(135deg,#25D366,#128C7E)", color:"#fff", boxShadow:"0 4px 16px rgba(37,211,102,.35)" } },
                 { label:"Get Free Quote", href:"#leadform", style:{ background:"rgba(255,255,255,.15)", color:"#fff", border:"2px solid rgba(255,255,255,.4)", backdropFilter:"blur(8px)" } },
               ].map(b=>(
                 <a key={b.label} href={b.href} className="inline-flex items-center gap-2 rounded-xl font-bold text-sm px-7 py-3.5 no-underline transition-all duration-200"
@@ -765,7 +765,7 @@ function OfferBanner() {
                   style={{ background:"#fff", color:"#0047CC", boxShadow:"0 4px 20px rgba(0,0,0,.2)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}
                   onMouseOver={e=>(e.currentTarget as HTMLElement).style.transform="translateY(-2px)"}
                   onMouseOut={e=>(e.currentTarget as HTMLElement).style.transform=""}>🎁 Claim Free Check Now</a>
-                <a href="https://wa.me/918080803043" className="inline-flex items-center gap-2 rounded-xl text-white font-bold text-base px-9 py-4 no-underline transition-all duration-200"
+                <a href="https://wa.me/918282822265" className="inline-flex items-center gap-2 rounded-xl text-white font-bold text-base px-9 py-4 no-underline transition-all duration-200"
                   style={{ background:"linear-gradient(135deg,#25D366,#128C7E)", boxShadow:"0 4px 16px rgba(37,211,102,.35)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}
                   onMouseOver={e=>(e.currentTarget as HTMLElement).style.transform="translateY(-2px)"}
                   onMouseOut={e=>(e.currentTarget as HTMLElement).style.transform=""}>💬 WhatsApp to Book</a>
@@ -897,9 +897,9 @@ function LeadFormSection() {
                 <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&q=80&auto=format" alt="Technician" className="w-full object-cover" style={{ height:220 }} />
                 <div className="absolute inset-0" style={{ background:"linear-gradient(180deg,transparent 20%,rgba(0,20,60,.92) 100%)" }} />
                 <div className="absolute bottom-0 left-0 right-0 p-5 flex gap-3">
-                  <a href="tel:+918080803043" className="flex-1 text-center rounded-xl text-white font-bold text-sm py-3 no-underline"
-                    style={{ background:"linear-gradient(135deg,#0047CC,#1A6BFF)", boxShadow:"0 4px 16px rgba(0,71,204,.4)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>📞 8080803043</a>
-                  <a href="https://wa.me/918080803043" className="flex-1 text-center rounded-xl text-white font-bold text-sm py-3 no-underline"
+                  <a href="tel:+918282822265" className="flex-1 text-center rounded-xl text-white font-bold text-sm py-3 no-underline"
+                    style={{ background:"linear-gradient(135deg,#0047CC,#1A6BFF)", boxShadow:"0 4px 16px rgba(0,71,204,.4)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>📞 8282822265</a>
+                  <a href="https://wa.me/918282822265" className="flex-1 text-center rounded-xl text-white font-bold text-sm py-3 no-underline"
                     style={{ background:"linear-gradient(135deg,#25D366,#128C7E)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>💬 WhatsApp</a>
                 </div>
               </div>
@@ -984,7 +984,7 @@ function Footer() {
             </div>
             <p className="text-sm leading-relaxed mb-4" style={{ color:"rgba(255,255,255,.5)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>Mumbai's most trusted repair service. Same day. 90-day warranty. All Mumbai areas.</p>
             <div className="flex flex-col gap-2">
-              {[["📞 8080803043","tel:+918080803043"],["💬 WhatsApp","https://wa.me/918080803043"],["✉️ service@repair.in","mailto:service@repair.in"]].map(([l,h])=>(
+              {[["📞 8282822265","tel:+918282822265"],["💬 WhatsApp","https://wa.me/918282822265"],["✉️ service@repair.in","mailto:service@repair.in"]].map(([l,h])=>(
                 <a key={l} href={h} className="text-sm no-underline transition-colors duration-200" style={{ color:"rgba(255,255,255,.55)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}
                   onMouseOver={e=>(e.target as HTMLElement).style.color="#fff"} onMouseOut={e=>(e.target as HTMLElement).style.color="rgba(255,255,255,.55)"}>{l}</a>
               ))}
@@ -1025,8 +1025,8 @@ function Footer() {
             <div className="text-xs" style={{ color:"rgba(255,255,255,.5)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>Same day service. All Mumbai areas.</div>
           </div>
           <div className="flex flex-wrap gap-2">
-            <a href="tel:+918080803043" className="rounded-xl text-white font-bold text-xs px-5 py-2.5 no-underline" style={{ background:"linear-gradient(135deg,#0047CC,#1A6BFF)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>📞 Call</a>
-            <a href="https://wa.me/918080803043" className="rounded-xl text-white font-bold text-xs px-5 py-2.5 no-underline" style={{ background:"linear-gradient(135deg,#25D366,#128C7E)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>💬 WhatsApp</a>
+            <a href="tel:+918282822265" className="rounded-xl text-white font-bold text-xs px-5 py-2.5 no-underline" style={{ background:"linear-gradient(135deg,#0047CC,#1A6BFF)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>📞 Call</a>
+            <a href="https://wa.me/918282822265" className="rounded-xl text-white font-bold text-xs px-5 py-2.5 no-underline" style={{ background:"linear-gradient(135deg,#25D366,#128C7E)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>💬 WhatsApp</a>
             <a href="#leadform" className="rounded-xl font-bold text-xs px-5 py-2.5 no-underline" style={{ background:"rgba(255,255,255,.1)", color:"#fff", border:"1px solid rgba(255,255,255,.2)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>Book Online</a>
           </div>
         </div>
@@ -1044,11 +1044,11 @@ function Footer() {
 function FloatingButtons() {
   return (
     <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
-      <a href="tel:+918080803043" className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl no-underline transition-all duration-200"
+      <a href="tel:+918282822265" className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl no-underline transition-all duration-200"
         style={{ background:"linear-gradient(135deg,#0047CC,#1A6BFF)", boxShadow:"0 8px 24px rgba(0,71,204,.45)" }}
         onMouseOver={e=>(e.currentTarget as HTMLElement).style.transform="translateY(-3px) scale(1.05)"}
         onMouseOut={e=>(e.currentTarget as HTMLElement).style.transform=""} title="Call">📞</a>
-      <a href="https://wa.me/918080803043" target="_blank" rel="noreferrer" className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl no-underline transition-all duration-200"
+      <a href="https://wa.me/918282822265" target="_blank" rel="noreferrer" className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl no-underline transition-all duration-200"
         style={{ background:"linear-gradient(135deg,#25D366,#128C7E)", boxShadow:"0 8px 24px rgba(37,211,102,.45)" }}
         onMouseOver={e=>(e.currentTarget as HTMLElement).style.transform="translateY(-3px) scale(1.05)"}
         onMouseOut={e=>(e.currentTarget as HTMLElement).style.transform=""} title="WhatsApp">💬</a>
