@@ -5,7 +5,7 @@ const FontLoader = () => {
   useEffect(() => {
     const link = document.createElement("link");
     link.href =
-      "https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap";
+      "https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap";
     link.rel = "stylesheet";
     document.head.appendChild(link);
   }, []);
@@ -122,7 +122,7 @@ function SectionTitle({ pill, h, accent, sub, center = false, light = false }: {
       <h2
         className="mt-4 mb-3 leading-tight"
         style={{
-          fontFamily: "'Syne',sans-serif", fontWeight: 800,
+          fontFamily: "'Outfit',sans-serif", fontWeight: 800,
           fontSize: "clamp(2rem,4vw,3rem)",
           color: light ? "#fff" : "#0A1628",
         }}
@@ -167,7 +167,7 @@ function Navbar() {
               })}
             </svg>
           </div>
-          <span style={{ fontFamily:"'Syne',sans-serif", fontWeight:800, fontSize:20, color:"#0A1628" }}>
+          <span style={{ fontFamily:"'Outfit',sans-serif", fontWeight:800, fontSize:20, color:"#0A1628" }}>
             Rapid<span style={{ color:"#0047CC" }}>Fix</span>
           </span>
         </a>
@@ -277,7 +277,7 @@ function Hero() {
             </Reveal>
 
             <Reveal delay={100}>
-              <h1 className="mt-5 mb-5 leading-[1.06]" style={{ fontFamily:"'Syne',sans-serif", fontWeight:800, fontSize:"clamp(2.8rem,5.5vw,4.8rem)", color:"#0A1628" }}>
+              <h1 className="mt-5 mb-5 leading-[1.06]" style={{ fontFamily:"'Outfit',sans-serif", fontWeight:800, fontSize:"clamp(2.8rem,5.5vw,4.8rem)", color:"#0A1628" }}>
                 Washing Machine<br/>
                 <span style={{ background:"linear-gradient(135deg,#0047CC,#0080FF,#00C3FF)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Repair in</span>
                 <br/>Mumbai
@@ -329,13 +329,13 @@ function Hero() {
           <Reveal dir="right" delay={100}>
             <div className="rounded-3xl bg-white border p-9 relative overflow-hidden" style={{ borderColor:"#D8E4F5", boxShadow:"0 20px 60px rgba(0,71,204,.12)", animation:"glowPulse 4s ease-in-out infinite" }}>
               <div className="absolute top-0 left-0 right-0 h-1.5 rounded-t-3xl" style={{ background:"linear-gradient(90deg,#0047CC,#4D9FFF)" }} />
-              <h3 className="font-bold text-2xl mb-1 mt-1" style={{ fontFamily:"'Syne',sans-serif", color:"#0A1628" }}>Book Your Repair Today</h3>
+              <h3 className="font-bold text-2xl mb-1 mt-1" style={{ fontFamily:"'Outfit',sans-serif", color:"#0A1628" }}>Book Your Repair Today</h3>
               <p className="text-sm mb-6" style={{ color:"#6B7FA3", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>Technician at your door within 2–4 hrs. Free diagnosis included.</p>
 
               {submitted ? (
                 <div className="text-center py-10">
                   <div className="text-5xl mb-4">✅</div>
-                  <div className="font-bold text-xl mb-2" style={{ fontFamily:"'Syne',sans-serif", color:"#0A1628" }}>Submitted!</div>
+                  <div className="font-bold text-xl mb-2" style={{ fontFamily:"'Outfit',sans-serif", color:"#0A1628" }}>Submitted!</div>
                   <p style={{ color:"#6B7FA3" }}>We'll call you back within 30 minutes.</p>
                 </div>
               ) : (
@@ -409,7 +409,7 @@ function StatsSection() {
                 onMouseOver={e=>(e.currentTarget as HTMLElement).style.boxShadow="0 16px 40px rgba(0,71,204,.15)"}
                 onMouseOut={e=>(e.currentTarget as HTMLElement).style.boxShadow="0 4px 18px rgba(0,71,204,.07)"}>
                 <div className="absolute top-0 left-0 right-0 h-1" style={{ background:"linear-gradient(90deg,#0047CC,#4D9FFF)" }} />
-                <div className="font-extrabold mb-2" style={{ fontFamily:"'Syne',sans-serif", fontSize:"2.8rem", lineHeight:1, background:"linear-gradient(135deg,#0047CC,#0080FF,#00C3FF)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
+                <div className="font-extrabold mb-2" style={{ fontFamily:"'Outfit',sans-serif", fontSize:"2.8rem", lineHeight:1, background:"linear-gradient(135deg,#0047CC,#0080FF,#00C3FF)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
                   <Counter target={s.n} suffix={s.suffix} />
                 </div>
                 <div className="text-xs font-bold uppercase tracking-widest" style={{ color:"#6B7FA3", fontFamily:"'JetBrains Mono',monospace" }}>{s.label}</div>
@@ -510,11 +510,11 @@ function WhyUsSection() {
 
               {/* Floating cards */}
               <div className="absolute bg-white border rounded-2xl p-5" style={{ top:-20,right:-20, borderColor:"#D8E4F5", boxShadow:"0 12px 36px rgba(0,71,204,.16)", animation:"floatA 6s ease-in-out infinite" }}>
-                <div className="font-extrabold" style={{ fontFamily:"'Syne',sans-serif", fontSize:"2.4rem", lineHeight:1, background:"linear-gradient(135deg,#0047CC,#00C3FF)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>50K+</div>
+                <div className="font-extrabold" style={{ fontFamily:"'Outfit',sans-serif", fontSize:"2.4rem", lineHeight:1, background:"linear-gradient(135deg,#0047CC,#00C3FF)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>50K+</div>
                 <div className="text-xs mt-1" style={{ color:"#6B7FA3", fontFamily:"'JetBrains Mono',monospace" }}>Repairs Done</div>
               </div>
               <div className="absolute rounded-2xl p-5" style={{ bottom:-20,left:-20, background:"linear-gradient(135deg,#0047CC,#0066FF)", boxShadow:"0 12px 36px rgba(0,71,204,.38)", animation:"floatB 8s ease-in-out infinite 1.5s" }}>
-                <div className="font-extrabold text-white" style={{ fontFamily:"'Syne',sans-serif", fontSize:"2.4rem", lineHeight:1 }}>10+</div>
+                <div className="font-extrabold text-white" style={{ fontFamily:"'Outfit',sans-serif", fontSize:"2.4rem", lineHeight:1 }}>10+</div>
                 <div className="text-xs mt-1" style={{ color:"rgba(255,255,255,.7)", fontFamily:"'JetBrains Mono',monospace" }}>Years in Mumbai</div>
               </div>
             </div>
@@ -596,7 +596,7 @@ function HowItWorksSection() {
                 {/* Connector line */}
                 {i<3 && <div className="hidden lg:block absolute top-14 left-full w-5 h-0.5 z-10" style={{ background:"linear-gradient(90deg,#0047CC,#D8E4F5)" }} />}
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5" style={{ background:"linear-gradient(135deg,#0047CC,#1A6BFF)", boxShadow:"0 8px 20px rgba(0,71,204,.32)" }}>
-                  <span className="font-extrabold text-white text-xl" style={{ fontFamily:"'Syne',sans-serif" }}>{s.n}</span>
+                  <span className="font-extrabold text-white text-xl" style={{ fontFamily:"'Outfit',sans-serif" }}>{s.n}</span>
                 </div>
                 <h3 className="font-bold text-base mb-2" style={{ fontFamily:"'Plus Jakarta Sans',sans-serif", color:"#0A1628" }}>{s.title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color:"#6B7FA3", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>{s.desc}</p>
@@ -626,7 +626,7 @@ function CTAStrip() {
         <Reveal>
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
-              <h3 className="font-extrabold text-white mb-2" style={{ fontFamily:"'Syne',sans-serif", fontSize:"clamp(1.8rem,3.5vw,2.8rem)" }}>Need Repair Today?</h3>
+              <h3 className="font-extrabold text-white mb-2" style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(1.8rem,3.5vw,2.8rem)" }}>Need Repair Today?</h3>
               <p style={{ color:"rgba(255,255,255,.8)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>Technicians across Andheri, Bandra, Thane, Navi Mumbai, Dadar, Borivali & more.</p>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -755,7 +755,7 @@ function OfferBanner() {
 
             <div className="relative z-10">
               <Pill white>Limited Time Offer</Pill>
-              <h2 className="mt-5 mb-3 text-white font-extrabold" style={{ fontFamily:"'Syne',sans-serif", fontSize:"clamp(2rem,4vw,3.2rem)" }}>FREE Appliance Health Check</h2>
+              <h2 className="mt-5 mb-3 text-white font-extrabold" style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(2rem,4vw,3.2rem)" }}>FREE Appliance Health Check</h2>
               <div className="inline-block rounded-full px-6 py-2 font-bold text-base mb-5" style={{ background:"#FFB800", color:"#000", fontFamily:"'JetBrains Mono',monospace" }}>Worth ₹499 — FREE</div>
               <p className="text-base leading-relaxed mb-8" style={{ color:"rgba(255,255,255,.88)", maxWidth:520, margin:"0 auto 32px", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>
                 Book your repair today and get a complete appliance health check absolutely free. Our technician inspects your entire machine and flags hidden issues.
@@ -909,13 +909,13 @@ function LeadFormSection() {
           <Reveal dir="right">
             <div className="rounded-3xl bg-white border p-9 relative overflow-hidden" style={{ borderColor:"rgba(0,71,204,.2)", boxShadow:"0 24px 70px rgba(0,71,204,.14)" }}>
               <div className="absolute top-0 left-0 right-0 h-1.5 rounded-t-3xl" style={{ background:"linear-gradient(90deg,#0047CC,#4D9FFF)" }} />
-              <h3 className="font-bold text-2xl mb-1 mt-1" style={{ fontFamily:"'Syne',sans-serif", color:"#0A1628" }}>Book Your Repair</h3>
+              <h3 className="font-bold text-2xl mb-1 mt-1" style={{ fontFamily:"'Outfit',sans-serif", color:"#0A1628" }}>Book Your Repair</h3>
               <p className="text-sm mb-6" style={{ color:"#6B7FA3", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>We'll call you back within 30 minutes.</p>
 
               {submitted ? (
                 <div className="text-center py-10">
                   <div className="text-5xl mb-4">✅</div>
-                  <div className="font-bold text-xl mb-2" style={{ fontFamily:"'Syne',sans-serif", color:"#0A1628" }}>Submitted!</div>
+                  <div className="font-bold text-xl mb-2" style={{ fontFamily:"'Outfit',sans-serif", color:"#0A1628" }}>Submitted!</div>
                   <p style={{ color:"#6B7FA3" }}>We'll call you back within 30 minutes.</p>
                 </div>
               ) : (
@@ -980,7 +980,7 @@ function Footer() {
               <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background:"linear-gradient(135deg,#0047CC,#1A6BFF)" }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" strokeWidth="2"/><circle cx="12" cy="12" r="4" stroke="#fff" strokeWidth="1.5"/>{[0,90,180,270].map(a=>{const r=a*Math.PI/180;return<circle key={a} cx={12+6*Math.sin(r)} cy={12-6*Math.cos(r)} r="1.2" fill="#fff"/>;})}</svg>
               </div>
-              <span style={{ fontFamily:"'Syne',sans-serif", fontWeight:800, fontSize:20, color:"#fff" }}>Rapid<span style={{ color:"#4D9FFF" }}>Fix</span></span>
+              <span style={{ fontFamily:"'Outfit',sans-serif", fontWeight:800, fontSize:20, color:"#fff" }}>Rapid<span style={{ color:"#4D9FFF" }}>Fix</span></span>
             </div>
             <p className="text-sm leading-relaxed mb-4" style={{ color:"rgba(255,255,255,.5)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>Mumbai's most trusted repair service. Same day. 90-day warranty. All Mumbai areas.</p>
             <div className="flex flex-col gap-2">
