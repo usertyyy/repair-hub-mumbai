@@ -156,11 +156,11 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-5 flex items-center justify-between h-[68px]">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2.5 no-underline">
-          <div className="w-9 h-9 rounded-xl flex items-center justify-center overflow-hidden bg-white">
+          <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden bg-white">
             <img src="/repairlogo.png" alt="Logo" className="w-full h-full object-contain" />
           </div>
           <span style={{ fontFamily:"'Outfit',sans-serif", fontWeight:800, fontSize:20, color:"#0A1628" }}>
-            Customer Service<span style={{ color:"#0047CC" }}>Centre</span>
+            Customer Service<span style={{ color:"#0047CC" }}> Centre</span>
           </span>
         </a>
 
@@ -322,7 +322,7 @@ function Hero() {
             <div className="rounded-3xl bg-white border p-9 relative overflow-hidden" style={{ borderColor:"#D8E4F5", boxShadow:"0 20px 60px rgba(0,71,204,.12)", animation:"glowPulse 4s ease-in-out infinite" }}>
               <div className="absolute top-0 left-0 right-0 h-1.5 rounded-t-3xl" style={{ background:"linear-gradient(90deg,#0047CC,#4D9FFF)" }} />
               <h3 className="font-bold text-2xl mb-1 mt-1" style={{ fontFamily:"'Outfit',sans-serif", color:"#0A1628" }}>Book Your Repair Today</h3>
-              <p className="text-sm mb-6" style={{ color:"#6B7FA3", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>Technician at your door within 2–4 hrs. Free diagnosis included.</p>
+              <p className="text-sm mb-6" style={{ color:"#6B7FA3", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>Technician at your door within 1–2 hrs. Free diagnosis included.</p>
 
               {submitted ? (
                 <div className="text-center py-10">
@@ -470,7 +470,7 @@ function ProblemsSection() {
 
 /* ── WHY US ── */
 const WHY_ITEMS = [
-  { icon:"⚡", title:"Same Day Response — 2–4 Hour Slots", desc:"Book before 2pm and your technician arrives same day." },
+  { icon:"⚡", title:"Same Day Response — 1-2 Hour Slots", desc:"Book before 2pm and your technician arrives same day." },
   { icon:"🏆", title:"10+ Years of Mumbai Expertise", desc:"Thousands of repairs across Andheri, Bandra, Thane & beyond." },
   { icon:"🔩", title:"100% Genuine Spare Parts", desc:"No cheap alternatives. Genuine parts mean longer machine life." },
   { icon:"💰", title:"Upfront Transparent Pricing", desc:"You know the cost before we begin. Zero hidden charges." },
@@ -747,16 +747,16 @@ function OfferBanner() {
 
             <div className="relative z-10">
               <Pill white>Limited Time Offer</Pill>
-              <h2 className="mt-5 mb-3 text-white font-extrabold" style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(2rem,4vw,3.2rem)" }}>FREE Appliance Health Check</h2>
-              <div className="inline-block rounded-full px-6 py-2 font-bold text-base mb-5" style={{ background:"#FFB800", color:"#000", fontFamily:"'JetBrains Mono',monospace" }}>Worth ₹499 — FREE</div>
+              <h2 className="mt-5 mb-3 text-white font-extrabold" style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(2rem,4vw,3.2rem)" }}>Book Your Repair Today</h2>
+              <div className="inline-block rounded-full px-6 py-2 font-bold text-base mb-5" style={{ background:"#FFB800", color:"#000", fontFamily:"'JetBrains Mono',monospace" }}></div>
               <p className="text-base leading-relaxed mb-8" style={{ color:"rgba(255,255,255,.88)", maxWidth:520, margin:"0 auto 32px", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>
-                Book your repair today and get a complete appliance health check absolutely free. Our technician inspects your entire machine and flags hidden issues.
+                Book your repair today and get a complete appliance health. Our technician inspects your entire machine and flags hidden issues.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <a href="#leadform" className="inline-flex items-center gap-2 rounded-xl font-extrabold text-base px-9 py-4 no-underline transition-all duration-200"
                   style={{ background:"#fff", color:"#0047CC", boxShadow:"0 4px 20px rgba(0,0,0,.2)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}
                   onMouseOver={e=>(e.currentTarget as HTMLElement).style.transform="translateY(-2px)"}
-                  onMouseOut={e=>(e.currentTarget as HTMLElement).style.transform=""}>🎁 Claim Free Check Now</a>
+                  onMouseOut={e=>(e.currentTarget as HTMLElement).style.transform=""}>🎁 Book Now</a>
                 <a href="https://wa.me/918282822265" className="inline-flex items-center gap-2 rounded-xl text-white font-bold text-base px-9 py-4 no-underline transition-all duration-200"
                   style={{ background:"linear-gradient(135deg,#25D366,#128C7E)", boxShadow:"0 4px 16px rgba(37,211,102,.35)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}
                   onMouseOver={e=>(e.currentTarget as HTMLElement).style.transform="translateY(-2px)"}
@@ -867,7 +867,7 @@ function LeadFormSection() {
     try { await fetch("https://formspree.io/f/mgollvyl",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(Object.fromEntries(new FormData(e.target)))}); } catch {}
     setSending(false); setSubmitted(true);
   };
-  const checklist = ["Same day technician dispatch","90-day warranty on all repairs","100% genuine spare parts used","Transparent pricing — no hidden charges","Free health check (worth ₹499)","All Mumbai areas covered"];
+  const checklist = ["Same day technician dispatch","90-day warranty on all repairs","100% genuine spare parts used","Transparent pricing — no hidden charges","All Mumbai areas covered"];
   return (
     <section id="leadform" className="py-24" style={{ background:"#F7F9FF" }}>
       <div className="max-w-7xl mx-auto px-5">
@@ -969,7 +969,7 @@ function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div>
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center overflow-hidden bg-white">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden bg-white">
                 <img src="/repairlogo.png" alt="Logo" className="w-full h-full object-contain" />
               </div>
               <span style={{ fontFamily:"'Outfit',sans-serif", fontWeight:800, fontSize:20, color:"#fff" }}>Customer Service<span style={{ color:"#4D9FFF" }}>Centre</span></span>
