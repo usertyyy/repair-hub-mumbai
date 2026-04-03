@@ -168,7 +168,7 @@ function Navbar() {
             </svg>
           </div>
           <span style={{ fontFamily:"'Outfit',sans-serif", fontWeight:800, fontSize:20, color:"#0A1628" }}>
-            Rapid<span style={{ color:"#0047CC" }}>Fix</span>
+            Customer Service<span style={{ color:"#0047CC" }}>Centre</span>
           </span>
         </a>
 
