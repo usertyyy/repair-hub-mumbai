@@ -74,7 +74,7 @@ function Counter({ target, suffix = "" }) {
 }
 
 /* ── Ticker bar ── */
-const TICKER_ITEMS = ["⚡ Same Day Service","🛡 90-Day Warranty","✅ Certified Technicians","💰 Transparent Pricing","🔩 Genuine Parts","🗺 All Mumbai Areas","⭐ 4.8 Google Rating","📞 Available Today"];
+const TICKER_ITEMS = ["⚡ Same Day Repair","🛡 90-Day Warranty","✅ Certified Technicians","💰 Transparent Pricing","🔩 Genuine Parts","🗺 All Mumbai Areas","⭐ 4.8 Google Rating","📞 Available Today"];
 function TickerBar() {
   return (
     <div className="overflow-hidden py-3.5" style={{ background: "linear-gradient(135deg,#0047CC,#1A6BFF)" }}>
@@ -273,7 +273,7 @@ function Hero() {
           {/* LEFT */}
           <div>
             <Reveal delay={0}>
-              <Pill>⚡ Same Day Service · Mumbai</Pill>
+              <Pill>⚡ Same Day Repair · Mumbai</Pill>
             </Reveal>
 
             <Reveal delay={100}>
@@ -1022,7 +1022,7 @@ function Footer() {
         <div className="rounded-2xl p-6 flex flex-wrap items-center justify-between gap-4 mb-8" style={{ background:"rgba(255,255,255,.06)", border:"1px solid rgba(255,255,255,.1)" }}>
           <div>
             <div className="font-bold text-white text-sm" style={{ fontFamily:"'Plus Jakarta Sans',sans-serif" }}>Ready to fix your washing machine?</div>
-            <div className="text-xs" style={{ color:"rgba(255,255,255,.5)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>Same day service. All Mumbai areas.</div>
+            <div className="text-xs" style={{ color:"rgba(255,255,255,.5)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>Same Day Repair. All Mumbai areas.</div>
           </div>
           <div className="flex flex-wrap gap-2">
             <a href="tel:+918282822265" className="rounded-xl text-white font-bold text-xs px-5 py-2.5 no-underline" style={{ background:"linear-gradient(135deg,#0047CC,#1A6BFF)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>📞 Call</a>
