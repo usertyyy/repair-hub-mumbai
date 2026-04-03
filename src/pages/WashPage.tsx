@@ -980,11 +980,11 @@ function Footer() {
               <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background:"linear-gradient(135deg,#0047CC,#1A6BFF)" }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" strokeWidth="2"/><circle cx="12" cy="12" r="4" stroke="#fff" strokeWidth="1.5"/>{[0,90,180,270].map(a=>{const r=a*Math.PI/180;return<circle key={a} cx={12+6*Math.sin(r)} cy={12-6*Math.cos(r)} r="1.2" fill="#fff"/>;})}</svg>
               </div>
-              <span style={{ fontFamily:"'Outfit',sans-serif", fontWeight:800, fontSize:20, color:"#fff" }}>Rapid<span style={{ color:"#4D9FFF" }}>Fix</span></span>
+              <span style={{ fontFamily:"'Outfit',sans-serif", fontWeight:800, fontSize:20, color:"#fff" }}>Customer Service<span style={{ color:"#4D9FFF" }}>Centre</span></span>
             </div>
             <p className="text-sm leading-relaxed mb-4" style={{ color:"rgba(255,255,255,.5)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>Mumbai's most trusted repair service. Same day. 90-day warranty. All Mumbai areas.</p>
             <div className="flex flex-col gap-2">
-              {[["📞 8282822265","tel:+918282822265"],["💬 WhatsApp","https://wa.me/918282822265"],["✉️ service@repair.in","mailto:service@repair.in"]].map(([l,h])=>(
+              {[["📞 8282822265","tel:+918282822265"],["💬 WhatsApp","https://wa.me/918282822265"],["✉️ CustomerServiceCentre.com","mailto:service@repair.in"]].map(([l,h])=>(
                 <a key={l} href={h} className="text-sm no-underline transition-colors duration-200" style={{ color:"rgba(255,255,255,.55)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}
                   onMouseOver={e=>(e.target as HTMLElement).style.color="#fff"} onMouseOut={e=>(e.target as HTMLElement).style.color="rgba(255,255,255,.55)"}>{l}</a>
               ))}
@@ -1032,7 +1032,7 @@ function Footer() {
         </div>
 
         <div className="flex flex-wrap justify-between gap-2 pt-6" style={{ borderTop:"1px solid rgba(255,255,255,.08)" }}>
-          <p className="text-xs" style={{ color:"rgba(255,255,255,.3)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>© 2026 RapidFix. All rights reserved. | Washing Machine Repair Mumbai</p>
+          <p className="text-xs" style={{ color:"rgba(255,255,255,.3)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>© 2026 Customer Service Centre. All rights reserved. | Washing Machine Repair Mumbai</p>
           <p className="text-xs" style={{ color:"rgba(255,255,255,.2)", fontFamily:"'Plus Jakarta Sans',sans-serif" }}>*Independent repair service. Not affiliated with any brand.</p>
         </div>
       </div>
