@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 /* ── Google Fonts injected once ── */
 const FontLoader = () => {
@@ -221,12 +223,31 @@ function Hero() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    
     try {
+      // 1. Save to Firebase
+      await addDoc(collection(db, "bookings"), {
+        name: data.name,
+        phone: data.phone,
+        area: data.area,
+        brand: data.brand || data.type || "Washing Machine",
+        message: data.message,
+        category: "Washing Machine",
+        status: "New",
+        createdAt: serverTimestamp(),
+        source: "WashPage"
+      });
+
+      // 2. Send to Formspree
       await fetch("https://formspree.io/f/mgollvyl", {
         method:"POST", headers:{"Content-Type":"application/json"},
-        body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
+        body: JSON.stringify(data)
       });
-    } catch {}
+    } catch (error) {
+      console.error("Error submitting lead:", error);
+    }
     setSending(false);
     setSubmitted(true);
   };

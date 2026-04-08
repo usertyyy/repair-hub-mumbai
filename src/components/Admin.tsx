@@ -137,7 +137,7 @@ function DonutChart({ data }: { data: any[] }) {
 // ── MAIN COMPONENT ─────────────────────────────────────────────────────────
 export default function Dashboard() {
   const [activeNav, setActiveNav] = useState("dashboard");
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false); // Default closed on mobile
   const [searchQ, setSearchQ] = useState("");
   const [filterStatus, setFilterStatus] = useState("All");
   const [filterCat, setFilterCat] = useState("All");
@@ -145,6 +145,20 @@ export default function Dashboard() {
   const [leads, setLeads] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  // Handle sidebar default state based on screen size
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setSidebarOpen(true);
+      } else {
+        setSidebarOpen(false);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const q = query(collection(db, "bookings"), orderBy("createdAt", "desc"));
@@ -155,6 +169,10 @@ export default function Dashboard() {
         date: doc.data().createdAt ? (doc.data().createdAt as Timestamp).toDate().toLocaleDateString("en-IN", { day:"2-digit", month:"short", year:"numeric" }) : "N/A"
       }));
       setLeads(leadsData);
+      setLoading(false);
+    }, (error) => {
+      console.error("Firestore onSnapshot error:", error);
+      toast.error("Failed to load leads: " + error.message);
       setLoading(false);
     });
 
@@ -198,7 +216,7 @@ export default function Dashboard() {
   const filtered = leads.filter(l => {
     const matchSearch = (l.name || "").toLowerCase().includes(searchQ.toLowerCase()) ||
       (l.id || "").toLowerCase().includes(searchQ.toLowerCase()) ||
-      (l.address || "").toLowerCase().includes(searchQ.toLowerCase()) ||
+      (l.address || l.area || "").toLowerCase().includes(searchQ.toLowerCase()) ||
       (l.brand || "").toLowerCase().includes(searchQ.toLowerCase());
     const matchStatus = filterStatus === "All" || l.status === filterStatus;
     const matchCat = (activeNav === "dashboard" || activeNav === "leads")
@@ -248,36 +266,59 @@ export default function Dashboard() {
   return (
     <div className="flex h-screen bg-[#060b14] text-slate-100 overflow-hidden" style={{fontFamily:"'DM Sans',sans-serif"}}>
 
+      {/* ─── SIDEBAR OVERLAY (Mobile) ─── */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* ─── SIDEBAR ─── */}
-      <aside className={`${sidebarOpen?"w-64":"w-16"} transition-all duration-300 bg-[#0d1525] border-r border-slate-800/60 flex flex-col z-50 shrink-0`}>
+      <aside className={`
+        fixed md:relative z-[70] h-full transition-all duration-300 bg-[#0d1525] border-r border-slate-800/60 flex flex-col shrink-0
+        ${sidebarOpen ? "translate-x-0 w-64" : "-translate-x-full md:translate-x-0 w-64 md:w-16"}
+      `}>
         <div className="flex items-center gap-3 px-4 py-5 border-b border-slate-800/60">
           <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shrink-0">
             <Wrench size={15} className="text-white"/>
           </div>
-          {sidebarOpen && (
-            <div>
-              <p className="text-sm font-bold text-white leading-tight tracking-tight">Customer Service Centre</p>
+          {(sidebarOpen) && (
+            <div className="min-w-0 overflow-hidden">
+              <p className="text-sm font-bold text-white leading-tight tracking-tight truncate">Customer Service Centre</p>
               <p className="text-[10px] text-slate-500">Admin Panel</p>
             </div>
           )}
-          <button onClick={()=>setSidebarOpen(!sidebarOpen)} className="ml-auto text-slate-500 hover:text-slate-300 transition-colors">
+          <button 
+            onClick={()=>setSidebarOpen(!sidebarOpen)} 
+            className="ml-auto text-slate-500 hover:text-slate-300 transition-colors md:flex hidden"
+          >
             {sidebarOpen ? <X size={16}/> : <Menu size={16}/>}
+          </button>
+          <button 
+            onClick={()=>setSidebarOpen(false)} 
+            className="ml-auto text-slate-500 hover:text-slate-300 transition-colors md:hidden"
+          >
+            <X size={18}/>
           </button>
         </div>
 
-        <nav className="flex-1 py-4 px-2 flex flex-col gap-1">
+        <nav className="flex-1 py-4 px-2 flex flex-col gap-1 overflow-y-auto scrollbar-none">
           {NAV.map(n => {
             const Icon = n.icon;
             const active = activeNav === n.id;
             return (
-              <button key={n.id} onClick={()=>setActiveNav(n.id)}
+              <button key={n.id} onClick={()=>{
+                setActiveNav(n.id);
+                if (window.innerWidth < 768) setSidebarOpen(false);
+              }}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group
                   ${active
                     ? "bg-gradient-to-r from-cyan-500/20 to-blue-600/10 text-cyan-400 border border-cyan-500/20 shadow-lg shadow-cyan-500/5"
                     : "text-slate-500 hover:bg-slate-800/50 hover:text-slate-300"}`}>
                 <Icon size={18} className={active?"text-cyan-400":"text-slate-500 group-hover:text-slate-300"}/>
-                {sidebarOpen && <span>{n.label}</span>}
-                {active && sidebarOpen && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-sm shadow-cyan-400"/>}
+                {(sidebarOpen) && <span className="truncate">{n.label}</span>}
+                {active && (sidebarOpen) && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-sm shadow-cyan-400 shrink-0"/>}
               </button>
             );
           })}
@@ -288,23 +329,29 @@ export default function Dashboard() {
             onClick={handleLogout}
             className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-500 hover:bg-red-500/10 hover:text-red-400 transition-all"
           >
-            <LogOut size={17}/>{sidebarOpen && "Logout"}
+            <LogOut size={17}/>{(sidebarOpen) && "Logout"}
           </button>
         </div>
       </aside>
 
       {/* ─── MAIN ─── */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="h-14 bg-[#0d1525]/80 backdrop-blur border-b border-slate-800/60 flex items-center gap-4 px-6 shrink-0">
-          <div>
-            <h1 className="text-sm font-bold text-white">{pageTitle}</h1>
+        <header className="h-14 bg-[#0d1525]/80 backdrop-blur border-b border-slate-800/60 flex items-center gap-2 md:gap-4 px-4 md:px-6 shrink-0">
+          <button 
+            onClick={()=>setSidebarOpen(true)} 
+            className="p-2 -ml-2 text-slate-400 hover:text-white md:hidden"
+          >
+            <Menu size={20}/>
+          </button>
+          <div className="min-w-0">
+            <h1 className="text-xs md:text-sm font-bold text-white truncate">{pageTitle}</h1>
           </div>
-          <div className="ml-auto flex items-center gap-3">
-            <div className="relative">
+          <div className="ml-auto flex items-center gap-2 md:gap-3">
+            <div className="relative hidden sm:block">
               <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"/>
               <input value={searchQ} onChange={e=>setSearchQ(e.target.value)}
                 placeholder="Search leads…"
-                className="w-48 bg-slate-800/60 border border-slate-700/50 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-300 placeholder-slate-600 focus:outline-none focus:border-cyan-500/50 focus:w-64 transition-all"/>
+                className="w-32 lg:w-48 bg-slate-800/60 border border-slate-700/50 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-300 placeholder-slate-600 focus:outline-none focus:border-cyan-500/50 focus:w-40 lg:focus:w-64 transition-all"/>
             </div>
             <button className="relative w-8 h-8 rounded-lg bg-slate-800/60 border border-slate-700/50 flex items-center justify-center text-slate-400 hover:text-slate-200 transition-colors">
               <Bell size={15}/>
@@ -312,17 +359,17 @@ export default function Dashboard() {
             </button>
             <div className="flex items-center gap-2 bg-slate-800/60 border border-slate-700/50 rounded-lg px-2.5 py-1.5 cursor-pointer hover:border-slate-600 transition-colors">
               <div className="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-[10px] font-bold">A</div>
-              <span className="text-xs text-slate-300 font-medium">Admin</span>
+              <span className="text-[10px] md:text-xs text-slate-300 font-medium hidden xs:block">Admin</span>
               <ChevronDown size={12} className="text-slate-500"/>
             </div>
           </div>
         </header>
 
-        <main className="flex-1 overflow-y-auto p-6 scrollbar-thin" style={{scrollbarWidth:"thin",scrollbarColor:"#1e293b transparent"}}>
+        <main className="flex-1 overflow-y-auto p-4 md:p-6 scrollbar-thin" style={{scrollbarWidth:"thin",scrollbarColor:"#1e293b transparent"}}>
 
           {activeNav === "dashboard" && (
             <div className="flex flex-col gap-6">
-              <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {stats.map((s,i)=>{
                   const Icon = s.icon;
                   const pos = s.change > 0;
@@ -349,9 +396,9 @@ export default function Dashboard() {
                 })}
               </div>
 
-              <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-                <div className="xl:col-span-2 bg-[#0d1525] border border-slate-800/60 rounded-2xl p-5">
-                  <div className="flex items-center justify-between mb-5">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <div className="lg:col-span-2 bg-[#0d1525] border border-slate-800/60 rounded-2xl p-5">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-5 gap-2">
                     <div>
                       <h3 className="text-sm font-bold text-white">Monthly Leads by Category</h3>
                       <p className="text-xs text-slate-500 mt-0.5">Last 6 months performance</p>
@@ -364,24 +411,32 @@ export default function Dashboard() {
                       ))}
                     </div>
                   </div>
-                  <BarChart leads={leads}/>
+                  <div className="w-full overflow-x-auto overflow-y-hidden">
+                    <div className="min-w-[400px]">
+                      <BarChart leads={leads}/>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="bg-[#0d1525] border border-slate-800/60 rounded-2xl p-5">
                   <h3 className="text-sm font-bold text-white mb-1">Category Split</h3>
                   <p className="text-xs text-slate-500 mb-4">All-time distribution</p>
-                  <DonutChart data={donutData}/>
+                  <div className="flex justify-center">
+                    <DonutChart data={donutData}/>
+                  </div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 <div className="bg-[#0d1525] border border-slate-800/60 rounded-2xl p-5">
                   <h3 className="text-sm font-bold text-white mb-1">Status Overview</h3>
                   <p className="text-xs text-slate-500 mb-4">Current pipeline</p>
-                  <DonutChart data={statusDonut}/>
+                  <div className="flex justify-center">
+                    <DonutChart data={statusDonut}/>
+                  </div>
                 </div>
 
-                <div className="xl:col-span-2 bg-[#0d1525] border border-slate-800/60 rounded-2xl p-5">
+                <div className="lg:col-span-2 bg-[#0d1525] border border-slate-800/60 rounded-2xl p-5">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-sm font-bold text-white">Recent Leads</h3>
                     <button onClick={()=>setActiveNav("leads")} className="text-xs text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-1">
@@ -404,14 +459,15 @@ export default function Dashboard() {
                               <span className="text-xs font-semibold text-white truncate">{l.name}</span>
                               <span className="text-[10px] text-slate-500 shrink-0">{l.id.slice(-6)}</span>
                             </div>
-                            <div className="flex items-center gap-1.5 mt-0.5">
-                              <span className="text-[10px] text-slate-500">{l.brand}</span>
-                              <span className="w-1 h-1 rounded-full bg-slate-600"/>
+                            <div className="flex items-center gap-1.5 mt-0.5 overflow-hidden">
+                              <span className="text-[10px] text-slate-500 shrink-0">{l.brand}</span>
+                              <span className="w-1 h-1 rounded-full bg-slate-600 shrink-0"/>
                               <span className="text-[10px] text-slate-500 truncate">{l.address}</span>
                             </div>
                           </div>
-                          <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full flex items-center gap-1 ${St.cls}`}>
-                            <StIcon size={9}/>{l.status}
+                          <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full flex items-center gap-1 ${St.cls} shrink-0`}>
+                            <StIcon size={9}/>
+                            <span className="hidden xs:inline">{l.status}</span>
                           </span>
                         </div>
                       );
@@ -425,26 +481,26 @@ export default function Dashboard() {
           {showTable && (
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-3 flex-wrap">
-                <div className="flex items-center gap-1.5 bg-[#0d1525] border border-slate-800/60 rounded-xl p-1">
+                <div className="flex items-center gap-1.5 bg-[#0d1525] border border-slate-800/60 rounded-xl p-1 overflow-x-auto scrollbar-none">
                   {["All",...Object.keys(STATUS_CFG)].map(s=>(
                     <button key={s} onClick={()=>setFilterStatus(s)}
-                      className={`px-3 py-1 rounded-lg text-xs font-medium transition-all ${filterStatus===s?"bg-cyan-500/20 text-cyan-400 border border-cyan-500/30":"text-slate-500 hover:text-slate-300"}`}>
+                      className={`px-3 py-1 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${filterStatus===s?"bg-cyan-500/20 text-cyan-400 border border-cyan-500/30":"text-slate-500 hover:text-slate-300"}`}>
                       {s}
                     </button>
                   ))}
                 </div>
                 {(activeNav==="dashboard"||activeNav==="leads") && (
-                  <div className="flex items-center gap-1.5 bg-[#0d1525] border border-slate-800/60 rounded-xl p-1">
+                  <div className="flex items-center gap-1.5 bg-[#0d1525] border border-slate-800/60 rounded-xl p-1 overflow-x-auto scrollbar-none">
                     {["All","AC","Fridge","Washing Machine"].map(c=>(
                       <button key={c} onClick={()=>setFilterCat(c)}
-                        className={`px-3 py-1 rounded-lg text-xs font-medium transition-all ${filterCat===c?"bg-violet-500/20 text-violet-400 border border-violet-500/30":"text-slate-500 hover:text-slate-300"}`}>
+                        className={`px-3 py-1 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${filterCat===c?"bg-violet-500/20 text-violet-400 border border-violet-500/30":"text-slate-500 hover:text-slate-300"}`}>
                         {c==="All"?"All":CATEGORIES[c]?.label || c}
                       </button>
                     ))}
                   </div>
                 )}
                 <div className="ml-auto flex items-center gap-2">
-                  <span className="text-xs text-slate-500">{filtered.length} leads</span>
+                  <span className="text-xs text-slate-500 whitespace-nowrap">{filtered.length} leads</span>
                 </div>
               </div>
 
@@ -472,7 +528,7 @@ export default function Dashboard() {
                                 <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-slate-700 to-slate-600 flex items-center justify-center text-[11px] font-bold text-slate-300 shrink-0">
                                   {l.name?.[0] || "U"}
                                 </div>
-                                <div>
+                                <div className="min-w-0">
                                   <div className="text-xs font-semibold text-white whitespace-nowrap">{l.name}</div>
                                   <div className="text-[10px] text-slate-500">{l.phone}</div>
                                 </div>
@@ -480,10 +536,10 @@ export default function Dashboard() {
                             </td>
                             <td className="px-4 py-3">
                               <div className="flex flex-col gap-0.5">
-                                <span className={`text-[10px] font-medium flex items-center gap-1 ${Cat.light.split(" ")[1]}`}>
+                                <span className={`text-[10px] font-medium flex items-center gap-1 ${Cat.light.split(" ")[1]} whitespace-nowrap`}>
                                   <CatIcon size={10}/>{Cat.label}
                                 </span>
-                                <span className="text-[10px] text-slate-500">{l.brand}</span>
+                                <span className="text-[10px] text-slate-500 whitespace-nowrap">{l.brand}</span>
                               </div>
                             </td>
                             <td className="px-4 py-3 text-xs text-slate-400 whitespace-nowrap max-w-[200px] truncate">{l.issue}</td>
@@ -531,17 +587,17 @@ export default function Dashboard() {
 
       {selectedLead && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] flex items-center justify-center p-4" onClick={()=>setSelectedLead(null)}>
-          <div className="bg-[#0d1525] border border-slate-700/60 rounded-2xl w-full max-w-md shadow-2xl" onClick={e=>e.stopPropagation()}>
-            <div className="flex items-center justify-between p-5 border-b border-slate-800">
-              <div>
-                <p className="text-[10px] font-mono text-cyan-400/70">{selectedLead.id}</p>
-                <h2 className="text-base font-bold text-white">{selectedLead.name}</h2>
+          <div className="bg-[#0d1525] border border-slate-700/60 rounded-2xl w-full max-w-md shadow-2xl overflow-hidden" onClick={e=>e.stopPropagation()}>
+            <div className="flex items-center justify-between p-4 md:p-5 border-b border-slate-800">
+              <div className="min-w-0">
+                <p className="text-[10px] font-mono text-cyan-400/70 truncate">{selectedLead.id}</p>
+                <h2 className="text-base font-bold text-white truncate">{selectedLead.name}</h2>
               </div>
-              <button onClick={()=>setSelectedLead(null)} className="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 transition-colors">
+              <button onClick={()=>setSelectedLead(null)} className="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 transition-colors shrink-0">
                 <X size={14}/>
               </button>
             </div>
-            <div className="p-5 flex flex-col gap-3">
+            <div className="p-4 md:p-5 flex flex-col gap-3 max-h-[80vh] overflow-y-auto scrollbar-thin">
               {(() => {
                 const Cat = CATEGORIES[selectedLead.category] || CATEGORIES.Other;
                 const CatIcon = Cat.icon;
@@ -549,35 +605,35 @@ export default function Dashboard() {
                 const StIcon = St.icon;
                 return (
                   <>
-                    <div className="flex items-center gap-2">
-                      <span className={`flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg ${Cat.light}`}>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className={`flex items-center gap-1.5 text-[10px] md:text-xs font-medium px-3 py-1.5 rounded-lg ${Cat.light}`}>
                         <CatIcon size={13}/>{Cat.label} — {selectedLead.brand}
                       </span>
-                      <span className={`flex items-center gap-1 text-xs font-medium px-2.5 py-1.5 rounded-lg ${St.cls}`}>
+                      <span className={`flex items-center gap-1 text-[10px] md:text-xs font-medium px-2.5 py-1.5 rounded-lg ${St.cls}`}>
                         <StIcon size={11}/>{selectedLead.status}
                       </span>
                     </div>
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 xs:grid-cols-2 gap-3">
                       {[
                         ["Phone", selectedLead.phone, Phone],
-                        ["Address", selectedLead.address, MapPin],
-                        ["Issue", selectedLead.issue, Wrench],
+                        ["Location", selectedLead.address || selectedLead.area, MapPin],
+                        ["Problem", selectedLead.issue || selectedLead.message, Wrench],
                         ["Date", selectedLead.date, Calendar],
-                        ["Service", selectedLead.serviceType, Zap],
+                        ["Service", selectedLead.serviceType || "Standard", Zap],
                         ["Preferred Time", selectedLead.preferredTime || "Anytime", Clock],
                       ].map(([label, value, Icon])=>(
                         <div key={label} className="bg-slate-800/40 rounded-xl p-3">
                           <div className="flex items-center gap-1.5 text-[10px] text-slate-500 mb-1">
                             <Icon size={10}/>{label}
                           </div>
-                          <div className="text-xs font-semibold text-white truncate">{value}</div>
+                          <div className="text-xs font-semibold text-white break-words">{value || "N/A"}</div>
                         </div>
                       ))}
                     </div>
                   </>
                 );
               })()}
-              <div className="flex flex-wrap gap-2 mt-2">
+              <div className="flex flex-wrap gap-2 mt-2 pt-4 border-t border-slate-800">
                 {Object.keys(STATUS_CFG).map(status => (
                   <button
                     key={status}
